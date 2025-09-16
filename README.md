@@ -1,4 +1,4 @@
-# SaaS AI Architect Academy
+﻿# SaaS AI Architect Academy
 
 Progressive learning and execution platform for AI Architects, program leaders, and Centers of Excellence. The goal is to deliver a micro-learning operating system backed by the open-source [AI Architect Academy](https://github.com/AI-Architect-Academy/ai-architect-academy) knowledge base and an AI assistant that helps teams ship governed, production-grade AI systems.
 
@@ -14,7 +14,7 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 +-- docs/                # Product blueprint, architecture notes
 +-- public/              # Brand assets (SVG, favicons)
 +-- src/
-�   +-- app/             # Next.js App Router routes, layout, styling
+¦   +-- app/             # Next.js App Router routes, layout, styling
 +-- package.json         # Scripts + dependencies
 +-- scripts/             # (planned) content ingestion + automation
 `
@@ -66,3 +66,4 @@ pm run lint before committing.
 - Partnerships & cohorts: [frank@aiarchitect.academy](mailto:frank@aiarchitect.academy).
 
 Built in public to accelerate real-world AI value delivery.
+

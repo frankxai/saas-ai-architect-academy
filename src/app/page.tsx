@@ -1,4 +1,4 @@
-import Link from "next/link";
+ï»¿import Link from "next/link";
 
 const microTracks = [
   {
@@ -29,20 +29,24 @@ const assistantHighlights = [
 
 const roadmap = [
   {
-    phase: "Phase 1  Foundations",
-    focus: "Marketing site, waitlist, curriculum browser, and showcase modules seeded from the existing AI Architect Academy repository.",
+    phase: "Phase 1 - Foundations",
+    focus:
+      "Marketing site, waitlist, curriculum browser, and showcase modules seeded from the existing AI Architect Academy repository.",
   },
   {
-    phase: "Phase 2  Guided Delivery",
-    focus: "Authenticated workspace with learning paths, progress tracking, companion notebooks, and project kits served from Supabase.",
+    phase: "Phase 2 - Guided Delivery",
+    focus:
+      "Authenticated workspace with learning paths, progress tracking, companion notebooks, and project kits served from Supabase.",
   },
   {
-    phase: "Phase 3  AI Pair-Partner",
-    focus: "Full AI assistant with retrieval-augmented generation, sandbox execution, and team collaboration hooks (Slack, Linear).",
+    phase: "Phase 3 - AI Pair-Partner",
+    focus:
+      "Full AI assistant with retrieval-augmented generation, sandbox execution, and team collaboration hooks (Slack, Linear).",
   },
   {
-    phase: "Phase 4  Marketplace + Ops",
-    focus: "Community-sourced modules, evaluation benchmarks, and operational analytics for AI Centers of Excellence.",
+    phase: "Phase 4 - Marketplace + Ops",
+    focus:
+      "Community-sourced modules, evaluation benchmarks, and operational analytics for AI Centers of Excellence.",
   },
 ];
 
@@ -128,7 +132,7 @@ export default function Home() {
               <p>
                 Powered by the <span className="font-semibold">AI Architect Academy</span> knowledge
                 base: design patterns, projects, governance playbooks, and prompt
-                libraries—all cross-linked inside the SaaS experience.
+                librariesâ€”all cross-linked inside the SaaS experience.
               </p>
             </div>
           </div>
@@ -154,7 +158,7 @@ export default function Home() {
                 <p className="mt-3 text-sm text-slate-200">{track.description}</p>
                 <ul className="mt-4 space-y-2 text-sm text-slate-300">
                   {track.modules.map((module) => (
-                    <li key={module}>• {module}</li>
+                    <li key={module}>â€¢ {module}</li>
                   ))}
                 </ul>
               </div>
@@ -186,8 +190,8 @@ export default function Home() {
               ))}
             </ul>
             <div className="mt-6 rounded-2xl border border-white/20 bg-white/10 p-4 text-xs uppercase tracking-[0.3em] text-slate-900 shadow-lg">
-              Launching with OpenRouter + Supabase Vector · Session orchestration via
-              LangChain · Inline citations to primary sources
+              Launching with OpenRouter + Supabase Vector Â· Session orchestration via
+              LangChain Â· Inline citations to primary sources
             </div>
           </div>
           <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6">
@@ -294,3 +298,4 @@ export default function Home() {
     </div>
   );
 }
+
