@@ -1,4 +1,4 @@
-﻿# SaaS AI Architect Academy
+﻿# AI Architect Academy Platform
 
 Progressive learning and execution platform for AI Architects, program leaders, and Centers of Excellence. The goal is to deliver a micro-learning operating system backed by the open-source [AI Architect Academy](https://github.com/AI-Architect-Academy/ai-architect-academy) knowledge base and an AI assistant that helps teams ship governed, production-grade AI systems.
 
@@ -11,12 +11,12 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 ## Repository Structure
 `
 .
-+-- docs/                # Product blueprint, architecture notes
-+-- public/              # Brand assets (SVG, favicons)
-+-- src/
-¦   +-- app/             # Next.js App Router routes, layout, styling
-+-- package.json         # Scripts + dependencies
-+-- scripts/             # (planned) content ingestion + automation
+├── docs/                # Strategy, blueprint, and UX notes
+├── public/              # Brand assets (SVG, favicons)
+├── src/
+│   └── app/             # Next.js App Router routes, layout, styling
+├── package.json         # Scripts + dependencies
+└── scripts/             # (planned) content ingestion + automation
 `
 
 ## Getting Started
@@ -42,7 +42,7 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 | AI Pair-Partner | Full assistant with workflow automation, project intake, evaluation exports. |
 | Marketplace + Ops | Community modules, integration marketplace, governance dashboards, enterprise licensing. |
 
-Read the detailed [product blueprint](docs/product-blueprint.md) for architecture, content strategy, and sprint plan.
+See [docs/product-blueprint.md](docs/product-blueprint.md) for architecture decisions, [docs/strategy.md](docs/strategy.md) for the north-star plan, and [docs/ui-ux-principles.md](docs/ui-ux-principles.md) for design guidance.
 
 ## Leveraging the Open Repository
 - Markdown/MDX from AI Architect Academy becomes module content (with front matter for prerequisites, deliverables, references).
@@ -66,4 +66,3 @@ pm run lint before committing.
 - Partnerships & cohorts: [frank@aiarchitect.academy](mailto:frank@aiarchitect.academy).
 
 Built in public to accelerate real-world AI value delivery.
-

@@ -50,13 +50,40 @@ const roadmap = [
   },
 ];
 
+const personas = [
+  {
+    title: "Lead Architect",
+    outcomes: [
+      "Production-ready blueprint with staged rollout plan",
+      "Evaluation and observability strategy baked into delivery",
+      "Documented risk posture with automated controls",
+    ],
+  },
+  {
+    title: "Program / Product Lead",
+    outcomes: [
+      "Persona-aware learning path and module backlog",
+      "Stakeholder updates with progress and value narrative",
+      "Integration plan for delivery teams and partners",
+    ],
+  },
+  {
+    title: "Risk & Compliance Partner",
+    outcomes: [
+      "Continuous assurance with evidence collection hooks",
+      "Approval workflow with audit-ready artifacts",
+      "Policy mapping to modules and deliverables",
+    ],
+  },
+];
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100">
       <header className="border-b border-white/10 bg-slate-950/60 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
           <Link href="/" className="text-lg font-semibold tracking-tight">
-            SaaS AI Architect Academy
+            AI Architect Academy Platform
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium sm:flex">
             <Link href="#curriculum" className="hover:text-cyan-300">
@@ -64,6 +91,9 @@ export default function Home() {
             </Link>
             <Link href="#assistant" className="hover:text-cyan-300">
               AI Assistant
+            </Link>
+            <Link href="#personas" className="hover:text-cyan-300">
+              Personas
             </Link>
             <Link href="#platform" className="hover:text-cyan-300">
               Platform
@@ -88,8 +118,7 @@ export default function Home() {
               Build real-world AI value faster
             </span>
             <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-              The micro-learning operating system for AI Architects and Centers of
-              Excellence.
+              The operating system for AI Architects and Centers of Excellence.
             </h1>
             <p className="text-base text-slate-200 sm:text-lg">
               Progressive paths, battle-tested playbooks, and an AI partner that helps
@@ -132,7 +161,7 @@ export default function Home() {
               <p>
                 Powered by the <span className="font-semibold">AI Architect Academy</span> knowledge
                 base: design patterns, projects, governance playbooks, and prompt
-                libraries—all cross-linked inside the SaaS experience.
+                libraries—all cross-linked inside the platform experience.
               </p>
             </div>
           </div>
@@ -220,6 +249,25 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="personas" className="space-y-6">
+          <h2 className="text-3xl font-semibold">Designed for the whole AI program</h2>
+          <div className="grid gap-6 md:grid-cols-3">
+            {personas.map((persona) => (
+              <div
+                key={persona.title}
+                className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-200"
+              >
+                <h3 className="text-lg font-semibold text-cyan-100">{persona.title}</h3>
+                <ul className="mt-3 space-y-2 text-sm text-slate-300">
+                  {persona.outcomes.map((outcome) => (
+                    <li key={outcome}>• {outcome}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section id="platform" className="space-y-6">
           <h2 className="text-3xl font-semibold">Platform architecture</h2>
           <div className="grid gap-6 md:grid-cols-2">
@@ -274,6 +322,27 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-center text-sm text-slate-200">
+          <h2 className="text-2xl font-semibold text-slate-100">Co-build with the Academy</h2>
+          <p className="mt-3 max-w-3xl mx-auto">
+            We are building in public. Join the waitlist, contribute modules, or partner on alpha cohorts to shape how AI programs deliver governed value.
+          </p>
+          <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="https://github.com/frankxai/saas-ai-architect-academy/discussions"
+              className="rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300"
+            >
+              Join the discussion
+            </Link>
+            <Link
+              href="mailto:frank@aiarchitect.academy"
+              className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-200 hover:text-cyan-200"
+            >
+              Partner with us
+            </Link>
+          </div>
+        </section>
       </main>
 
       <footer className="border-t border-white/10 bg-slate-950/60">
@@ -290,7 +359,7 @@ export default function Home() {
               Open-source library
             </Link>
             <Link href="mailto:frank@aiarchitect.academy" className="hover:text-cyan-200">
-              Partner with us
+              Contact the team
             </Link>
           </div>
         </div>
@@ -298,4 +367,3 @@ export default function Home() {
     </div>
   );
 }
-

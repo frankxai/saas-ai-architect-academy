@@ -13,19 +13,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SaaS AI Architect Academy",
+  title: "AI Architect Academy Platform",
   description:
     "Micro-learning platform and AI assistant for shipping enterprise-grade AI systems.",
   openGraph: {
-    title: "SaaS AI Architect Academy",
+    title: "AI Architect Academy Platform",
     description:
       "Micro-learning platform and AI assistant for shipping enterprise-grade AI systems.",
     url: "https://saas-ai-architect-academy.vercel.app",
-    siteName: "SaaS AI Architect Academy",
+    siteName: "AI Architect Academy Platform",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SaaS AI Architect Academy",
+    title: "AI Architect Academy Platform",
     description:
       "Progressive curriculum, micro-learning modules, and an AI Architect assistant.",
   },
@@ -44,3 +44,4 @@ export default function RootLayout({
     </html>
   );
 }
+
