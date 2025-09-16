@@ -1,5 +1,18 @@
 ﻿import Link from "next/link";
 
+const keywordCloud = [
+  "ai architect academy",
+  "ai architecture patterns",
+  "enterprise rag blueprint",
+  "ai governance checklist",
+  "model risk management",
+  "llm evaluation strategy",
+  "ai assistant for architects",
+  "agentic workflow playbook",
+  "ai center of excellence toolkit",
+  "ai program roadmap"
+];
+
 const microTracks = [
   {
     title: "Operate with Confidence",
@@ -77,6 +90,37 @@ const personas = [
   },
 ];
 
+const searchIntents = [
+  {
+    term: "ai architecture patterns",
+    need: "Compare reference designs, cite best practices",
+    destination: "#curriculum",
+  },
+  {
+    term: "ai governance checklist",
+    need: "Embed controls and evidence collection",
+    destination: "#assistant",
+  },
+  {
+    term: "rag evaluation strategy",
+    need: "Instrument experiments and quality gates",
+    destination: "#platform",
+  },
+  {
+    term: "ai program roadmap",
+    need: "Align stakeholders and communicate value",
+    destination: "#roadmap",
+  },
+];
+
+const knowledgeLinks = [
+  { label: "Product Blueprint", href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/product-blueprint.md" },
+  { label: "Strategy Overview", href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/strategy.md" },
+  { label: "Agent Journeys", href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/agent-journeys.md" },
+  { label: "Capabilities & Specs", href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/capabilities.md" },
+  { label: "SEO & Findability", href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/seo-strategy.md" },
+];
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100">
@@ -94,6 +138,9 @@ export default function Home() {
             </Link>
             <Link href="#personas" className="hover:text-cyan-300">
               Personas
+            </Link>
+            <Link href="#search" className="hover:text-cyan-300">
+              SEO & Discovery
             </Link>
             <Link href="#platform" className="hover:text-cyan-300">
               Platform
@@ -163,6 +210,16 @@ export default function Home() {
                 base: design patterns, projects, governance playbooks, and prompt
                 libraries—all cross-linked inside the platform experience.
               </p>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2 text-xs uppercase tracking-[0.3em] text-cyan-200">
+              {keywordCloud.map((keyword) => (
+                <span
+                  key={keyword}
+                  className="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1"
+                >
+                  {keyword}
+                </span>
+              ))}
             </div>
           </div>
         </section>
@@ -268,6 +325,30 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="search" className="space-y-6">
+          <h2 className="text-3xl font-semibold">Search & discovery for humans and agents</h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            {searchIntents.map((intent) => (
+              <Link
+                key={intent.term}
+                href={intent.destination}
+                className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition hover:border-cyan-300/60 hover:text-cyan-100"
+              >
+                <h3 className="text-lg font-semibold text-cyan-100">{intent.term}</h3>
+                <p className="mt-2 text-sm text-slate-200">{intent.need}</p>
+                <p className="mt-4 text-xs uppercase tracking-[0.3em] text-cyan-200">
+                  Jump to section ↗
+                </p>
+              </Link>
+            ))}
+          </div>
+          <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 text-sm text-slate-200">
+            <p>
+              Need structured access? Request the upcoming <span className="font-semibold text-slate-100">API & agent toolkit</span> to query modules, personas, and roadmap data directly with your AI agents.
+            </p>
+          </div>
+        </section>
+
         <section id="platform" className="space-y-6">
           <h2 className="text-3xl font-semibold">Platform architecture</h2>
           <div className="grid gap-6 md:grid-cols-2">
@@ -319,6 +400,24 @@ export default function Home() {
                 <div className="text-slate-100">{entry.phase}</div>
                 <p className="mt-2">{entry.focus}</p>
               </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-sm text-slate-200" id="knowledge">
+          <h2 className="text-2xl font-semibold text-slate-100">Dive into the build artifacts</h2>
+          <p className="mt-3">
+            Explore the public roadmap, capabilities, and UX guidance that shape the platform. Perfect for architects, PMs, and AI agents that need deeper context.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            {knowledgeLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.25em] text-slate-100 transition hover:border-cyan-300/70 hover:text-cyan-200"
+              >
+                {link.label}
+              </Link>
             ))}
           </div>
         </section>

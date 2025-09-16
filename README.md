@@ -11,8 +11,8 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 ## Repository Structure
 `
 .
-├── docs/                # Strategy, blueprint, and UX notes
-├── public/              # Brand assets (SVG, favicons)
+├── docs/                # Strategy, blueprint, SEO, agent journeys, UX guidance
+├── public/              # Brand assets (SVG, sitemap, robots)
 ├── src/
 │   └── app/             # Next.js App Router routes, layout, styling
 ├── package.json         # Scripts + dependencies
@@ -42,7 +42,13 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 | AI Pair-Partner | Full assistant with workflow automation, project intake, evaluation exports. |
 | Marketplace + Ops | Community modules, integration marketplace, governance dashboards, enterprise licensing. |
 
-See [docs/product-blueprint.md](docs/product-blueprint.md) for architecture decisions, [docs/strategy.md](docs/strategy.md) for the north-star plan, and [docs/ui-ux-principles.md](docs/ui-ux-principles.md) for design guidance.
+## Strategic References
+- [Product Blueprint](docs/product-blueprint.md)
+- [Platform Strategy](docs/strategy.md)
+- [Capabilities & Agentic Specs](docs/capabilities.md)
+- [Agent Journey Mapping](docs/agent-journeys.md)
+- [UI / UX Principles](docs/ui-ux-principles.md)
+- [SEO & Findability Plan](docs/seo-strategy.md)
 
 ## Leveraging the Open Repository
 - Markdown/MDX from AI Architect Academy becomes module content (with front matter for prerequisites, deliverables, references).

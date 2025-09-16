@@ -1,0 +1,3 @@
+﻿User-agent: *
+Allow: /
+Sitemap: https://saas-ai-architect-academy.vercel.app/sitemap.xml
