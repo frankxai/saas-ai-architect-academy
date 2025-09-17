@@ -7,31 +7,44 @@ This blueprint describes how the AI Architect Academy Platform serves human arch
 - **Lead Architect** – orchestrates solution design, safeguards technical integrity, and mentors delivery teams. Needs accelerated research, module curation, and assistant support that respects architectural constraints.
 - **Program & Product Leader** – defines value narratives, manages stakeholders, and proves ROI. Needs roadmap visibility, KPI instrumentation, and executive-ready summaries.
 - **Risk & Compliance Partner** – ensures responsible AI practices, policy alignment, and audit readiness. Needs control mapping, evidence timelines, and workflow hooks.
-- **Autonomous / Companion Agents** – trigger workflows, summarize knowledge, and monitor signals on behalf of teams. Need stable APIs, structured data, and citations to ground reasoning.
+- **High-Value Client / Executive Sponsor** – invests in governed AI transformation. Needs curated packages, ROI modeling, and transparent delivery telemetry.
+- **Creator & Influencer Partner** – amplifies the brand voice and thought leadership. Needs editorial calendars, social atomization kits, and performance insights.
+- **Family & Inner Circle** – closest supporters seeking progress updates and simplified access to resources. Needs digestible summaries, guided onboarding, and frictionless sharing.
+- **Autonomous / Companion Agents** – trigger workflows, summarize knowledge, and monitor signals on behalf of humans. Need stable APIs, structured data, and citations to ground reasoning.
 
 ## Core Journeys
 1. **Discover & Plan**
-   - Landing page presents experience pillars, persona outcomes, and roadmap in the first scroll.
+   - Landing page presents experience pillars, persona outcomes, signature services, and roadmap above the fold.
    - Search intents map directly to anchored sections so humans and agents can deep-link.
    - Metadata, keyword cloud, and FAQ schema give search engines rich context.
-2. **Curate Curriculum**
-   - Micro-tracks show duration, deliverables, and module families.
-   - Tagging scheme: `discipline`, `maturity`, `persona`, `deliverable`, `governance-signal`.
-   - Waitlist CTA and GitHub discussions link to cohort activation and community contributions.
+2. **Curate Curriculum & Resources**
+   - Micro-tracks show duration, deliverables, and module families for architects, executives, and creators.
+   - Resource Vault surfaces free templates, premium kits, and agent-ready datasets in one scroll.
+   - Tagging scheme: `discipline`, `maturity`, `persona`, `deliverable`, `governance-signal`, `access-tier`.
 3. **Co-build with the Assistant**
    - Assistant highlights emphasise retrieval grounding, reasoning traces, and export options.
-   - Workflow timeline outlines intake → plan → co-build → evidence.
+   - Workflow timeline outlines intake → plan → co-build → evidence with optional content atomization for creators.
    - Integration callouts show how outputs flow into Jira/Linear, Slack/Teams, analytics, and observability.
-4. **Operate & Scale**
+4. **Operate, Share & Scale**
    - Operations section maps responsible AI controls, evaluation observability, and value instrumentation.
-   - Integration fabric clarifies how telemetry and governance data stay connected across tools.
-   - Roadmap communicates near-term releases and long-term marketplace vision.
+   - Projects hub reports on books, ventures, and experiments with milestone telemetry for inner circle followers.
+   - Roadmap and community calls-to-action communicate near-term releases, cohorts, and partnership options.
+
+## Signature Surfaces
+- **Hero + Stats** – positions the platform as the global hub for governed AI delivery, thought leadership, and community value.
+- **Experience Pillars** – reframed to blend architect velocity, governed delivery, operational intelligence, and creator amplification.
+- **Services Deck** – premium offers for executive clients, accelerator cohorts, and advisory retainers.
+- **Resource Vault** – filters free, premium, and agent-ready downloads with clear descriptions and SEO-friendly keywords.
+- **Projects Pulseboard** – highlights book progress, venture experiments, and live cohorts with next milestones.
+- **Insight Playlists** – thematic content clusters (e.g., Responsible AI, Creator Ops, Agent Automation) linking to evergreen SEO articles and upcoming releases.
+- **Community Layer** – invites to waitlists, masterminds, GitHub discussions, and supporter updates.
 
 ## Navigation & Information Architecture
-- **Global nav**: Vision, Experience, Curriculum, Assistant, Workspaces, Operations, Roadmap, Resources.
-- **Anchor map**: `#vision`, `#experience`, `#curriculum`, `#assistant`, `#workspaces`, `#personas`, `#search`, `#operations`, `#roadmap`, `#resources`, `#sitemap`, `#faq`.
-- **Footer**: Repository links, contact, and quick references back to anchors to keep context tight.
+- **Global nav**: Vision, Experience, Curriculum, Assistant, Workspaces, Personas, Services, Library, Projects, Insights, Operations, Roadmap, Community, Resources.
+- **Anchor map**: `#vision`, `#experience`, `#curriculum`, `#assistant`, `#workspaces`, `#personas`, `#services`, `#library`, `#projects`, `#search`, `#insights`, `#operations`, `#roadmap`, `#community`, `#resources`, `#sitemap`, `#faq`.
+- **Footer**: Repository links, contact, services CTA, and quick references back to anchors to keep context tight.
 - **Sitemap section**: Summarizes the structure for humans, crawler bots, and agents, mirrored by `src/app/sitemap.ts`.
+- **Breadcrumb metadata**: Provide JSON-LD breadcrumbs for upcoming subpages (tracks, assistant, governance) to reinforce SEO depth.
 
 ## SEO & Keyword Strategy
 - Keyword clusters: architecture patterns, responsible AI governance, evaluation strategy, program roadmap, AI assistant tooling.
@@ -41,7 +54,8 @@ This blueprint describes how the AI Architect Academy Platform serves human arch
 
 ## Agent Enablement
 - Stable anchor IDs ensure agents can deep link or scrape reliably.
-- Copy highlights upcoming API & agent toolkit; dataset will expose modules, personas, roadmap milestones, and evaluation metrics.
+- Copy highlights the API & agent toolkit; dataset will expose modules, personas, roadmap milestones, project pulses, and evaluation metrics.
+- Resource metadata (format, access tier, schema) is exposed in cards so companion agents can select the right asset.
 - Content emphasises citations, telemetry, and readiness states so autonomous agents can trigger follow-up workflows safely.
 
 ## Content Governance
@@ -51,9 +65,10 @@ This blueprint describes how the AI Architect Academy Platform serves human arch
 
 ## Success Measures
 - Increase organic discovery (hero keywords + FAQ impressions) by 40% quarter over quarter.
-- Reduce time-to-first action (module preview or assistant click) to under 45 seconds.
-- Track agent-triggered interactions via API toolkit usage and sitemap anchor hits.
-- Capture qualitative feedback through GitHub discussions and cohort retrospectives.
+- Grow conversion on premium services (cohorts, advisory) to 12% of qualified visitors.
+- Reduce time-to-first action (module preview, resource download, or assistant click) to under 40 seconds.
+- Track agent-triggered interactions via API toolkit usage, sitemap anchor hits, and Resource Vault downloads.
+- Capture qualitative feedback through GitHub discussions, cohort retrospectives, and supporter townhalls.
 
 ## Next Enhancements
 - Launch `/tracks`, `/assistant`, and `/governance` subpages with MDX-powered module explorers.

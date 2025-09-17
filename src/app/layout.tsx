@@ -15,15 +15,17 @@ const geistMono = Geist_Mono({
 
 const keywords = [
   "ai architect academy",
-  "ai architecture patterns",
-  "enterprise rag blueprint",
-  "ai governance checklist",
-  "model risk management",
+  "ai architecture hub",
+  "enterprise ai blueprint",
+  "responsible ai governance",
+  "ai transformation advisory",
+  "ai architect assistant",
+  "agentic automation playbook",
   "llm evaluation strategy",
-  "ai assistant for architects",
-  "agentic workflow playbook",
-  "ai center of excellence toolkit",
-  "ai program roadmap"
+  "ai influencer content engine",
+  "ai program roadmap",
+  "ai resource vault",
+  "ai governance sprint"
 ];
 
 const siteUrl = "https://saas-ai-architect-academy.vercel.app";
@@ -31,7 +33,7 @@ const siteUrl = "https://saas-ai-architect-academy.vercel.app";
 export const metadata: Metadata = {
   title: "AI Architect Academy Platform",
   description:
-    "Micro-learning platform and AI assistant for shipping enterprise-grade AI systems with governance and measurable impact.",
+    "Global AI architecture hub delivering governed transformation, premium advisory, creator resources, and an AI assistant for humans and companion agents.",
   keywords,
   alternates: {
     canonical: siteUrl,
@@ -39,7 +41,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI Architect Academy Platform",
     description:
-      "Micro-learning platform and AI assistant for shipping enterprise-grade AI systems with governance and measurable impact.",
+      "Global AI architecture hub delivering governed transformation, premium advisory, creator resources, and an AI assistant for humans and companion agents.",
     url: siteUrl,
     siteName: "AI Architect Academy Platform",
     type: "website",
@@ -48,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Architect Academy Platform",
     description:
-      "Progressive curriculum, micro-learning modules, and an AI Architect assistant for governed production AI.",
+      "Progressive curriculum, premium advisory, creator resources, and an AI Architect assistant for governed production AI.",
   },
   robots: {
     index: true,
@@ -62,11 +64,12 @@ const organizationJsonLd = {
   name: "AI Architect Academy",
   url: siteUrl,
   description:
-    "Micro-learning platform, patterns, and governance assets that help AI Architects deliver production AI systems.",
+    "Global hub for governed AI architecture, premium advisory, creator enablement, and assistant-powered execution.",
   sameAs: [
     "https://github.com/AI-Architect-Academy/ai-architect-academy",
     "https://github.com/frankxai/saas-ai-architect-academy"
   ],
+  knowsAbout: keywords,
   providesCourse: keywords.map((keyword) => ({
     "@type": "Course",
     name: keyword,
