@@ -13,6 +13,15 @@ import {
   sponsorViews,
 } from "@/data/curriculum";
 
+const personaLabels: Record<string, string> = {
+  "lead-architect": "Lead Architect",
+  "program-leader": "Program & Product Leader",
+  "risk-partner": "Risk & Compliance Partner",
+  "agent-lead": "Automation & Agent Lead",
+  "ops-lead": "Operations Lead",
+  creator: "Creator & Influence Partner",
+  research: "Research Guild",
+};
 export default function CurriculumPage() {
   const [activeGalaxyIndex, setActiveGalaxyIndex] = useState(0);
   const activeGalaxy = learningGalaxies[activeGalaxyIndex];
@@ -26,6 +35,12 @@ export default function CurriculumPage() {
             <span className="text-lg tracking-tight">AI Architect Academy</span>
           </Link>
           <div className="hidden items-center gap-3 text-sm font-semibold md:flex">
+            <Link
+              href="/curriculum/modules"
+              className="rounded-full border border-white/20 px-4 py-2 transition hover:border-cyan-300 hover:text-cyan-200"
+            >
+              Module explorer
+            </Link>
             <Link
               href="https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/modules.md"
               className="rounded-full border border-white/20 px-4 py-2 transition hover:border-cyan-300 hover:text-cyan-200"
@@ -239,7 +254,58 @@ export default function CurriculumPage() {
           </div>
         </section>
 
-        <section id="credentials" className="space-y-8">
+        <section id="module-spotlights" className="space-y-8">
+          <div className="flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+            <div className="space-y-2">
+              <h2 className="text-3xl font-semibold">Featured modules</h2>
+              <p className="max-w-3xl text-sm text-slate-300">
+                Quick-start picks curated by the assistant based on current research diffs and sponsor demand. Open the explorer for full filtering and detail pages.
+              </p>
+            </div>
+            <Link
+              href="/curriculum/modules"
+              className="inline-flex items-center justify-center rounded-full border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
+            >
+              Open module explorer
+            </Link>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {moduleSpotlights.map((module) => (
+              <div key={module.code} className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-200">
+                <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-cyan-200">
+                  <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.code}</span>
+                  <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.modality}</span>
+                  <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.mastery}</span>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold text-slate-100">{module.title}</h3>
+                  <p className="text-xs text-slate-300">{module.outcomes.slice(0, 2).join(" - ")}</p>
+                </div>
+                <ul className="space-y-2 text-xs text-slate-300">
+                  {module.deliverables.map((deliverable) => (
+                    <li key={deliverable} className="flex gap-2">
+                      <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                      <span>{deliverable}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.3em] text-slate-400">
+                  {module.personaFit.map((persona) => (
+                    <span key={persona} className="rounded-full border border-white/15 px-2 py-1">
+                      {personaLabels[persona] ?? persona}
+                    </span>
+                  ))}
+                </div>
+                <Link
+                  href={`/curriculum/modules/${module.code.toLowerCase()}`}
+                  className="inline-flex items-center justify-center rounded-full bg-cyan-400 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900 transition hover:bg-cyan-300"
+                >
+                  View module detail
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>        <section id="credentials" className="space-y-8">
           <div className="space-y-2">
             <h2 className="text-3xl font-semibold">Credential ladder</h2>
             <p className="max-w-3xl text-sm text-slate-300">

@@ -778,3 +778,268 @@ export const documentationLinks = [
     href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evaluation-registry.md",
   },
 ];
+export type ModuleDefinition = {
+  code: string;
+  title: string;
+  galaxy: string;
+  arc: "Core" | "Systems Studio" | "Leadership";
+  mastery: "Explorer" | "Builder" | "Architect" | "Strategist" | "Luminary";
+  personaFit: string[];
+  durationHours: number;
+  modality: "ML" | "LB" | "WK" | "SP" | "CL" | "MC" | "RT" | "RS";
+  outcomes: string[];
+  deliverables: string[];
+  prerequisites: string[];
+  evaluationSignals: string[];
+  freshness: string;
+};
+
+export const moduleCatalog: ModuleDefinition[] = [
+  {
+    code: "G0-C1",
+    title: "Orientation Diagnostic",
+    galaxy: "G0",
+    arc: "Core",
+    mastery: "Explorer",
+    personaFit: ["lead-architect", "program-leader", "risk-partner", "agent-lead"],
+    durationHours: 3,
+    modality: "ML",
+    outcomes: [
+      "Establish cohort baseline telemetry",
+      "Align assistant configuration to mission charter",
+      "Capture sponsor objectives"
+    ],
+    deliverables: ["Orientation diagnostic report", "Assistant configuration log"],
+    prerequisites: [],
+    evaluationSignals: ["FUNC-BASELINE-001", "SAFE-POLICY-INIT"],
+    freshness: "2025-09-10",
+  },
+  {
+    code: "G0-S2",
+    title: "Telemetry Pipeline Launch",
+    galaxy: "G0",
+    arc: "Systems Studio",
+    mastery: "Builder",
+    personaFit: ["lead-architect", "agent-lead"],
+    durationHours: 7,
+    modality: "LB",
+    outcomes: [
+      "Connect LMS, repo, and evaluation telemetry",
+      "Instrument learner progress events",
+      "Publish cohort cockpit dashboard"
+    ],
+    deliverables: ["Telemetry pipeline spec", "Cohort cockpit dashboard"],
+    prerequisites: ["G0-C1"],
+    evaluationSignals: ["FUNC-RAG-001", "OPS-OBS-002"],
+    freshness: "2025-09-12",
+  },
+  {
+    code: "G1-C1",
+    title: "Mission Charter Lab",
+    galaxy: "G1",
+    arc: "Core",
+    mastery: "Explorer",
+    personaFit: ["program-leader", "lead-architect"],
+    durationHours: 4,
+    modality: "WK",
+    outcomes: [
+      "Translate enterprise strategy into AI mission",
+      "Define measurable value pillars",
+      "Map stakeholder motivations"
+    ],
+    deliverables: ["AI mission charter", "Stakeholder intent dossier"],
+    prerequisites: ["G0-C1"],
+    evaluationSignals: ["STRAT-VAL-003", "GOV-ALIGN-001"],
+    freshness: "2025-09-14",
+  },
+  {
+    code: "G2-S3",
+    title: "Interaction Contract Studio",
+    galaxy: "G2",
+    arc: "Systems Studio",
+    mastery: "Architect",
+    personaFit: ["lead-architect", "agent-lead", "risk-partner"],
+    durationHours: 8,
+    modality: "LB",
+    outcomes: [
+      "Model cross-agent interaction patterns",
+      "Document guardrails and fallback logic",
+      "Connect contracts to governance controls"
+    ],
+    deliverables: ["Interaction contract pack", "Fallback runbook"],
+    prerequisites: ["G2-C1", "G2-C4"],
+    evaluationSignals: ["SAFE-JB-002", "FUNC-RAG-001"],
+    freshness: "2025-08-31",
+  },
+  {
+    code: "G3-S2",
+    title: "Synthetic Data Playbook",
+    galaxy: "G3",
+    arc: "Systems Studio",
+    mastery: "Builder",
+    personaFit: ["lead-architect", "risk-partner"],
+    durationHours: 6,
+    modality: "SP",
+    outcomes: [
+      "Design bias-aware synthetic datasets",
+      "Instrument evaluation coverage",
+      "Publish governance notes"
+    ],
+    deliverables: ["Synthetic data pipeline", "Bias mitigation checklist"],
+    prerequisites: ["G3-C3"],
+    evaluationSignals: ["FAIR-BIAS-004", "EVAL-COVER-002"],
+    freshness: "2025-09-08",
+  },
+  {
+    code: "G4-C3",
+    title: "Evaluation Harness Build",
+    galaxy: "G4",
+    arc: "Core",
+    mastery: "Builder",
+    personaFit: ["lead-architect", "agent-lead", "risk-partner"],
+    durationHours: 7,
+    modality: "LB",
+    outcomes: [
+      "Implement statistical + LLM judges",
+      "Automate regression testing",
+      "Expose metrics to sponsor dashboard"
+    ],
+    deliverables: ["Evaluation harness repo", "Metrics dashboard"],
+    prerequisites: ["G3-C3", "G0-S2"],
+    evaluationSignals: ["FUNC-RAG-001", "SAFE-JB-002", "OPS-OBS-002"],
+    freshness: "2025-09-05",
+  },
+  {
+    code: "G5-S2",
+    title: "Observability Blueprint",
+    galaxy: "G5",
+    arc: "Systems Studio",
+    mastery: "Architect",
+    personaFit: ["lead-architect", "agent-lead", "ops-lead"],
+    durationHours: 8,
+    modality: "LB",
+    outcomes: [
+      "Deploy OpenTelemetry traces",
+      "Configure Grafana dashboards",
+      "Link alerts to incident playbooks"
+    ],
+    deliverables: ["Observability blueprint", "Alert routing matrix"],
+    prerequisites: ["G5-C3", "G4-C3"],
+    evaluationSignals: ["OPS-OBS-002", "OPS-INC-003"],
+    freshness: "2025-09-01",
+  },
+  {
+    code: "G6-S3",
+    title: "Policy-as-Code Sprint",
+    galaxy: "G6",
+    arc: "Systems Studio",
+    mastery: "Architect",
+    personaFit: ["risk-partner", "lead-architect"],
+    durationHours: 9,
+    modality: "SP",
+    outcomes: [
+      "Translate regulations into executable controls",
+      "Automate compliance drift alerts",
+      "Document escalation protocols"
+    ],
+    deliverables: ["Policy as code repo", "Compliance drift monitor"],
+    prerequisites: ["G6-C3", "G4-C3"],
+    evaluationSignals: ["GOV-CONTROL-005", "SAFE-JB-002"],
+    freshness: "2025-09-09",
+  },
+  {
+    code: "G7-S4",
+    title: "Reliability Drill",
+    galaxy: "G7",
+    arc: "Systems Studio",
+    mastery: "Architect",
+    personaFit: ["agent-lead", "ops-lead"],
+    durationHours: 6,
+    modality: "WK",
+    outcomes: [
+      "Simulate adversarial tool failures",
+      "Measure reliability metrics",
+      "Capture remediation backlog"
+    ],
+    deliverables: ["Reliability drill dossier", "Incident action plan"],
+    prerequisites: ["G7-C3", "G5-S2"],
+    evaluationSignals: ["SAFE-JB-002", "OPS-INC-003"],
+    freshness: "2025-08-28",
+  },
+  {
+    code: "G8-S3",
+    title: "Trust Experience Blueprint",
+    galaxy: "G8",
+    arc: "Systems Studio",
+    mastery: "Architect",
+    personaFit: ["product-lead", "risk-partner", "creator"],
+    durationHours: 8,
+    modality: "LB",
+    outcomes: [
+      "Design transparency states and fallback messaging",
+      "Integrate consent and explainability",
+      "Link UX telemetry to governance"
+    ],
+    deliverables: ["Trust experience spec", "Transparency checklist"],
+    prerequisites: ["G8-C1", "G6-C3"],
+    evaluationSignals: ["UX-TRUST-006", "GOV-CONTROL-005"],
+    freshness: "2025-09-11",
+  },
+  {
+    code: "G9-S1",
+    title: "Unified Monitoring Stack",
+    galaxy: "G9",
+    arc: "Systems Studio",
+    mastery: "Architect",
+    personaFit: ["ops-lead", "lead-architect"],
+    durationHours: 7,
+    modality: "LB",
+    outcomes: [
+      "Instrument metrics, traces, and logs across services",
+      "Set SLO targets with policy hooks",
+      "Align alerts with sponsor cockpit"
+    ],
+    deliverables: ["Monitoring stack config", "SLO targets pack"],
+    prerequisites: ["G5-S2", "G4-C3"],
+    evaluationSignals: ["OPS-OBS-002", "OPS-SLO-004"],
+    freshness: "2025-09-07",
+  },
+  {
+    code: "G10-S2",
+    title: "Board Simulation",
+    galaxy: "G10",
+    arc: "Systems Studio",
+    mastery: "Strategist",
+    personaFit: ["program-leader", "risk-partner", "creator"],
+    durationHours: 5,
+    modality: "WK",
+    outcomes: [
+      "Run executive simulation with telemetry",
+      "Defend investment and risk posture",
+      "Collect sponsor feedback"
+    ],
+    deliverables: ["Board simulation packet", "Decision trace log"],
+    prerequisites: ["G1-S3", "G6-S3"],
+    evaluationSignals: ["STRAT-BOARD-007", "GOV-CONTROL-005"],
+    freshness: "2025-09-13",
+  },
+  {
+    code: "G11-S1",
+    title: "Research Ingestion Pipeline",
+    galaxy: "G11",
+    arc: "Systems Studio",
+    mastery: "Builder",
+    personaFit: ["lead-architect", "agent-lead", "research"],
+    durationHours: 7,
+    modality: "LB",
+    outcomes: [
+      "Aggregate frontier research feeds",
+      "Score signals for impact",
+      "Trigger module refresh tickets"
+    ],
+    deliverables: ["Research ingestion pipeline", "Signal prioritization dashboard"],
+    prerequisites: ["G11-C1", "G0-S2"],
+    evaluationSignals: ["FRONTIER-SIGNAL-002", "CURR-REFRESH-001"],
+    freshness: "2025-09-15",
+  },
+];
