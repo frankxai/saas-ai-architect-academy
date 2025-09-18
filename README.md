@@ -1,4 +1,4 @@
-﻿# AI Architect Academy Platform
+﻿# AI Architect Academy
 
 Progressive learning and execution platform for AI Architects, program leaders, and Centers of Excellence. The goal is to deliver a micro-learning operating system backed by the open-source [AI Architect Academy](https://github.com/AI-Architect-Academy/ai-architect-academy) knowledge base and an AI assistant that helps teams ship governed, production-grade AI systems.
 
@@ -44,6 +44,7 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 
 ## Curriculum Assets
 - [Curriculum Blueprint (2025 Edition)](docs/curriculum-blueprint.md)
+- [Curriculum Experience UI](/curriculum) — interactive navigator for galaxies, micro-paths, credentials, and sponsor dashboards.
 - [Learning System Architecture](docs/curriculum/architecture.md)
 - [Module Atlas 2025](docs/curriculum/modules.md)
 - [Module Authoring Standards](docs/curriculum/module-authoring.md)
@@ -93,4 +94,6 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 - Partnerships & cohorts: [frank@aiarchitect.academy](mailto:frank@aiarchitect.academy).
 
 Built in public to accelerate real-world AI value delivery.
+
+
 

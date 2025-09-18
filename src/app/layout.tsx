@@ -31,24 +31,24 @@ const keywords = [
 const siteUrl = "https://saas-ai-architect-academy.vercel.app";
 
 export const metadata: Metadata = {
-  title: "AI Architect Academy Platform",
+  title: "AI Architect Academy",
   description:
-    "Global AI architecture hub delivering governed transformation, premium advisory, creator resources, and an AI assistant for humans and companion agents.",
+    "Global AI architecture academy delivering adaptive curriculum, governed transformation, premium advisory, creator enablement, and an AI assistant for humans and companion agents.",
   keywords,
   alternates: {
     canonical: siteUrl,
   },
   openGraph: {
-    title: "AI Architect Academy Platform",
+    title: "AI Architect Academy",
     description:
-      "Global AI architecture hub delivering governed transformation, premium advisory, creator resources, and an AI assistant for humans and companion agents.",
+      "Global AI architecture academy delivering adaptive curriculum, governed transformation, premium advisory, creator enablement, and an AI assistant for humans and companion agents.",
     url: siteUrl,
-    siteName: "AI Architect Academy Platform",
+    siteName: "AI Architect Academy",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Architect Academy Platform",
+    title: "AI Architect Academy",
     description:
       "Progressive curriculum, premium advisory, creator resources, and an AI Architect assistant for governed production AI.",
   },
@@ -97,3 +97,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+

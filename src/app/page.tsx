@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 
@@ -72,7 +73,7 @@ const experiencePillars = [
   {
     title: "Governed Delivery",
     description:
-      "Operationalize responsible AI controls without slowing teams down—policy, privacy, and oversight are baked into every track.",
+      "Operationalize responsible AI controls without slowing teams down - policy, privacy, and oversight are baked into every track.",
     highlights: [
       "Risk, compliance, and privacy tasks mapped to every module",
       "Evidence capture and approval rituals surfaced inline with workflows",
@@ -92,7 +93,7 @@ const experiencePillars = [
   {
     title: "Creator Amplification",
     description:
-      "Translate deep technical work into influence—content engines, progress digests, and media assets ready to ship across every channel.",
+      "Translate deep technical work into influence - content engines, progress digests, and media assets ready to ship across every channel.",
     highlights: [
       "Editorial calendars mapped to launches, sprints, and book chapters",
       "Prompt packs and atomization recipes for newsletters, podcasts, and socials",
@@ -107,7 +108,7 @@ const moduleTracks = [
     description:
       "Governance, risk, compliance, and value tracking baked into every build.",
     modules: ["Model risk playbooks", "Data privacy lab", "Value and KPI instrumentation"],
-    duration: "2–3 weeks",
+    duration: "2-3 weeks",
     deliverable: "Audit-ready risk posture mapped to controls and evidence.",
   },
   {
@@ -115,7 +116,7 @@ const moduleTracks = [
     description:
       "Hands-on recipes for RAG, agents, observability, guardrails, and automation.",
     modules: ["RAG delivery lab", "Agentic swarms studio", "Eval harness factory"],
-    duration: "3–4 sprints",
+    duration: "3-4 sprints",
     deliverable: "Production deployment blueprint with evaluation harness and runbooks.",
   },
   {
@@ -431,13 +432,13 @@ const projectPulses = [
     tags: ["Publishing", "Governance", "Thought leadership"],
   },
   {
-    title: "AI Architect Academy Platform",
+    title: "AI Architect Academy Hub",
     stage: "Alpha release v0.4",
     lastUpdated: "Sprint six",
     nextMilestone: "Resource Vault API preview & workspace walkthroughs",
     summary:
       "Hub expansion with services deck, Resource Vault tiers, and agent-ready schema definitions.",
-    tags: ["Product", "Platform", "Agent API"],
+    tags: ["Product", "Hub", "Agent API"],
   },
   {
     title: "Creator Influence Engine",
@@ -642,25 +643,25 @@ const sitemapSections = [
 
 const roadmap = [
   {
-    phase: "Phase 1 – Foundations",
+    phase: "Phase 1 - Foundations",
     focus:
       "Marketing site, waitlist, curriculum browser, Resource Vault essentials, and showcase modules seeded from the AI Architect Academy repository.",
     outcome: "Public launch with SEO foundations, content tagging, and waitlist instrumentation.",
   },
   {
-    phase: "Phase 2 – Guided Delivery",
+    phase: "Phase 2 - Guided Delivery",
     focus:
       "Authenticated workspace with learning paths, progress tracking, companion notebooks, services CRM, and project pulse exports.",
     outcome: "Teams co-build with the assistant, share workspaces, and monitor evaluation health with stakeholder updates.",
   },
   {
-    phase: "Phase 3 – AI Pair-Partner",
+    phase: "Phase 3 - AI Pair-Partner",
     focus:
       "Full AI assistant with retrieval-augmented generation, sandbox execution, insight playlist automation, and team collaboration hooks (Slack, Linear, Notion).",
     outcome: "Adaptive plans, automated evidence packages, and agent-triggered workflows across delivery and content channels.",
   },
   {
-    phase: "Phase 4 – Marketplace + Ops",
+    phase: "Phase 4 - Marketplace + Ops",
     focus:
       "Community-sourced modules, evaluation benchmarks, premium services marketplace, and operational analytics for AI Centers of Excellence.",
     outcome: "Ecosystem of reusable assets with performance benchmarks, monetization options, and supporter experiences.",
@@ -703,7 +704,7 @@ const faqItems = [
   {
     question: "What deliverables do teams, creators, and supporters receive as they engage?",
     answer:
-      "Each module or service ends with a concrete asset—architecture diagram, ADR, runbook, checklist, ROI calculator, editorial kit, or KPI tracker. Deliverables are versioned, exportable to Jira/Linear/Notion, and linked back to policy controls and content prompts for amplification.",
+      "Each module or service ends with a concrete asset - architecture diagram, ADR, runbook, checklist, ROI calculator, editorial kit, or KPI tracker. Deliverables are versioned, exportable to Jira/Linear/Notion, and linked back to policy controls and content prompts for amplification.",
   },
   {
     question: "How do high-value clients activate premium services?",
@@ -743,8 +744,9 @@ export default function Home() {
       </Script>
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <Link href="/" className="text-lg font-semibold tracking-tight text-cyan-100">
-            AI Architect Academy Platform
+          <Link href="/" className="flex items-center gap-3 text-cyan-100">
+            <Image src="/logo.svg" alt="AI Architect Academy" width={28} height={28} className="h-7 w-7" />
+            <span className="text-lg font-semibold tracking-tight">AI Architect Academy</span>
           </Link>
           <nav className="hidden items-center gap-5 text-sm font-medium xl:flex">
             {navLinks.map((link) => (
@@ -755,6 +757,12 @@ export default function Home() {
           </nav>
           <div className="flex items-center gap-3 text-sm font-semibold">
             <Link
+              href="/curriculum"
+              className="rounded-full bg-cyan-400 px-4 py-2 text-slate-900 transition hover:bg-cyan-300"
+            >
+              Curriculum experience
+            </Link>
+            <Link
               href="#services"
               className="hidden rounded-full border border-white/30 px-4 py-2 transition hover:border-cyan-300 hover:text-cyan-200 sm:inline-flex"
             >
@@ -762,7 +770,7 @@ export default function Home() {
             </Link>
             <Link
               href="https://github.com/frankxai/saas-ai-architect-academy"
-              className="rounded-full bg-cyan-400 px-4 py-2 text-slate-900 transition hover:bg-cyan-300"
+              className="rounded-full border border-white/30 px-4 py-2 transition hover:border-cyan-300 hover:text-cyan-200"
             >
               Follow the build
             </Link>
@@ -787,7 +795,7 @@ export default function Home() {
           <div className="relative space-y-10">
             <div className="space-y-6">
               <span className="inline-flex items-center rounded-full border border-cyan-300/40 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">
-                Global AI architect voice · governed impact · creator amplification
+                Global AI architect voice - governed impact - creator amplification
               </span>
               <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
                 The unified hub for architects, creators, high-value clients, family, and their companion agents.
@@ -821,7 +829,7 @@ export default function Home() {
             </div>
             <div className="relative rounded-2xl border border-cyan-300/20 bg-cyan-300/5 p-5 text-sm text-cyan-100">
               <p>
-                Powered by the <span className="font-semibold">AI Architect Academy</span> knowledge base: design patterns, projects, governance playbooks, and creator prompt libraries—all cross-linked inside the platform experience.
+                Powered by the <span className="font-semibold">AI Architect Academy</span> knowledge base: design patterns, projects, governance playbooks, and creator prompt libraries - all cross-linked inside the platform experience.
               </p>
               <div className="mt-6 flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-[0.3em] text-cyan-200">
                 {keywordCloud.map((keyword) => (
@@ -846,7 +854,7 @@ export default function Home() {
               href="#sitemap"
               className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-200 transition hover:text-cyan-100"
             >
-              Jump to sitemap ↗
+              Jump to sitemap ->
             </Link>
           </div>
           <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
@@ -882,7 +890,7 @@ export default function Home() {
           <div className="space-y-3">
             <h2 className="text-3xl font-semibold">Micro-learning architecture</h2>
             <p className="max-w-3xl text-base text-slate-200">
-              Hundreds of bite-sized modules compose journeys for architects, product leaders, creators, and governance teams. Each module ends with a deliverable—canvas, runbook, code lab, or storytelling asset—so learning translates directly into execution and amplification.
+              Hundreds of bite-sized modules compose journeys for architects, product leaders, creators, and governance teams. Each module ends with a deliverable - canvas, runbook, code lab, or storytelling asset - so learning translates directly into execution and amplification.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -892,7 +900,7 @@ export default function Home() {
                 <p className="mt-3 text-sm text-slate-200">{track.description}</p>
                 <ul className="mt-4 space-y-2 text-sm text-slate-300">
                   {track.modules.map((module) => (
-                    <li key={module}>• {module}</li>
+                    <li key={module}>- {module}</li>
                   ))}
                 </ul>
                 <div className="mt-4 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-cyan-200">
@@ -924,7 +932,7 @@ export default function Home() {
               ))}
             </ul>
             <div className="mt-6 rounded-2xl border border-white/20 bg-white/10 p-4 text-xs uppercase tracking-[0.3em] text-slate-900 shadow-lg">
-              Launching with OpenRouter + Supabase Vector · Session orchestration via LangChain · Inline citations to primary sources
+              Launching with OpenRouter + Supabase Vector - Session orchestration via LangChain - Inline citations to primary sources
             </div>
           </div>
           <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6">
@@ -975,7 +983,7 @@ export default function Home() {
                 <p className="mt-2 text-sm text-slate-300">{persona.summary}</p>
                 <ul className="mt-3 space-y-2 text-sm text-slate-300">
                   {persona.outcomes.map((outcome) => (
-                    <li key={outcome}>• {outcome}</li>
+                    <li key={outcome}>- {outcome}</li>
                   ))}
                 </ul>
               </div>
@@ -1023,7 +1031,7 @@ export default function Home() {
           <div className="space-y-3">
             <h2 className="text-3xl font-semibold">Resource Vault</h2>
             <p className="max-w-3xl text-base text-slate-200">
-              Curated assets for humans and their agents—spanning free knowledge, premium studio kits, and structured data contracts. Every card includes persona tags, formats, and access tiers for fast decision-making.
+              Curated assets for humans and their agents - spanning free knowledge, premium studio kits, and structured data contracts. Every card includes persona tags, formats, and access tiers for fast decision-making.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -1048,7 +1056,7 @@ export default function Home() {
                         href={item.href}
                         className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-cyan-200 transition hover:text-cyan-100"
                       >
-                        Access resource ↗
+                        Access resource ->
                       </Link>
                     </li>
                   ))}
@@ -1108,7 +1116,7 @@ export default function Home() {
                 <div className="text-lg font-semibold text-cyan-100">{intent.term}</div>
                 <p className="mt-3 text-sm text-slate-200">{intent.human}</p>
                 <p className="mt-2 text-xs text-slate-300">Agent need: {intent.agent}</p>
-                <p className="mt-4 text-xs uppercase tracking-[0.3em] text-cyan-200">Jump to section ↗</p>
+                <p className="mt-4 text-xs uppercase tracking-[0.3em] text-cyan-200">Jump to section -></p>
               </Link>
             ))}
           </div>
@@ -1146,7 +1154,7 @@ export default function Home() {
                     <div className="text-xs uppercase tracking-[0.3em] text-cyan-200">Planned assets</div>
                     <ul className="mt-2 space-y-1 text-sm text-slate-300">
                       {playlist.assets.map((asset) => (
-                        <li key={asset}>• {asset}</li>
+                        <li key={asset}>- {asset}</li>
                       ))}
                     </ul>
                   </div>
@@ -1209,7 +1217,7 @@ export default function Home() {
           <div className="space-y-3">
             <h2 className="text-3xl font-semibold">Community & access</h2>
             <p className="max-w-3xl text-base text-slate-200">
-              Join the movement—co-build modules, amplify stories, and stay close to every milestone through masterminds, digests, and advisory circles.
+              Join the movement - co-build modules, amplify stories, and stay close to every milestone through masterminds, digests, and advisory circles.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
@@ -1223,7 +1231,7 @@ export default function Home() {
                   href={item.href}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-200 transition hover:text-cyan-100"
                 >
-                  {item.ctaLabel} ↗
+                  {item.ctaLabel} ->
                 </Link>
               </div>
             ))}
