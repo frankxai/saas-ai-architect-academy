@@ -3,10 +3,10 @@
 Progressive learning and execution platform for AI Architects, program leaders, and Centers of Excellence. The goal is to deliver a micro-learning operating system backed by the open-source [AI Architect Academy](https://github.com/AI-Architect-Academy/ai-architect-academy) knowledge base and an AI assistant that helps teams ship governed, production-grade AI systems.
 
 ## Product Pillars
-- **Adaptive Micro-learning**: 200+ MDX modules organized into twelve learning galaxies with dynamic micro-paths, prerequisites, and telemetry-driven recommendations.
-- **AI Architect Assistant**: retrieval-augmented copilot grounded in the Academy corpus plus project context, capable of drafting plans, ADRs, evaluation dashboards, and governance documents.
-- **Execution Workspaces**: project dashboards, lab notebooks, governance checklists, and integration hooks (Slack/Teams, Linear/Jira, GitHub) wired to telemetry.
-- **Operational Intelligence**: evaluation reporting, guardrail monitoring, portfolio analytics, stakeholder communications, and verifiable credentials.
+- **Sprint-based Micro-learning**: Six tracks (Agent Foundations, Rapid Prototyping, Architecture Systems, Collaboration, Operations, Leadership) produce tangible artefacts and proofs every five days.
+- **AI Architect Assistant**: Retrieval-augmented copilots (Scout, Coach, Critic, Archivist, Companion, Navigator) grounded in Academy knowledge and live telemetry.
+- **Execution Workspaces**: Dashboards, labs, runbooks, and collaboration rituals built to join delivery tools (Slack/Teams, Linear, Jira, GitHub) without context switching.
+- **Operational Intelligence**: Evaluation reporting, guardrail monitoring, portfolio analytics, stakeholder communications, and verifiable credentials.
 
 ## Repository Structure
 `
@@ -43,16 +43,16 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 | Marketplace + Ops | Community modules, integration marketplace, governance dashboards, enterprise licensing. |
 
 ## Autonomous Execution Sprint (Sept 2025)
-- **T1 · Micro-Learning Surface Blueprint**: Deepen the UI/UX patterns for micro-lesson pages, including navigable steps, evidence checklists, and assistive controls.
-- **T2 · Module Depth Expansion**: Enrich the module catalog and curriculum data with 2025 frontier topics, explicit deliverable scaffolds, and assistant prompt packs.
-- **T3 · Adaptive Path Weaving**: Extend micro-path guidance with multi-week cadences, mastery checkpoints, and sponsor-ready reflection rituals.
-- **T4 · Assistant Ops & Telemetry**: Document advanced companion agent responsibilities, SLO instrumentation, and evaluation feedback loops for each learning arc.
-- **T5 · Interactive Learning Hub UI**: Ship curriculum UI updates that surface quick actions, filterable galaxies, and guided start buttons for every persona.
+- **T1 Micro-learning Blueprint**: Redesign curriculum surfaces with guided steps, reflection prompts, and assistant quick actions.
+- **T2 Module Depth Expansion**: Refresh the catalog with agent-first modules, explicit deliverables, signals, and assistant prompt packs.
+- **T3 Adaptive Sprint Weaving**: Expand persona micro paths into linked five-day sprints with mastery guardrails and sponsor outcomes.
+- **T4 Assistant Ops & Telemetry**: Extend service-level objectives, CTA instrumentation, and digest automation for the assistant constellation.
+- **T5 Interactive Learning Hub UI**: Ship cleaner navigation, track filters, and micro-sprint launchers across the curriculum experience.
 
 ## Curriculum Assets
 - [Curriculum Blueprint (2025 Edition)](docs/curriculum-blueprint.md)
 - [Learning System Architecture](docs/curriculum/architecture.md)
-- [Curriculum Experience UI](/curriculum) - interactive navigator for galaxies, micro-paths, credentials, and sponsor dashboards.
+- [Curriculum Experience UI](/curriculum) - interactive navigator for sprint tracks, micro-paths, credentials, and sponsor dashboards.
 - [Module Atlas 2025](docs/curriculum/modules.md)
 - [Module Authoring Standards](docs/curriculum/module-authoring.md)
 - [Research-to-Curriculum Pipeline](docs/curriculum/research-pipeline.md)

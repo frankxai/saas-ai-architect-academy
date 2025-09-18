@@ -4,7 +4,7 @@ import {
   assistantOps,
   credentialLadder,
   documentationLinks,
-  learningGalaxies,
+  learningTracks,
   moduleCatalog,
   ModuleDefinition,
   personaMicroPaths,
@@ -30,13 +30,17 @@ export function generateMetadata({ params }: { params: { code: string } }) {
 }
 
 const personaLabels: Record<string, string> = {
-  "lead-architect": "Lead Architect",
-  "program-leader": "Program & Product Leader",
-  "risk-partner": "Risk & Compliance Partner",
-  "agent-lead": "Automation & Agent Lead",
-  "ops-lead": "Operations Lead",
-  creator: "Creator & Influence Partner",
-  research: "Research Guild",
+  "agent-engineer": "Agent Engineer",
+  "solution-architect": "Solution Architect",
+  "product-partner": "Product Partner",
+  "delivery-lead": "Delivery Lead",
+  "risk-partner": "Risk & Governance",
+  "designer": "Design Partner",
+  "developer": "Developer",
+  "data-engineer": "Data Engineer",
+  "executive": "Executive Sponsor",
+  "finance": "Finance Partner",
+  "communications": "Comms & Community",
 };
 
 export default function ModuleDetail({ params }: { params: { code: string } }) {
@@ -45,7 +49,7 @@ export default function ModuleDetail({ params }: { params: { code: string } }) {
     notFound();
   }
 
-  const galaxyMeta = learningGalaxies.find((galaxy) => galaxy.code === selectedModule!.galaxy);
+  const trackMeta = learningTracks.find((track) => track.id === selectedModule!.galaxy);
   const relatedMicroPaths = personaMicroPaths.filter((path) =>
     path.days.some((day) => day.modules.includes(selectedModule!.code))
   );
@@ -73,14 +77,17 @@ export default function ModuleDetail({ params }: { params: { code: string } }) {
           </div>
           <div className="space-y-4">
             <h1 className="text-4xl font-semibold tracking-tight">{selectedModule!.title}</h1>
-            {galaxyMeta && (
+            {trackMeta && (
               <p className="text-sm text-cyan-200">
-                {galaxyMeta.code} - {galaxyMeta.title} ({galaxyMeta.focus})
+                {trackMeta.id} · {trackMeta.title}
               </p>
             )}
             <p className="max-w-3xl text-base text-slate-200">
               {selectedModule!.outcomes.join(" - ")}
             </p>
+            {trackMeta && (
+              <p className="text-sm text-slate-400">{trackMeta.subtitle}</p>
+            )}
           </div>
           <div className="flex flex-wrap gap-3 text-sm font-semibold">
             <Link

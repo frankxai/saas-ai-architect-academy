@@ -4,201 +4,134 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  assistantOps,
-  credentialLadder,
-  documentationLinks,
-  industrySpotlights,
-  learningGalaxies,
+  learningTracks,
   moduleCatalog,
-  ModuleDefinition,
   personaMicroPaths,
+  assistantOps,
   sponsorViews,
+  documentationLinks,
 } from "@/data/curriculum";
 
 const personaLabels: Record<string, string> = {
-  "lead-architect": "Lead Architect",
-  "program-leader": "Program & Product Leader",
-  "risk-partner": "Risk & Compliance Partner",
-  "agent-lead": "Automation & Agent Lead",
-  "ops-lead": "Operations Lead",
-  creator: "Creator & Influence Partner",
-  research: "Research Guild",
+  "agent-engineer": "Agent Engineer",
+  "solution-architect": "Solution Architect",
+  "product-partner": "Product Partner",
+  "delivery-lead": "Delivery Lead",
+  "risk-partner": "Risk & Governance",
+  "designer": "Design Partner",
+  "developer": "Developer",
+  "data-engineer": "Data Engineer",
+  "executive": "Executive Sponsor",
+  "finance": "Finance Partner",
+  "communications": "Comms & Community",
 };
 
 const quickActions = [
   {
-    key: "coach",
-    title: "Start with Coach",
-    description: "Generate a five-day micro sprint tuned to persona telemetry and governance thresholds.",
-    ctaLabel: "Ask Coach",
+    key: "agent",
+    title: "Plan the agent sprint",
+    description: "Frame the opportunity, guardrails, and first deliverables for your coding agent.",
+    ctaLabel: "Start with Discover",
   },
   {
-    key: "evidence",
-    title: "Review Evidence",
-    description: "Open the evidence locker checklist before workshops and labs to keep approvals flowing.",
-    ctaLabel: "Open Evidence Locker",
+    key: "prototype",
+    title: "Launch a prototype",
+    description: "Pull the rapid prototyping toolkit and schedule a pilot-ready demo in days.",
+    ctaLabel: "Open prototype studio",
   },
   {
-    key: "sponsor",
-    title: "Sponsor Digest",
-    description: "Trigger Navigator to compose executive-ready updates right after micro-path completion.",
-    ctaLabel: "Compose Sponsor Brief",
+    key: "digest",
+    title: "Send a progress digest",
+    description: "Capture outcomes, evidence, and next actions for sponsors in minutes.",
+    ctaLabel: "Compose sponsor update",
   },
 ] as const;
 
 type QuickActionKey = (typeof quickActions)[number]["key"];
 
-const journeyBlueprint = [
+const journeyTimeline = [
   {
-    stage: "Orientation Runway",
-    phase: "Phase 0 - Onboard",
-    focus: "Instrument telemetry and align charter goals",
-    milestones: [
-      "Assistant calibrated",
-      "Evidence locker seeded",
-      "Sponsor objectives captured"
-    ],
-    modules: ["G0-C1", "G0-S2"]
+    stage: "Sprint 0 · Frame",
+    focus: "Clarify agent outcomes, policy guardrails, and prototype hypotheses.",
+    milestones: ["Agent opportunity canvas", "Prototype hypothesis brief", "Stakeholder clarity map"],
+    moduleCodes: ["AE-101", "AE-102", "RP-201", "CC-401"],
   },
   {
-    stage: "Systems Foundation",
-    phase: "Phase 1 - Vision",
-    focus: "Frame strategy, scenarios, and stakeholder alignment",
-    milestones: [
-      "Mission charter approved",
-      "Value scenarios modeled",
-      "Stakeholder storyboards published"
-    ],
-    modules: ["G1-C1", "G1-S2"]
+    stage: "Sprint 1 · Build",
+    focus: "Compose working agents and prototypes with instrumentation baked in.",
+    milestones: ["Agent starter repo", "Prototype component kit", "Telemetry checklist"],
+    moduleCodes: ["AE-103", "RP-203", "SA-302"],
   },
   {
-    stage: "Data Spine",
-    phase: "Phase 2 - Architecture",
-    focus: "Harden knowledge, retrieval, and synthetic data flows",
-    milestones: [
-      "Knowledge linked to eval",
-      "Bias controls operational",
-      "Refresh automation live"
-    ],
-    modules: ["G3-S2", "G3-S5", "G3-S7"]
+    stage: "Sprint 2 · Proof",
+    focus: "Run field tests, pilots, and enablement sessions that gather evidence.",
+    milestones: ["Field test journal", "Pilot evidence pack", "Enablement loop"],
+    moduleCodes: ["AE-104", "RP-204", "CC-403"],
   },
   {
-    stage: "Delivery Spine",
-    phase: "Phase 3 - Delivery",
-    focus: "Ship governed products with evaluation and observability",
-    milestones: [
-      "Evaluation harness automated",
-      "Red team playbooks tested",
-      "Observability dashboard running"
-    ],
-    modules: ["G4-C3", "G4-S4", "G5-S2"]
+    stage: "Sprint 3 · Launch",
+    focus: "Translate results into solution architectures, operational plans, and sponsor briefs.",
+    milestones: ["Architecture briefing", "Observability rollout", "Sponsor digest"],
+    moduleCodes: ["SA-304", "OR-502", "CC-404"],
   },
   {
-    stage: "Governance Spine",
-    phase: "Phase 4 - Governance",
-    focus: "Operationalize policy automation and reliability drills",
-    milestones: [
-      "Policy code deployed",
-      "Reliability drills completed",
-      "Unified monitoring thresholds agreed"
-    ],
-    modules: ["G6-S3", "G7-C7", "G7-S4", "G9-S1"]
+    stage: "Scale Lane",
+    focus: "Mobilise governance, investment stories, and community activation for the wins.",
+    milestones: ["Portfolio signal dashboard", "Investment narrative", "Community activation plan"],
+    moduleCodes: ["LS-601", "LS-602", "LS-604"],
   },
-  {
-    stage: "Influence Spine",
-    phase: "Phase 5 - Influence",
-    focus: "Translate outcomes for executives and sponsors",
-    milestones: [
-      "Board simulation rehearsed",
-      "Sponsor narratives updated",
-      "Credential evidence packaged"
-    ],
-    modules: ["G8-S7", "G10-S2"]
-  },
-  {
-    stage: "Frontier Spine",
-    phase: "Phase 6 - Frontier",
-    focus: "Feed research loops and trigger curriculum refresh",
-    milestones: [
-      "Research ingestion live",
-      "Signals prioritized",
-      "Refresh tickets issued"
-    ],
-    modules: ["G11-S1"]
-  }
-] as const;
+];
+
+const priorityModules = ["AE-101", "RP-203", "SA-304", "OR-502", "LS-602"];
+
 export default function CurriculumPage() {
-  const [activeGalaxyIndex, setActiveGalaxyIndex] = useState(0);
-  const activeGalaxy = learningGalaxies[activeGalaxyIndex];
-  const journeyTimeline = useMemo(() => {
-    return journeyBlueprint.map((stage) => {
-      const moduleDetails = stage.modules
-        .map((code) => moduleCatalog.find((module) => module.code === code))
-        .filter((module): module is ModuleDefinition => Boolean(module));
-      return { ...stage, moduleDetails };
-    });
-  }, []);
+  const [activeTrackIndex, setActiveTrackIndex] = useState(0);
+  const activeTrack = learningTracks[activeTrackIndex];
 
   const moduleSpotlights = useMemo(() => {
-    const priorityCodes = ["G3-S7", "G7-C7", "G8-S7"];
-    const prioritized = priorityCodes
+    const highlighted = priorityModules
       .map((code) => moduleCatalog.find((module) => module.code === code))
-      .filter((module): module is ModuleDefinition => Boolean(module));
+      .filter((module): module is (typeof moduleCatalog)[number] => Boolean(module));
 
-    if (prioritized.length < 3) {
-      const fallback = moduleCatalog.filter((module) => !priorityCodes.includes(module.code));
-      prioritized.push(...fallback.slice(0, 3 - prioritized.length));
+    if (highlighted.length < 3) {
+      const extras = moduleCatalog.filter((module) => !priorityModules.includes(module.code));
+      highlighted.push(...extras.slice(0, 3 - highlighted.length));
     }
 
-    return prioritized;
+    return highlighted;
   }, []);
-
-  const navigatorAgent = assistantOps.find((agent) => agent.name === "Navigator");
-  const evidenceLockerLink = useMemo(
-    () => documentationLinks.find((doc) => doc.label === "Evidence Locker")?.href,
-    []
-  );
 
   const [highlightedSection, setHighlightedSection] = useState<string | null>(null);
   const highlightTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleHighlight = (sectionId: string) => {
+  const focusSection = (id: string) => {
     if (typeof window === "undefined") return;
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-      if (element instanceof HTMLElement) {
-        element.focus({ preventScroll: true });
-      }
-      setHighlightedSection(sectionId);
-      if (highlightTimeout.current) {
-        clearTimeout(highlightTimeout.current);
-      }
-      highlightTimeout.current = setTimeout(() => {
-        setHighlightedSection(null);
-      }, 4000);
+    const element = document.getElementById(id);
+    if (!element) return;
+
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (element instanceof HTMLElement) {
+      element.focus({ preventScroll: true });
     }
+    setHighlightedSection(id);
+    if (highlightTimeout.current) {
+      clearTimeout(highlightTimeout.current);
+    }
+    highlightTimeout.current = setTimeout(() => setHighlightedSection(null), 4000);
   };
 
   const handleQuickAction = (key: QuickActionKey) => {
-    if (key === "coach") {
-      handleHighlight("micro-paths");
+    if (key === "agent") {
+      focusSection("tracks");
       return;
     }
-    if (key === "evidence") {
-      if (typeof window !== "undefined" && evidenceLockerLink) {
-        window.open(evidenceLockerLink, "_blank", "noopener,noreferrer");
-      }
-      handleHighlight("docs");
+    if (key === "prototype") {
+      focusSection("module-spotlights");
       return;
     }
-    if (key === "sponsor") {
-      handleHighlight("assistant");
-      if (typeof window !== "undefined") {
-        window.setTimeout(() => {
-          handleHighlight("sponsors");
-        }, 800);
-      }
+    if (key === "digest") {
+      focusSection("assistant");
+      setTimeout(() => focusSection("micro-paths"), 600);
     }
   };
 
@@ -215,8 +148,7 @@ export default function CurriculumPage() {
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Link href="/" className="flex items-center gap-3 text-sm font-semibold text-cyan-100">
-            <Image src="/logo.svg" alt="AI Architect Academy" width={32} height={32} className="h-8 w-8" />
-            <span className="text-lg tracking-tight">AI Architect Academy</span>
+            <Image src="/logo.svg" alt="AI Architect Academy" width={40} height={40} className="h-10 w-10" />
           </Link>
           <div className="hidden items-center gap-3 text-sm font-semibold md:flex">
             <Link
@@ -230,13 +162,7 @@ export default function CurriculumPage() {
               className="rounded-full border border-white/20 px-4 py-2 transition hover:border-cyan-300 hover:text-cyan-200"
               target="_blank"
             >
-              Download module atlas
-            </Link>
-            <Link
-              href="/#services"
-              className="rounded-full border border-white/20 px-4 py-2 transition hover:border-cyan-300 hover:text-cyan-200"
-            >
-              View services
+              Download syllabus
             </Link>
             <Link
               href="https://github.com/frankxai/saas-ai-architect-academy"
@@ -261,44 +187,41 @@ export default function CurriculumPage() {
           </div>
           <div className="relative flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-6 lg:max-w-3xl">
-              <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-200">
-                curriculum
-                <span className="h-1 w-1 rounded-full bg-cyan-300" />
-                operations
-                <span className="h-1 w-1 rounded-full bg-cyan-300" />
-                governance
+              <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-cyan-200">
+                micro learning
               </span>
               <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-                Launch, run, and scale the AI Architect Academy learning system.
+                A sprint-based curriculum for building, shipping, and scaling coding agents.
               </h1>
               <p className="text-base text-slate-200 sm:text-lg">
-                Navigate galaxies, activate persona micro paths, monitor evidence, and brief sponsors from a single operating layer. Every interaction is instrumented so humans and companion agents can execute with governed confidence.
+                Start with dependable agent foundations, move into rapid prototyping, and graduate with production-ready
+                architectures, enablement stories, and sponsor proof. Every module lands with deliverables, evidence,
+                and assistant support so your team keeps momentum.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="#galaxies"
+                  href="#tracks"
                   className="rounded-full bg-cyan-400 px-6 py-3 text-center text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
                 >
-                  Explore learning galaxies
+                  Explore learning tracks
                 </Link>
                 <Link
                   href="#micro-paths"
                   className="rounded-full border border-white/20 px-6 py-3 text-center text-sm font-semibold text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
                 >
-                  Launch a micro path
+                  Launch a micro sprint
                 </Link>
                 <Link
-                  href="https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/credentials.md"
+                  href="/curriculum/modules"
                   className="rounded-full border border-white/20 px-6 py-3 text-center text-sm font-semibold text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
-                  target="_blank"
                 >
-                  Credential framework
+                  Browse modules
                 </Link>
               </div>
               <div className="grid gap-3 pt-4 sm:grid-cols-2 lg:grid-cols-3">
                 {quickActions.map((action) => (
                   <div
-                    key={action.title}
+                    key={action.key}
                     className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-slate-950/50 p-4 text-xs text-slate-300 shadow-lg shadow-cyan-500/5"
                   >
                     <div className="space-y-2">
@@ -318,79 +241,83 @@ export default function CurriculumPage() {
             </div>
             <div className="grid gap-4 text-sm text-cyan-100">
               <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-5 shadow-lg shadow-cyan-500/5">
-                <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-200">Telemetry loop</h3>
+                <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-200">What you get</h3>
                 <p className="mt-2 text-slate-200">
-                  Assistant agents stream research, evaluation, and wellness signals into adaptive micro paths and sponsor dashboards.
+                  Every module ends with a tangible asset—canvas, repo, deck, or digest—plus assistant prompts and
+                  evaluation signals so the work fuels production delivery.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-5 shadow-lg shadow-cyan-500/5">
-                <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-200">Evidence stack</h3>
+                <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-200">How it flows</h3>
                 <p className="mt-2 text-slate-200">
-                  Every deliverable lands in the Evidence Locker with hashes, reviewers, and jurisdiction tags ready for verifiable credentials.
+                  Tracks stack into micro sprints: Frame → Build → Proof → Launch → Scale. Learners move with teammates,
+                  mentors, and companion agents through each layer.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="galaxies" className="space-y-8">
+        <section
+          id="tracks"
+          tabIndex={-1}
+          className={`space-y-8 transition-shadow duration-500 ${
+            highlightedSection === "tracks" ? "ring-2 ring-cyan-300 ring-offset-2 ring-offset-slate-900" : ""
+          }`}
+        >
           <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
-              <h2 className="text-3xl font-semibold">Learning galaxies</h2>
+              <h2 className="text-3xl font-semibold">Learning tracks</h2>
               <p className="max-w-2xl text-sm text-slate-300">
-                Twelve galaxies span orientation through frontier innovation. Select a galaxy to inspect arcs, deliverables, and signature evidence before assigning squads or agent automations.
+                Six tracks guide you from agent foundations to leadership and scale. Each track includes three stages—Discover,
+                Build, Launch—with clear deliverables you can put in front of stakeholders.
               </p>
             </div>
             <Link
-              href="https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/modules.md"
+              href="/curriculum/modules"
               className="inline-flex items-center justify-center rounded-full border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
-              target="_blank"
             >
-              View full module atlas
+              View module explorer
             </Link>
           </div>
           <div className="grid gap-4 lg:grid-cols-[240px_1fr]">
             <div className="flex overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.03] p-3 lg:flex-col">
-              {learningGalaxies.map((galaxy, index) => {
-                const isActive = index === activeGalaxyIndex;
+              {learningTracks.map((track, index) => {
+                const isActive = index === activeTrackIndex;
                 return (
                   <button
-                    key={galaxy.code}
+                    key={track.id}
                     type="button"
-                    onClick={() => setActiveGalaxyIndex(index)}
-                    className={`flex min-w-[180px] flex-1 items-center justify-between rounded-xl px-4 py-3 text-left text-sm transition lg:min-w-0 ${
-                      isActive
-                        ? "bg-cyan-400/20 text-cyan-100"
-                        : "text-slate-300 hover:bg-white/10"
+                    onClick={() => setActiveTrackIndex(index)}
+                    className={`flex min-w-[200px] flex-1 items-center justify-between rounded-xl px-4 py-3 text-left text-sm transition lg:min-w-0 ${
+                      isActive ? "bg-cyan-400/20 text-cyan-100" : "text-slate-300 hover:bg-white/10"
                     }`}
                   >
-                    <span className="font-semibold">{galaxy.code}</span>
-                    <span className="text-xs">{galaxy.title}</span>
+                    <span className="font-semibold">{track.title}</span>
+                    <span className="text-xs">{track.duration}</span>
                   </button>
                 );
               })}
             </div>
             <div className="space-y-6 rounded-2xl border border-white/10 bg-white/[0.04] p-6">
               <div className="flex flex-col gap-2">
-                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">
-                  {activeGalaxy.code}
-                </span>
-                <h3 className="text-2xl font-semibold text-slate-100">{activeGalaxy.title}</h3>
-                <p className="text-sm text-slate-300">{activeGalaxy.focus}</p>
+                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">{activeTrack.id}</span>
+                <h3 className="text-2xl font-semibold text-slate-100">{activeTrack.title}</h3>
+                <p className="text-sm text-slate-300">{activeTrack.subtitle}</p>
                 <div className="flex flex-wrap gap-3 text-xs text-slate-400">
-                  <span className="rounded-full border border-white/15 px-3 py-1">Duration: {activeGalaxy.duration}</span>
+                  <span className="rounded-full border border-white/15 px-3 py-1">Duration: {activeTrack.duration}</span>
                   <span className="rounded-full border border-white/15 px-3 py-1">
-                    Evidence: {activeGalaxy.signatureEvidence}
+                    Evidence: {activeTrack.signatureEvidence}
                   </span>
                 </div>
               </div>
               <div className="grid gap-4 md:grid-cols-3">
-                {activeGalaxy.arcs.map((arc) => (
-                  <div key={arc.name} className="rounded-xl border border-white/10 bg-slate-950/40 p-4 text-sm">
-                    <h4 className="text-sm font-semibold text-cyan-100">{arc.name}</h4>
-                    <p className="mt-2 text-xs text-slate-300">{arc.summary}</p>
+                {activeTrack.stages.map((stage) => (
+                  <div key={stage.name} className="rounded-xl border border-white/10 bg-slate-950/40 p-4 text-sm">
+                    <h4 className="text-sm font-semibold text-cyan-100">{stage.name}</h4>
+                    <p className="mt-2 text-xs text-slate-300">{stage.summary}</p>
                     <ul className="mt-3 space-y-2 text-xs text-slate-400">
-                      {arc.deliverables.map((item) => (
+                      {stage.deliverables.map((item) => (
                         <li key={item} className="flex items-start gap-2">
                           <span className="mt-1 h-1.5 w-1.5 rounded-full bg-cyan-300" />
                           <span>{item}</span>
@@ -407,9 +334,10 @@ export default function CurriculumPage() {
         <section id="journey" className="space-y-8">
           <div className="flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
-              <h2 className="text-3xl font-semibold">Learning journey timeline</h2>
+              <h2 className="text-3xl font-semibold">Sprint journey</h2>
               <p className="max-w-3xl text-sm text-slate-300">
-                Follow the staged progression from orientation to frontier research. Each phase highlights signature milestones, modules, and assistant plays to keep the cohort on pace.
+                Follow the recommended sequence from framing to scale. Each phase bundles modules that create tangible
+                outputs—repos, decks, digests—ready for teams and sponsors.
               </p>
             </div>
             <Link
@@ -420,74 +348,78 @@ export default function CurriculumPage() {
             </Link>
           </div>
           <div className="space-y-6">
-            {journeyTimeline.map((stage) => (
-              <div key={stage.stage} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-                <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
-                  <div>
-                    <div className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">{stage.phase}</div>
-                    <h3 className="text-2xl font-semibold text-slate-100">{stage.stage}</h3>
-                    <p className="text-sm text-slate-300">{stage.focus}</p>
+            {journeyTimeline.map((stage) => {
+              const stageModules = stage.moduleCodes
+                .map((code) => moduleCatalog.find((module) => module.code === code))
+                .filter((module): module is (typeof moduleCatalog)[number] => Boolean(module));
+              return (
+                <div key={stage.stage} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+                  <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:justify-between">
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">{stage.stage}</div>
+                      <p className="text-sm text-slate-300">{stage.focus}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2 text-[11px] text-slate-400">
+                      {stage.milestones.map((item) => (
+                        <span key={item} className="rounded-full border border-white/15 px-3 py-1">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-2 text-[11px] text-slate-400">
-                    {stage.milestones.map((item) => (
-                      <span key={item} className="rounded-full border border-white/15 px-3 py-1">
-                        {item}
-                      </span>
+                  <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                    {stageModules.map((module) => (
+                      <div key={module.code} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-slate-200">
+                        <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-cyan-200">
+                          <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.code}</span>
+                          <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.arc}</span>
+                          <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.modality}</span>
+                        </div>
+                        <div className="mt-3 space-y-1">
+                          <h4 className="text-base font-semibold text-slate-100">{module.title}</h4>
+                          <p className="text-xs text-slate-300">{module.outcomes.slice(0, 2).join(" · ")}</p>
+                        </div>
+                        <div className="mt-3 flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.3em] text-slate-400">
+                          {module.personaFit.map((persona) => (
+                            <span key={persona} className="rounded-full border border-white/15 px-2 py-1">
+                              {personaLabels[persona] ?? persona}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-slate-400">
+                          {module.evaluationSignals.slice(0, 2).map((signal) => (
+                            <span key={signal} className="rounded-full border border-white/15 px-3 py-1">
+                              {signal}
+                            </span>
+                          ))}
+                        </div>
+                        <Link
+                          href={}
+                          className="mt-4 inline-flex items-center justify-center rounded-full border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
+                        >
+                          View detail
+                        </Link>
+                      </div>
                     ))}
                   </div>
                 </div>
-                <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                  {stage.moduleDetails.map((module) => (
-                    <div key={module.code} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-slate-200">
-                      <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-cyan-200">
-                        <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.code}</span>
-                        <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.modality}</span>
-                        <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.mastery}</span>
-                      </div>
-                      <div className="mt-3 space-y-1">
-                        <h4 className="text-base font-semibold text-slate-100">{module.title}</h4>
-                        <p className="text-xs text-slate-300">{module.outcomes.slice(0, 2).join(" - ")}</p>
-                      </div>
-                      <div className="mt-3 flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.3em] text-slate-400">
-                        {module.personaFit.map((persona) => (
-                          <span key={persona} className="rounded-full border border-white/15 px-2 py-1">
-                            {personaLabels[persona] ?? persona}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-slate-400">
-                        {module.evaluationSignals.slice(0, 2).map((signal) => (
-                          <span key={signal} className="rounded-full border border-white/15 px-3 py-1">
-                            {signal}
-                          </span>
-                        ))}
-                      </div>
-                      <Link
-                        href={`/curriculum/modules/${module.code.toLowerCase()}`}
-                        className="mt-4 inline-flex items-center justify-center rounded-full border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
-                      >
-                        View detail
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
+
         <section
           id="micro-paths"
           tabIndex={-1}
           className={`space-y-8 transition-shadow duration-500 ${
-            highlightedSection === "micro-paths"
-              ? "ring-2 ring-cyan-300 ring-offset-2 ring-offset-slate-900"
-              : ""
+            highlightedSection === "micro-paths" ? "ring-2 ring-cyan-300 ring-offset-2 ring-offset-slate-900" : ""
           }`}
         >
           <div className="space-y-2">
-            <h2 className="text-3xl font-semibold">Persona launchpads</h2>
+            <h2 className="text-3xl font-semibold">Persona micro sprints</h2>
             <p className="max-w-3xl text-sm text-slate-300">
-              Micro paths remix modules into five day sprints tied to telemetry gaps and sponsor priorities. Pair them with the Companion agent to automate nudges, reflections, and sponsor updates.
+              Five-day plans designed around agents, architects, product partners, delivery leads, and executive sponsors.
+              Each day combines two modules and a clear focus so teams can move quickly without losing rigor.
             </p>
           </div>
           <div className="grid gap-6 lg:grid-cols-2">
@@ -542,7 +474,8 @@ export default function CurriculumPage() {
             <div className="space-y-2">
               <h2 className="text-3xl font-semibold">Featured modules</h2>
               <p className="max-w-3xl text-sm text-slate-300">
-                Quick-start picks curated by the assistant based on current research diffs and sponsor demand. Open the explorer for full filtering and detail pages.
+                Start here if you want fast wins: map the agent opportunity, stand up a reusable prototype loop, and brief
+                sponsors on the architecture path forward.
               </p>
             </div>
             <Link
@@ -557,12 +490,12 @@ export default function CurriculumPage() {
               <div key={module.code} className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-200">
                 <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-cyan-200">
                   <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.code}</span>
+                  <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.arc}</span>
                   <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.modality}</span>
-                  <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.mastery}</span>
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold text-slate-100">{module.title}</h3>
-                  <p className="text-xs text-slate-300">{module.outcomes.slice(0, 2).join(" - ")}</p>
+                  <p className="text-xs text-slate-300">{module.outcomes.slice(0, 2).join(" · ")}</p>
                 </div>
                 <ul className="space-y-2 text-xs text-slate-300">
                   {module.deliverables.map((deliverable) => (
@@ -580,7 +513,7 @@ export default function CurriculumPage() {
                   ))}
                 </div>
                 <Link
-                  href={`/curriculum/modules/${module.code.toLowerCase()}`}
+                  href={}
                   className="inline-flex items-center justify-center rounded-full bg-cyan-400 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900 transition hover:bg-cyan-300"
                 >
                   View module detail
@@ -589,127 +522,21 @@ export default function CurriculumPage() {
             ))}
           </div>
         </section>
-        <section id="credentials" className="space-y-8">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-semibold">Credential ladder</h2>
-            <p className="max-w-3xl text-sm text-slate-300">
-              Verifiable credentials combine evidence locker manifests, evaluation telemetry, and sponsor attestations. Learners stack specialization seals alongside base credentials.
-            </p>
-          </div>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {credentialLadder.map((tier) => (
-              <div key={tier.title} className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-200">
-                <div className="space-y-2">
-                  <h3 className="text-lg font-semibold text-cyan-100">{tier.title}</h3>
-                  <p className="text-slate-300">{tier.description}</p>
-                </div>
-                <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Requirements</h4>
-                  <ul className="mt-2 space-y-2 text-xs text-slate-300">
-                    {tier.requirements.map((req) => (
-                      <li key={req} className="flex items-start gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-cyan-300" />
-                        <span>{req}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Evidence</h4>
-                  <p className="mt-2 text-xs text-slate-300">{tier.evidence}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
 
-        <section id="industries" className="space-y-8">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-semibold">Industry playbooks</h2>
-            <p className="max-w-3xl text-sm text-slate-300">
-              Tailor the academy to regulated and high velocity sectors. Each playbook maps outcomes, telemetry, and compliance signals to the module atlas and micro paths.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {industrySpotlights.map((industry) => (
-              <div key={industry.name} className="flex flex-col gap-3 rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-200">
-                <h3 className="text-lg font-semibold text-cyan-100">{industry.name}</h3>
-                <div>
-                  <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Outcomes</h4>
-                  <ul className="mt-2 space-y-2 text-xs text-slate-300">
-                    {industry.outcomes.map((outcome) => (
-                      <li key={outcome} className="flex items-start gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-cyan-300" />
-                        <span>{outcome}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="flex flex-wrap gap-2 text-[11px] text-slate-400">
-                  {industry.signals.map((signal) => (
-                    <span key={signal} className="rounded-full border border-white/15 px-2 py-1">
-                      {signal}
-                    </span>
-                  ))}
-                </div>
-                <Link
-                  href={industry.href}
-                  target="_blank"
-                  className="mt-auto inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
-                >
-                  Open playbook
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section
-          id="assistant"
-          tabIndex={-1}
-          className={`space-y-8 transition-shadow duration-500 ${
-            highlightedSection === "assistant"
-              ? "ring-2 ring-cyan-300 ring-offset-2 ring-offset-slate-900"
-              : ""
-          }`}
-        >
+        <section id="assistant" className="space-y-8">
           <div className="space-y-2">
             <h2 className="text-3xl font-semibold">Assistant constellation</h2>
             <p className="max-w-3xl text-sm text-slate-300">
-              Scout, Coach, Critic, Archivist, Companion, and Navigator coordinate curriculum freshness, evaluation, micro-learning orchestration, and learner support. Use these service levels to instrument observability and governance.
+              Scout, Coach, Critic, Archivist, Companion, and Navigator work in the background—refreshing research,
+              pairing during builds, running evaluations, and composing sponsor-ready digests.
             </p>
           </div>
-          {navigatorAgent && (
-            <div className="rounded-3xl border border-cyan-300/40 bg-cyan-400/10 p-6 text-sm text-cyan-100">
-              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                <div className="space-y-2">
-                  <h3 className="text-lg font-semibold tracking-tight">Navigator spotlight</h3>
-                  <p className="text-xs text-cyan-50/80">
-                    Navigator keeps persona CTAs aligned, composes sponsor digests, and enforces mastery guardrails while Coach handles daily guidance.
-                  </p>
-                </div>
-                <Link
-                  href="#micro-paths"
-                  className="inline-flex items-center justify-center rounded-full border border-white/30 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900 transition hover:border-white/50 hover:bg-white/10"
-                >
-                  Monitor micro paths
-                </Link>
-              </div>
-              <ul className="mt-4 grid gap-2 text-xs text-cyan-50/80 sm:grid-cols-3">
-                {navigatorAgent.slos.slice(0, 3).map((slo) => (
-                  <li key={slo} className="rounded-xl border border-white/20 bg-slate-950/20 px-3 py-2">
-                    {slo}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {assistantOps.map((agent) => (
               <div key={agent.name} className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-200">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-cyan-100">{agent.name}</h3>
-                  <span className="text-xs uppercase tracking-[0.3em] text-cyan-200">Agent</span>
+                  <span className="text-xs uppercase tracking-[0.3em] text-cyan-200">Assistant</span>
                 </div>
                 <p className="mt-3 text-xs text-slate-300">{agent.focus}</p>
                 <ul className="mt-4 space-y-2 text-xs text-slate-300">
@@ -725,19 +552,12 @@ export default function CurriculumPage() {
           </div>
         </section>
 
-        <section
-          id="sponsors"
-          tabIndex={-1}
-          className={`space-y-8 transition-shadow duration-500 ${
-            highlightedSection === "sponsors"
-              ? "ring-2 ring-cyan-300 ring-offset-2 ring-offset-slate-900"
-              : ""
-          }`}
-        >
+        <section id="sponsors" className="space-y-8">
           <div className="space-y-2">
-            <h2 className="text-3xl font-semibold">Sponsor cockpit views</h2>
+            <h2 className="text-3xl font-semibold">Sponsor dashboards</h2>
             <p className="max-w-3xl text-sm text-slate-300">
-              Sponsors access live dashboards to inspect outcomes, evidence, risk, and engagement. Each view is backed by the Evidence Locker and evaluation registry API.
+              Keep decision makers close with outcome, build, reliability, and portfolio views. Each dashboard is fed by
+              module evidence, assistant telemetry, and progress digests.
             </p>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
@@ -757,19 +577,11 @@ export default function CurriculumPage() {
           </div>
         </section>
 
-        <section
-          id="docs"
-          tabIndex={-1}
-          className={`space-y-8 transition-shadow duration-500 ${
-            highlightedSection === "docs"
-              ? "ring-2 ring-cyan-300 ring-offset-2 ring-offset-slate-900"
-              : ""
-          }`}
-        >
+        <section id="docs" className="space-y-8">
           <div className="space-y-2">
-            <h2 className="text-3xl font-semibold">Primary documentation</h2>
+            <h2 className="text-3xl font-semibold">Source of truth docs</h2>
             <p className="max-w-3xl text-sm text-slate-300">
-              Keep source of truth docs close. They power the assistant, knowledge graph, and credential workflows.
+              Keep the playbooks, checklists, and templates that power each module at your fingertips.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
@@ -787,23 +599,23 @@ export default function CurriculumPage() {
         </section>
 
         <section className="rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-center text-sm text-slate-200">
-          <h2 className="text-2xl font-semibold text-slate-100">Ready to activate the academy?</h2>
+          <h2 className="text-2xl font-semibold text-slate-100">Ready to drop into the next sprint?</h2>
           <p className="mx-auto mt-3 max-w-3xl">
-            Deploy the curriculum stack for your cohort or enterprise program. We offer orientation labs, sponsor onboarding, assistant configuration, and governance reviews to accelerate a safe launch.
+            Pick a track, launch a micro sprint, and let the assistants keep teams moving. Each module is built to produce
+            value, evidence, and stories your sponsors can act on.
           </p>
-          <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              href="mailto:frank@aiarchitect.academy"
+              href="/curriculum/modules"
               className="rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300"
             >
-              Book an activation session
+              Browse modules
             </Link>
             <Link
-              href="https://github.com/frankxai/saas-ai-architect-academy/discussions"
+              href="#micro-paths"
               className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
-              target="_blank"
             >
-              Join the builder community
+              Launch micro sprint
             </Link>
           </div>
         </section>

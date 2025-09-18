@@ -39,6 +39,14 @@ This blueprint describes how the AI Architect Academy Platform serves human arch
 - **Insight Playlists** – thematic content clusters (e.g., Responsible AI, Creator Ops, Agent Automation) linking to evergreen SEO articles and upcoming releases.
 - **Community Layer** – invites to waitlists, masterminds, GitHub discussions, and supporter updates.
 
+### Learning Track Taxonomy
+- **T1 Agent Engineering Foundations** – opportunity framing, prompts, guardrails, and agent field tests.
+- **T2 Rapid Prototyping Studio** – hypothesis sprints, storyboard labs, build loops, and pilot evidence packs.
+- **T3 Architecture Systems Lab** – capability mapping, interface contracts, retrieval blueprints, and launch briefs.
+- **T4 Collaboration & Communication** – collaboration operating systems, storytelling labs, enablement loops, and digests.
+- **T5 Operations & Reliability** – reliability baselines, observability rollout, runbook automation, and incident simulations.
+- **T6 Leadership & Scale** – portfolio signals, investment stories, governance cadences, and community activation.
+
 ## Micro-Learning Surface Architecture
 1. **Page frame**: hero outcome → time commitment & mastery tags → assistant starter button row → stepper with expandable tasks → evidence checklist & reflection panel.
 2. **Button grid**: `Start with Coach`, `Preview Evidence`, `Launch Lab`, `Sync to Workspace`, and `Send Sponsor Update` appear consistently above the fold for human + agent flows.

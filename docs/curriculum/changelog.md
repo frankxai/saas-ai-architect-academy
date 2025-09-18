@@ -1,6 +1,12 @@
-﻿# Curriculum Changelog
+# Curriculum Changelog
 
-> Last updated: 2025-09-20
+> Last updated: 2025-09-21
+
+## 2025-09-21
+- Replaced the legacy galaxy model with six sprint-based learning tracks (Agent Foundations through Leadership & Scale).
+- Refreshed the module catalog with 24 high-impact modules covering agents, prototyping, architecture, collaboration, operations, and leadership.
+- Published updated persona micro sprints and quick-action UX flows across the curriculum hub.
+- Simplified marketing copy, data structures, and documentation to emphasise coding agents, rapid prototyping, and operational excellence.
 
 ## 2025-09-20
 - Added semantic knowledge fabric, agent guardrail simulation, and trust drift forensics modules to deepen 2025 frontier coverage.
@@ -18,4 +24,3 @@
 - Defined Evidence Locker Specification, Evaluation & QA Operations handbook, module authoring standards, and Track Explorer specification.
 - Added Industry Playbooks, Mentor & Cohort Operations guide, Sponsor Cockpit spec, Evaluation Registry, and Research-to-Curriculum pipeline references.
 - Refreshed Curriculum Blueprint and README to align references, industry personalization, and roadmap priorities.
-

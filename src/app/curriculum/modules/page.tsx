@@ -2,11 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import {
-  moduleCatalog,
-  learningGalaxies,
-  ModuleDefinition,
-} from "@/data/curriculum";
+import { moduleCatalog, learningTracks, ModuleDefinition } from "@/data/curriculum";
 
 const masteryLevels = ["Explorer", "Builder", "Architect", "Strategist", "Luminary"] as const;
 const modalities = ["ML", "LB", "WK", "SP", "CL", "MC", "RT", "RS"] as const;
@@ -18,13 +14,17 @@ const sortOptions = [
 ];
 
 const personaLabels: Record<string, string> = {
-  "lead-architect": "Lead Architect",
-  "program-leader": "Program & Product Leader",
-  "risk-partner": "Risk & Compliance Partner",
-  "agent-lead": "Automation & Agent Lead",
-  "ops-lead": "Operations Lead",
-  creator: "Creator & Influence Partner",
-  research: "Research Guild",
+  "agent-engineer": "Agent Engineer",
+  "solution-architect": "Solution Architect",
+  "product-partner": "Product Partner",
+  "delivery-lead": "Delivery Lead",
+  "risk-partner": "Risk & Governance",
+  "designer": "Design Partner",
+  "developer": "Developer",
+  "data-engineer": "Data Engineer",
+  "executive": "Executive Sponsor",
+  "finance": "Finance Partner",
+  "communications": "Comms & Community",
 };
 
 function formatDuration(hours: number) {
@@ -41,7 +41,7 @@ function parseFreshness(value: string) {
 export default function ModulesPage() {
   const sampleModuleCode = moduleCatalog[0]?.code.toLowerCase() ?? "";
 
-  const [selectedGalaxy, setSelectedGalaxy] = useState<string>("ALL");
+  const [selectedTrack, setSelectedTrack] = useState<string>("ALL");
   const [selectedMastery, setSelectedMastery] = useState<string[]>([]);
   const [selectedPersona, setSelectedPersona] = useState<string[]>([]);
   const [selectedModality, setSelectedModality] = useState<string[]>([]);
@@ -63,7 +63,7 @@ export default function ModulesPage() {
 
   const filteredModules = useMemo(() => {
     return moduleCatalog.filter((module) => {
-      if (selectedGalaxy !== "ALL" && module.galaxy !== selectedGalaxy) {
+      if (selectedTrack !== "ALL" && module.galaxy !== selectedTrack) {
         return false;
       }
       if (selectedMastery.length && !selectedMastery.includes(module.mastery)) {
@@ -99,7 +99,7 @@ export default function ModulesPage() {
       }
       return true;
     });
-  }, [selectedGalaxy, selectedMastery, selectedJourney, selectedPersona, selectedModality, searchTerm]);
+  }, [selectedTrack, selectedMastery, selectedJourney, selectedPersona, selectedModality, searchTerm]);
 
   const sortedModules = useMemo(() => {
     const mapped = [...filteredModules];
@@ -125,7 +125,7 @@ export default function ModulesPage() {
   }, [filteredModules, sortBy]);
 
   const activeFilters = [
-    selectedGalaxy !== "ALL" ? "Galaxy" : null,
+    selectedTrack !== "ALL" ? "Track" : null,
     selectedMastery.length ? "Mastery" : null,
     selectedJourney.length ? "Journey" : null,
     selectedPersona.length ? "Persona" : null,
@@ -139,9 +139,11 @@ export default function ModulesPage() {
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 py-8 md:flex-row md:items-center md:justify-between">
           <div className="space-y-3">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Curriculum</p>
-            <h1 className="text-3xl font-semibold tracking-tight">Micro-learning module explorer</h1>
+            <h1 className="text-3xl font-semibold tracking-tight">Module explorer</h1>
             <p className="max-w-2xl text-sm text-slate-300">
-              Filter hundreds of modules by galaxy, mastery, journey stage, persona, and modality. Each module connects to evidence, evaluation, and assistant prompts so you can orchestrate learning paths instantly.
+              Filter the sprint-ready modules that power agent foundations, rapid prototyping, architecture, operations,
+              and scale. Every module delivers artefacts, evaluation hooks, and assistant prompts so your team keeps
+              momentum.
             </p>
             <div className="flex flex-wrap gap-3 text-sm">
               <Link
@@ -193,10 +195,11 @@ export default function ModulesPage() {
       <main className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-10">
         <section className="grid gap-6 rounded-3xl border border-white/10 bg-white/[0.04] p-6 md:grid-cols-2 xl:grid-cols-4">
           <FilterGroup
-            title="Galaxy"
-            options={["ALL", ...learningGalaxies.map((galaxy) => galaxy.code)]}
-            selected={selectedGalaxy}
-            onSelect={(value) => setSelectedGalaxy(value)}
+            title="Track"
+            options={["ALL", ...learningTracks.map((track) => track.title)]}
+            optionValues={["ALL", ...learningTracks.map((track) => track.id)]}
+            selected={selectedTrack}
+            onSelect={(value) => setSelectedTrack(value)}
             single
           />
           <FilterGroup
@@ -265,7 +268,7 @@ export default function ModulesPage() {
             <button
               type="button"
               onClick={() => {
-                setSelectedGalaxy("ALL");
+                setSelectedTrack("ALL");
                 setSelectedMastery([]);
                 setSelectedPersona([]);
                 setSelectedModality([]);
@@ -362,7 +365,7 @@ function ModuleCard({ module }: ModuleCardProps) {
     return () => clearTimeout(id);
   }, [copied]);
 
-  const galaxyMeta = learningGalaxies.find((g) => g.code === module.galaxy);
+  const trackMeta = learningTracks.find((track) => track.id === module.galaxy);
 
   const handleCopy = async () => {
     try {
@@ -391,8 +394,8 @@ function ModuleCard({ module }: ModuleCardProps) {
         </div>
         <div className="flex flex-wrap gap-2 text-[11px] text-slate-400">
           <span className="rounded-full border border-white/15 px-3 py-1">{formatDuration(module.durationHours)}</span>
-          {galaxyMeta && (
-            <span className="rounded-full border border-white/15 px-3 py-1">{galaxyMeta.title}</span>
+          {trackMeta && (
+            <span className="rounded-full border border-white/15 px-3 py-1">{trackMeta.title}</span>
           )}
           <span className="rounded-full border border-white/15 px-3 py-1">Fresh {module.freshness}</span>
         </div>

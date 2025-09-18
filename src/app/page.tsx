@@ -62,79 +62,75 @@ const keywordCloud = [
 
 const experiencePillars = [
   {
-    title: "Architect Velocity",
+    title: "Agent Momentum",
     description:
-      "Launch programs with curated playbooks, reusable architecture assets, and adaptive learning paths tuned for enterprise delivery.",
+      "Stand up dependable coding agents with guardrails, telemetry, and human-in-the-loop rituals baked in from day one.",
     highlights: [
-      "Progressive module paths that respond to maturity and persona signals",
-      "Copy-ready diagrams, ADRs, and canvas kits aligned to real deployments",
-      "Embedded prompts, rubrics, and evaluation harnesses for faster iteration",
+      "Opportunity framing canvases and guardrail baselines",
+      "Reusable agent starter kits with evaluation hooks",
+      "Field-test journals and sponsor-ready summaries",
     ],
   },
   {
-    title: "Governed Delivery",
+    title: "Prototype Velocity",
     description:
-      "Operationalize responsible AI controls without slowing teams down - policy, privacy, and oversight are baked into every track.",
+      "Move from hypothesis to pilot-ready demos in days using rapid prototyping labs, storyboard studios, and evidence packs.",
     highlights: [
-      "Risk, compliance, and privacy tasks mapped to every module",
-      "Evidence capture and approval rituals surfaced inline with workflows",
-      "Automated alerts for evaluation drift, policy exceptions, and trust signals",
+      "Hypothesis briefs, storyboards, and component libraries",
+      "Pilot facilitation scripts with qualitative + quantitative capture",
+      "Iteration decision memos that feed investment stories",
     ],
   },
   {
-    title: "Operational Intelligence",
+    title: "Architecture & Ops",
     description:
-      "Connect architecture decisions to measurable outcomes, stakeholder narratives, and telemetry across the portfolio.",
+      "Translate prototypes into resilient architectures, observability stacks, and runbooks that keep production calm.",
     highlights: [
-      "Value tracking dashboards tied to KPIs, SLOs, and ROI cases",
-      "Assistant summaries for executives, risk partners, creators, and delivery teams",
-      "Integrations streaming updates into Jira, Linear, Slack, Teams, Notion, and analytics",
+      "Interface contracts and retrieval blueprints",
+      "Observability rollout plans and guardrail coverage reports",
+      "Incident simulations with insight briefs for sponsors",
     ],
   },
   {
-    title: "Creator Amplification",
+    title: "Story & Scale",
     description:
-      "Translate deep technical work into influence - content engines, progress digests, and media assets ready to ship across every channel.",
+      "Activate communication kits, governance cadences, and community playbooks so wins travel across the organisation.",
     highlights: [
-      "Editorial calendars mapped to launches, sprints, and book chapters",
-      "Prompt packs and atomization recipes for newsletters, podcasts, and socials",
-      "Performance telemetry and storytelling cues for partners and family supporters",
+      "Collaboration charters and enablement loops",
+      "Progress digests tailored to executives, teams, and communities",
+      "Investment narratives and activation plans grounded in telemetry",
     ],
   },
 ];
 
 const moduleTracks = [
   {
-    title: "Operate with Confidence",
-    description:
-      "Governance, risk, compliance, and value tracking baked into every build.",
-    modules: ["Model risk playbooks", "Data privacy lab", "Value and KPI instrumentation"],
-    duration: "2-3 weeks",
-    deliverable: "Audit-ready risk posture mapped to controls and evidence.",
-  },
-  {
-    title: "Ship Production Systems",
-    description:
-      "Hands-on recipes for RAG, agents, observability, guardrails, and automation.",
-    modules: ["RAG delivery lab", "Agentic swarms studio", "Eval harness factory"],
-    duration: "3-4 sprints",
-    deliverable: "Production deployment blueprint with evaluation harness and runbooks.",
-  },
-  {
-    title: "Lead AI Programs",
-    description:
-      "Executive enablement, discovery questions, stakeholder choreography, and roadmaps.",
-    modules: ["AI portfolio strategy", "Governance sprint", "Value discovery scenarios"],
-    duration: "Ongoing",
-    deliverable: "Persona-aware roadmap with communications, KPIs, and investment cases.",
-  },
-  {
-    title: "Amplify Influence",
-    description:
-      "Thought leadership systems, cross-channel storytelling, and community rituals.",
-    modules: ["Thought leadership runway", "AI content repurposing studio", "Community analytics lab"],
+    title: "Agent Foundations",
+    description: "Frame, prompt, and field-test dependable coding agents with clear success metrics.",
+    modules: ["Agent opportunity mapping", "Prompt & policy baseline", "Agent field test"],
     duration: "2-week sprint",
-    deliverable: "Cross-channel editorial system with prompt packs and measurement loops.",
+    deliverable: "Agent blueprint, guardrail baseline, and field-test journal.",
+  },
+  {
+    title: "Rapid Prototyping",
+    description: "Move from hypothesis to pilot-ready demos with instrumentation and evidence packs.",
+    modules: ["Prototype hypothesis sprint", "Experience story sprint", "Prototype pilot"],
+    duration: "3-week cadence",
+    deliverable: "Prototype repo, storyboard, and iteration decision memo.",
+  },
+  {
+    title: "Architecture & Ops",
+    description: "Translate prototypes into solution architectures, observability, and runbooks.",
+    modules: ["Capability mapping lab", "Interface contract design", "Observability rollout"],
+    duration: "4-week program",
+    deliverable: "Architecture brief, retrieval blueprint, and operations dashboard.",
+  },
+  {
+    title: "Story & Scale",
+    description: "Align teams, sponsors, and communities with clear narratives and activation plans.",
+    modules: ["Collaboration operating system", "Storytelling lab", "Investment story studio"],
+    duration: "Ongoing leadership lane",
+    deliverable: "Enablement toolkit, progress digest, and investment narrative.",
   },
 ];
 
@@ -746,8 +742,7 @@ export default function Home() {
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Link href="/" className="flex items-center gap-3 text-cyan-100">
-            <Image src="/logo.svg" alt="AI Architect Academy" width={28} height={28} className="h-7 w-7" />
-            <span className="text-lg font-semibold tracking-tight">AI Architect Academy</span>
+            <Image src="/logo.svg" alt="AI Architect Academy" width={40} height={40} className="h-10 w-10" />
           </Link>
           <nav className="hidden items-center gap-5 text-sm font-medium xl:flex">
             {navLinks.map((link) => (
@@ -796,32 +791,34 @@ export default function Home() {
           <div className="relative space-y-10">
             <div className="space-y-6">
               <span className="inline-flex items-center rounded-full border border-cyan-300/40 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">
-                Global AI architect voice - governed impact - creator amplification
+                Sprint-based academy - coding agents - production proof
               </span>
               <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-                The unified hub for architects, creators, high-value clients, family, and their companion agents.
+                Build, test, and scale coding agents with a curriculum that delivers proof every sprint.
               </h1>
               <p className="max-w-3xl text-base text-slate-200 sm:text-lg">
-                Progressive learning paths, premium advisory services, creator systems, and an AI partner orchestrate how we design, ship, and communicate production AI. Every module connects to the open-source AI Architect Academy for deeper research, architecture assets, and project telemetry you can trust.
+                Start with dependable agent foundations, move into rapid prototyping, translate wins into production
+                architectures, and brief sponsors with evidence. Companion assistants keep telemetry, CTAs, and progress
+                digests flowing so humans and agents stay aligned.
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/curriculum"
                   className="rounded-full bg-cyan-400 px-6 py-3 text-center text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
                 >
-                  Launch the curriculum experience
+                  Explore the sprint tracks
                 </Link>
                 <Link
                   href="#experience"
                   className="rounded-full border border-white/20 px-6 py-3 text-center text-sm font-semibold text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
                 >
-                  Explore the academy overview
+                  See how the academy works
                 </Link>
                 <Link
                   href="#library"
                   className="rounded-full border border-white/20 px-6 py-3 text-center text-sm font-semibold text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
                 >
-                  Browse the Resource Vault
+                  Download the templates
                 </Link>
               </div>
             </div>
