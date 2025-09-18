@@ -19,70 +19,62 @@ Twelve learning galaxies (G0-G11) ladder from launch telemetry to frontier innov
 | Strategist | Executive alignment, portfolio orchestration, regulatory readiness. | Executive narrative kit, adoption telemetry, policy-to-control trace. | Facilitate board simulation, maintain governance cadence, secure sponsor sign-off. |
 | Luminary | Thought leadership, research synthesis, mentorship, community impact. | Insight kit, open knowledge contribution, cohort mentorship dossier. | Author three knowledge assets, maintain 95% evaluation confidence, mentor two cohorts. |
 
-## Module Atlas
+## Module Atlas & Authoring
 - 216 modular experiences codified in `docs/curriculum/modules.md` with modality, hours, outcomes, deliverables, instrumentation.
-- Modules include metadata (`galaxy`, `arc`, `level`, `personaFit`, `prerequisites`, `deliverables`, `evidenceSignals`, `refreshCadence`).
-- Assistants compose micro-paths and recommendations using this metadata plus learner telemetry.
-
-## Adaptive Micro-Paths
-- Micro-path logic detailed in `docs/curriculum/micro-paths.md` covers orientation, Builder, Architect, and Luminary sequences per persona.
-- Paths balance modality mix, ensure rest days, and auto-adjust when sponsor priorities or wellness signals shift.
-- Reflection prompts and Archivist cues ensure every micro-path ends with documented learning and evidence updates.
-
-## Teaching & Facilitation Model
-- Weekly cadence (pulse briefings, deep work studios, governance clinics, frontier guilds, reflection rituals) described in `docs/curriculum/teaching-model.md`.
-- Dual-loop coaching pairs human mentors with assistant guidance to maximize rigor and inclusivity.
-- Evaluation rubric dimensions: Technical Rigor, Responsible Practice, Delivery Excellence, Strategic Impact, Leadership & Influence.
-
-## Module Authoring & Quality
 - Authoring standards (`docs/curriculum/module-authoring.md`) define front matter schema, workflow, accessibility, localization, and governance gates.
-- Curator pods steward galaxies, ensuring 90-day freshness and consistent evaluation hooks.
-- Assistant tooling auto-generates reviewer checklists, diff summaries, and prompt updates aligned with module metadata.
+- Evaluation references validated against the `docs/curriculum/evaluation-registry.md` to keep metrics authoritative and transparent.
+- Research-to-curriculum pipeline (`docs/curriculum/research-pipeline.md`) ensures fresh intelligence flows into module revisions, assistant prompts, and changelog entries.
+
+## Adaptive Micro-Paths & Industry Personalisation
+- Micro-path logic (`docs/curriculum/micro-paths.md`) orchestrates persona-specific sequences across orientation, Builder, Architect, and Luminary phases with assistant hooks and reflection prompts.
+- Industry playbooks (`docs/curriculum/industry-playbooks.md`) tailor modules, deliverables, compliance signals, and telemetry overlays for healthcare, finance, public sector, manufacturing, creative, and energy cohorts.
+- Assistant bundles assemble domain prompts, evaluation checklists, and sponsor narratives to accelerate sector adoption.
+
+## Teaching, Mentoring & Facilitation
+- Weekly cadence (pulse briefings, deep work studios, governance clinics, frontier guilds, reflection rituals) described in `docs/curriculum/teaching-model.md`.
+- Mentor & cohort operations playbook (`docs/curriculum/mentor-ops.md`) details mentor roles, operating rhythm, tooling, feedback protocols, and sponsor collaboration.
+- Dual-loop coaching pairs human mentors with assistant guidance to maximize rigor and inclusivity; evaluation rubric dimensions anchor feedback.
 
 ## Evaluation & QA Operations
-- Evaluation pipeline guidance lives in `docs/curriculum/evaluation-ops.md`, covering data curation, run orchestration, anomaly detection, and escalation protocols.
-- Evaluation specs, manifests, and scorecards feed directly into Evidence Locker records and credential decisions.
-- Severity-driven playbooks align mentors, sponsors, and governance councils on response expectations.
+- Evaluation pipeline guidance in `docs/curriculum/evaluation-ops.md` covers data curation, orchestration, anomaly detection, and escalation protocols.
+- Evaluation registry connects metrics, datasets, and governance metadata; Critic agent enforces coverage and sponsors monitor target vs actual performance.
+- Severity playbooks and continuous automation ensure regressions trigger timely remediation.
 
-## Evidence Locker & Credentialing
-- Evidence Locker specification (`docs/curriculum/evidence-locker.md`) maintains traceable artifacts, governance tags, and hash-based integrity checks.
+## Evidence, Credentials & Sponsor Experience
+- Evidence Locker specification (`docs/curriculum/evidence-locker.md`) maintains traceable artifacts, governance tags, hashes, and jurisdictional controls.
 - Credential framework (`docs/curriculum/credentials.md`) defines Explorer → Luminary badges, specialization seals, VC payload schema, renewal policies, and revocation guardrails.
-- Archivist agent packages evidence into verifiable manifests while Companion tracks renewal windows and sponsor attestations.
+- Sponsor cockpit specification (`docs/curriculum/sponsor-cockpit.md`) provides dashboards for outcomes, evidence, risk, engagement, and ROI storyboards, integrating Evidence Locker and evaluation telemetry.
 
-## Assistant Operations & Safety
-- Assistant constellation (Scout, Coach, Critic, Archivist, Companion) governed by `docs/curriculum/assistant-ops.md` with SLOs, telemetry, guardrails, and human-in-loop protocols.
-- Policy-as-code guardrails, incident playbooks, and observability dashboards keep automation accountable and auditable.
+## Assistant Operations & Intelligence
+- Assistant constellation (Scout, Coach, Critic, Archivist, Companion) governed by `docs/curriculum/assistant-ops.md` with SLOs, telemetry, guardrails, and human-in-the-loop protocols.
+- Frontier intelligence grid (`docs/curriculum/frontier-intelligence.md`) aggregates regulatory, tooling, evaluation, and industry signals for September 2025 relevance.
+- Curriculum council maintains the 90-day freshness SLA with documented change logs in `docs/curriculum/changelog.md`.
 
-## Frontier Intelligence Loop
-- Intelligence grid (`docs/curriculum/frontier-intelligence.md`) aggregates regulatory, tooling, evaluation, and industry signals for September 2025 relevance.
-- Scout agent translates signals into module refresh triggers, risk alerts, and sponsor-ready briefs.
-- Curriculum council maintains 90-day freshness SLA with documented change logs in `docs/curriculum/changelog.md`.
-
-## Track Explorer Experience
+## Track Explorer & Platform Integration
 - `/tracks` specification (`docs/curriculum/track-explorer.md`) outlines adaptive filtering, micro-path timelines, evidence snapshots, and sponsor dashboards.
-- APIs expose module manifests, micro-paths, evidence summaries, and intelligence signals for both human UI and agent consumption.
-
-## Evidence & Credentialing Workflow
-- Learners maintain Evidence Lockers linking repos, dashboards, transcripts, and stakeholder feedback.
-- Automated scoring pipelines capture telemetry from labs, tests, incident simulations, and reviews.
-- Governance councils review critical deliverables with decision traceability and policy mapping.
+- APIs expose module manifests, micro-paths, evidence summaries, intelligence signals, and evaluation registry data for both human UI and companion agents.
 
 ## Roadmap Highlights (Sep 2025)
-1. Launch `/tracks` explorer with adaptive filtering and module manifests.
+1. Launch `/tracks` explorer with adaptive filtering, evidence overlays, and sponsor exports.
 2. Publish assistant rubric scorer MVP integrating module metadata and evaluation heuristics.
-3. Release governance API for sponsors to ingest telemetry and credential data.
-4. Expand venture studio collaborations (healthcare, finance, public sector) for frontier labs.
+3. Release governance API for sponsors to ingest telemetry, credential data, and evaluation registry metrics.
+4. Expand venture studio collaborations (healthcare, finance, public sector) for frontier labs and case evidence.
 5. Pilot alumni fellowship with research stipends, mentorship matching, and open knowledge bounties.
 
 ## Cross-References
 - Learning System Architecture (`docs/curriculum/architecture.md`)
 - Module Atlas (`docs/curriculum/modules.md`)
-- Adaptive Micro-Paths (`docs/curriculum/micro-paths.md`)
-- Teaching & Facilitation Model (`docs/curriculum/teaching-model.md`)
 - Module Authoring Standards (`docs/curriculum/module-authoring.md`)
+- Research-to-Curriculum Pipeline (`docs/curriculum/research-pipeline.md`)
+- Evaluation Registry (`docs/curriculum/evaluation-registry.md`)
+- Adaptive Micro-Paths (`docs/curriculum/micro-paths.md`)
+- Industry Playbooks (`docs/curriculum/industry-playbooks.md`)
+- Teaching & Facilitation Model (`docs/curriculum/teaching-model.md`)
+- Mentor & Cohort Operations (`docs/curriculum/mentor-ops.md`)
 - Evaluation & QA Operations (`docs/curriculum/evaluation-ops.md`)
 - Evidence Locker Specification (`docs/curriculum/evidence-locker.md`)
 - Credential Framework (`docs/curriculum/credentials.md`)
+- Sponsor Cockpit Specification (`docs/curriculum/sponsor-cockpit.md`)
 - Assistant Operations Playbook (`docs/curriculum/assistant-ops.md`)
 - Frontier Intelligence Grid (`docs/curriculum/frontier-intelligence.md`)
 - Track Explorer Specification (`docs/curriculum/track-explorer.md`)

@@ -10,5 +10,6 @@
 - Released Credential Framework with verifiable credential schema and specialization seals.
 - Authored Assistant Operations Playbook and Frontier Intelligence Grid for agent safety and intelligence loops.
 - Defined Evidence Locker Specification, Evaluation & QA Operations handbook, module authoring standards, and Track Explorer specification.
-- Refreshed Curriculum Blueprint and README to align references and roadmap priorities.
+- Added Industry Playbooks, Mentor & Cohort Operations guide, Sponsor Cockpit spec, Evaluation Registry, and Research-to-Curriculum pipeline references.
+- Refreshed Curriculum Blueprint and README to align references, industry personalization, and roadmap priorities.
 
