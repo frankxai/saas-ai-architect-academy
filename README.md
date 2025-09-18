@@ -45,6 +45,7 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 ## Strategic References
 - [Product Blueprint](docs/product-blueprint.md)
 - [Platform Strategy](docs/strategy.md)
+- [Curriculum Blueprint](docs/curriculum-blueprint.md)
 - [Capabilities & Agentic Specs](docs/capabilities.md)
 - [Agent Journey Mapping](docs/agent-journeys.md)
 - [UI / UX Principles](docs/ui-ux-principles.md)
