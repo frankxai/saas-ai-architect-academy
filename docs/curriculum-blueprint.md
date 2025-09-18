@@ -1,123 +1,90 @@
-# AI Architect Academy Curriculum Blueprint
+﻿# AI Architect Academy Curriculum Blueprint (2025 Edition)
 
 ## Purpose & Outcomes
-The curriculum is a living operating system for producing elite AI Architects and program leaders. It combines vetted casework, frontier research, and governed delivery practices so graduates can:
-- Design and ship production-grade AI systems with measurable business impact.
-- Operationalize responsible AI controls across data, model, and experience layers.
-- Lead cross-functional teams, companion agents, and automation in fast-moving environments.
-- Continually adapt architectures, tooling, and governance to the evolving AI landscape.
+The Academy is a precision learning operating system that equips elite AI Architects, program leaders, and governance partners to ship governed, measurable AI outcomes. Graduates consistently:
+- Design multi-agent, multimodal platforms that balance velocity, safety, and cost.
+- Orchestrate data, model, and experience layers with verifiable evidence and controls.
+- Lead executive, regulatory, and community conversations with clarity and confidence.
+- Sustain innovation through frontier research, telemetry-informed decisions, and inclusive practices.
 
-## Learning Philosophy
-1. **Truth-first & current** – every module sources from peer-reviewed research, vendor documentation, regulatory updates, and field-tested playbooks. Change logs capture updates, and the assistant cites sources by default.
-2. **Micro-to-systems mastery** – concepts arrive in digestible micro-lessons that ladder into systems-level blueprints, with optional deep dives for specialists.
-3. **Learning while shipping** – labs, deliverables, and capstones mirror production workloads so every learner creates evidence they can deploy immediately.
-4. **Agent-augmented teaching** – the AI Architect Assistant co-facilitates lessons, critiques deliverables, and surfaces fresh intel on demand.
-5. **Community accountability** – cohorts, mentors, and partner experts provide feedback loops, story-driven reflections, and governance reviews.
+## Learning Architecture
+Twelve learning galaxies (G0-G11) ladder from launch telemetry to frontier innovation. Each galaxy contains three arcs (Core, Systems Studio, Leadership & Influence) mapped to Explorer → Luminary mastery levels. Shared schemas ensure assistants and mentors can guide learners without redundancy. See `docs/curriculum/architecture.md` for persona journeys, program spine, telemetry fabric, and governance model.
 
-### Modalities & Cadence
-| Modality | Format | Cadence | Purpose |
+### Mastery Ladder
+| Level | Focus | Signature Evidence | Readiness Criteria |
 | --- | --- | --- | --- |
-| Pulse Briefings | 10-minute weekly video + transcript | Weekly | Synthesize research updates, regulatory changes, tooling shifts. |
-| Micro-Lessons | MDX module with interactive snippets | 2–3 per week | Teach focused concepts linked to deliverables and citations. |
-| Studio Labs | Guided notebooks, repo exercises, agent sandboxes | Bi-weekly | Apply concepts on real infrastructure with assistant support. |
-| Capstone Sprints | Multi-week projects with stakeholder checkpoints | Quarterly | Deliver end-to-end architecture packages with evidence. |
-| Governance Reviews | Panel critique with risk/compliance experts | Monthly | Pressure-test controls, evaluation plans, and audit readiness. |
-| Portfolio Retros | Cohort forum + async video reflection | Monthly | Capture learnings, share playbooks, feed knowledge graph. |
+| Explorer | Shared vocabulary, responsible AI foundations, orientation deliverables. | Mission charter, risk radar, orientation diagnostic. | Complete 8 Explorer modules, pass baseline assessment (>=80%). |
+| Builder | Applied delivery patterns, evaluation rigor, documentation hygiene. | Studio lab artifacts, assisted evaluation suite, control library draft. | Ship 12 Builder modules including 4 labs, pass governance review. |
+| Architect | Systems integration, cross-functional leadership, observability. | Platform blueprint, runbooks, unified telemetry dashboard. | Lead stakeholder critique, achieve SLO targets, publish ADR pack. |
+| Strategist | Executive alignment, portfolio orchestration, regulatory readiness. | Executive narrative kit, adoption telemetry, policy-to-control trace. | Facilitate board simulation, maintain governance cadence, secure sponsor sign-off. |
+| Luminary | Thought leadership, research synthesis, mentorship, community impact. | Insight kit, open knowledge contribution, cohort mentorship dossier. | Author three knowledge assets, maintain 95% evaluation confidence, mentor two cohorts. |
 
-## Mastery Ladder
-| Level | Focus | Signature Evidence | Graduation Criteria |
-| --- | --- | --- | --- |
-| Explorer | Foundations of AI architecture, responsible AI principles | Architecture canvas, risk register draft | Complete 6 core micro-lessons, pass fundamentals assessment (80%). |
-| Builder | Delivery patterns, data pipelines, evaluation mechanics | Working RAG service, evaluation dashboard | Ship studio lab deliverables, 2 governance reviews accepted. |
-| Architect | Multi-system design, automation, scaling operations | Platform blueprint, integration runbook | Complete capstone sprint, lead cross-functional critique. |
-| Strategist | Portfolio orchestration, executive storytelling, agent ecosystems | Board-ready roadmap, AI portfolio scorecard | Run executive simulation, maintain portfolio telemetry for 4 weeks. |
-| Luminary | Frontier research synthesis, policy influence, community leadership | Published insight kit, open-source contribution | Author 3 knowledge assets, mentor two cohorts, 95% evaluation confidence. |
+## Module Atlas
+- 216 modular experiences codified in `docs/curriculum/modules.md` with modality, hours, outcomes, deliverables, instrumentation.
+- Modules include metadata (`galaxy`, `arc`, `level`, `personaFit`, `prerequisites`, `deliverables`, `evidenceSignals`, `refreshCadence`).
+- Assistants compose micro-paths and recommendations using this metadata plus learner telemetry.
 
-## Track Architecture & Module Families
-Each track contains guided sequences with prerequisites, deliverables, and rubrics. Modules interlink through shared schemas so the assistant can recommend adjacent learning.
+## Adaptive Micro-Paths
+- Micro-path logic detailed in `docs/curriculum/micro-paths.md` covers orientation, Builder, Architect, and Luminary sequences per persona.
+- Paths balance modality mix, ensure rest days, and auto-adjust when sponsor priorities or wellness signals shift.
+- Reflection prompts and Archivist cues ensure every micro-path ends with documented learning and evidence updates.
 
-### 1. Foundations & Systems Thinking
-- **Core Modules**: AI Architect Mission Charter, Systems Thinking for AI, Responsible AI Fundamentals, Socio-Technical Risk Patterns, Data Governance 101.
-- **Deep Dives**: Foundation Model Primer, Retrieval Augmented Generation (RAG) Concepts, Policy & Regulation Landscape 2024.
-- **Deliverables**: Mission canvas, capability map, high-level risk inventory, ethical guardrail statement.
+## Teaching & Facilitation Model
+- Weekly cadence (pulse briefings, deep work studios, governance clinics, frontier guilds, reflection rituals) described in `docs/curriculum/teaching-model.md`.
+- Dual-loop coaching pairs human mentors with assistant guidance to maximize rigor and inclusivity.
+- Evaluation rubric dimensions: Technical Rigor, Responsible Practice, Delivery Excellence, Strategic Impact, Leadership & Influence.
 
-### 2. Data, Models & Evaluation Engineering
-- **Core Modules**: Data Quality Ops, Feature & Embedding Stores, Model Lifecycle Management, Evaluation Frameworks, Synthetic Data Practices.
-- **Labs**: Supabase + pgvector RAG lab, LangSmith/Langfuse evaluation notebook, synthetic data pipeline sandbox.
-- **Deliverables**: Data governance checklist, evaluation rubric, automated regression suite with metrics dashboard.
+## Module Authoring & Quality
+- Authoring standards (`docs/curriculum/module-authoring.md`) define front matter schema, workflow, accessibility, localization, and governance gates.
+- Curator pods steward galaxies, ensuring 90-day freshness and consistent evaluation hooks.
+- Assistant tooling auto-generates reviewer checklists, diff summaries, and prompt updates aligned with module metadata.
 
-### 3. Solution Delivery & Platform Ops
-- **Core Modules**: Reference Architectures, Multi-cloud Deployment, Observability Patterns, Guardrail Tooling, Incident Response for AI.
-- **Integrations**: Terraform baseline, Kubernetes + inference services, CI/CD for LLMOps.
-- **Deliverables**: Infrastructure diagram, IaC repo, runbook for fallbacks and rollbacks, incident simulation report.
+## Evaluation & QA Operations
+- Evaluation pipeline guidance lives in `docs/curriculum/evaluation-ops.md`, covering data curation, run orchestration, anomaly detection, and escalation protocols.
+- Evaluation specs, manifests, and scorecards feed directly into Evidence Locker records and credential decisions.
+- Severity-driven playbooks align mentors, sponsors, and governance councils on response expectations.
 
-### 4. Responsible AI & Governance
-- **Core Modules**: Policy Mapping, Risk & Control Libraries, Human-in-the-loop Design, Evaluation Governance, Documentation Automation.
-- **Casework**: NIST AI RMF alignment, EU AI Act readiness, sector-specific compliance (finance, healthcare, public sector).
-- **Deliverables**: Control matrix, policy-to-control traceability map, evidence packaging plan, red-team/blue-team drill.
+## Evidence Locker & Credentialing
+- Evidence Locker specification (`docs/curriculum/evidence-locker.md`) maintains traceable artifacts, governance tags, and hash-based integrity checks.
+- Credential framework (`docs/curriculum/credentials.md`) defines Explorer → Luminary badges, specialization seals, VC payload schema, renewal policies, and revocation guardrails.
+- Archivist agent packages evidence into verifiable manifests while Companion tracks renewal windows and sponsor attestations.
 
-### 5. Product Leadership & Value Acceleration
-- **Core Modules**: Value Narratives & Business Cases, Stakeholder Alignment, ROI Instrumentation, Change Management, Program Operating Rhythm.
-- **Workshops**: Executive storytelling simulator, backlog prioritization with weighted outcomes, metrics instrumentation lab.
-- **Deliverables**: Executive briefing deck, KPI stack, operating cadence charter, success metrics instrumentation plan.
+## Assistant Operations & Safety
+- Assistant constellation (Scout, Coach, Critic, Archivist, Companion) governed by `docs/curriculum/assistant-ops.md` with SLOs, telemetry, guardrails, and human-in-loop protocols.
+- Policy-as-code guardrails, incident playbooks, and observability dashboards keep automation accountable and auditable.
 
-### 6. Companion Agents & Automation Ecosystems
-- **Core Modules**: Agentic Patterns, Tool Orchestration, Context Management, Memory Architectures, Safety & Guardrails for Agents.
-- **Labs**: Auto-evaluating agents, workflow graph generation, compliance-aware agent operations.
-- **Deliverables**: Agent action graph, retrieval schema, policy-constrained agent plan, auto-eval scenario library.
+## Frontier Intelligence Loop
+- Intelligence grid (`docs/curriculum/frontier-intelligence.md`) aggregates regulatory, tooling, evaluation, and industry signals for September 2025 relevance.
+- Scout agent translates signals into module refresh triggers, risk alerts, and sponsor-ready briefs.
+- Curriculum council maintains 90-day freshness SLA with documented change logs in `docs/curriculum/changelog.md`.
 
-### 7. Frontier Innovation & Research Translation
-- **Core Modules**: Multimodal Systems, On-device/Edge AI, Privacy-Preserving Techniques, Federated Learning, Model Alignment & Red-teaming.
-- **Research Forums**: Paper clubs, vendor/OSS briefings, patent landscape reviews.
-- **Deliverables**: Research translation brief, experimentation backlog, innovation pipeline roadmap.
+## Track Explorer Experience
+- `/tracks` specification (`docs/curriculum/track-explorer.md`) outlines adaptive filtering, micro-path timelines, evidence snapshots, and sponsor dashboards.
+- APIs expose module manifests, micro-paths, evidence summaries, and intelligence signals for both human UI and agent consumption.
 
-## Module Blueprint & Metadata
-- **Front matter schema**: `title`, `outcomes`, `prerequisites`, `tags` (persona, maturity, track, deliverable, governance), `assets`, `evaluation-rubric`, `evidence-artifacts`, `last-reviewed`.
-- **Learning flow**: concept primer → guided exploration → assistant co-pilot tasks → studio lab (optional) → reflection prompts → deliverable submission → peer/assistant critique.
-- **Accessibility**: transcripts, code sandboxes, captions, high-contrast design, asynchronous alternatives for every live session.
+## Evidence & Credentialing Workflow
+- Learners maintain Evidence Lockers linking repos, dashboards, transcripts, and stakeholder feedback.
+- Automated scoring pipelines capture telemetry from labs, tests, incident simulations, and reviews.
+- Governance councils review critical deliverables with decision traceability and policy mapping.
 
-## Labs, Capstones & Certification
-- **Studio Labs** connect to GitHub templates, Supabase sandboxes, and Qdrant/Weaviate test clusters for retrieval work.
-- **Capstone Sprints** require learners to design, build, and document a governed AI product in four weeks, culminating in an executive simulation and governance audit.
-- **Portfolio Certification** ties module completions, governance scores, and stakeholder feedback into an authenticated credential (OpenBadge + verifiable credential JSON).
+## Roadmap Highlights (Sep 2025)
+1. Launch `/tracks` explorer with adaptive filtering and module manifests.
+2. Publish assistant rubric scorer MVP integrating module metadata and evaluation heuristics.
+3. Release governance API for sponsors to ingest telemetry and credential data.
+4. Expand venture studio collaborations (healthcare, finance, public sector) for frontier labs.
+5. Pilot alumni fellowship with research stipends, mentorship matching, and open knowledge bounties.
 
-## Assessment & Evidence System
-1. **Automated Checks** – lint deliverables against rubric criteria (coverage, traceability, documentation completeness).
-2. **Assistant Critique** – RAG-backed reasoning that flags missing citations, risks, or control gaps.
-3. **Peer Review** – cohort peers review asynchronously with structured feedback templates.
-4. **Expert Panels** – monthly live or recorded reviews by architects, compliance, and product leaders.
-5. **Longitudinal Signals** – telemetry on production deployments, incident logs, and ROI metrics feeds alumni dashboards.
+## Cross-References
+- Learning System Architecture (`docs/curriculum/architecture.md`)
+- Module Atlas (`docs/curriculum/modules.md`)
+- Adaptive Micro-Paths (`docs/curriculum/micro-paths.md`)
+- Teaching & Facilitation Model (`docs/curriculum/teaching-model.md`)
+- Module Authoring Standards (`docs/curriculum/module-authoring.md`)
+- Evaluation & QA Operations (`docs/curriculum/evaluation-ops.md`)
+- Evidence Locker Specification (`docs/curriculum/evidence-locker.md`)
+- Credential Framework (`docs/curriculum/credentials.md`)
+- Assistant Operations Playbook (`docs/curriculum/assistant-ops.md`)
+- Frontier Intelligence Grid (`docs/curriculum/frontier-intelligence.md`)
+- Track Explorer Specification (`docs/curriculum/track-explorer.md`)
+- Curriculum Changelog (`docs/curriculum/changelog.md`)
 
-## Curriculum Update Operating System
-- **Signals Intake**: track research feeds (arXiv, regulatory bodies), vendor roadmaps, and community contributions.
-- **Curator Pods**: dedicated squads own each track, conduct monthly literature scans, and propose updates via change requests.
-- **Versioning**: semantic version per module (`major.minor.patch`), with release notes stored in the knowledge graph.
-- **Assistant Refresh**: nightly embedding updates, metadata diffing, and auto-generated summaries of what changed for learners.
-- **Quality Gates**: automated plagiarism checks, fact verification via retrieval, and human sign-off before publishing.
-
-## Cohort Experience & Support Systems
-- **Onboarding**: orientation micro-path tailored by persona and goals, assistant-led tour, readiness survey.
-- **Daily Flow**: stand-up check-ins (async), micro-lesson drop, assistant nudge for deliverables, optional live office hours.
-- **Mentorship**: rotating roster of principal architects, risk leaders, and product strategists; mentor assignments triggered by telemetry (e.g., stalled progress, flagged risks).
-- **Community Spaces**: private Discord/Slack with channel taxonomy by track; knowledge base auto-summarized weekly.
-- **Wellness & Sustainability**: burnout check-ins, focus sprints, optional AI ethicist support for sensitive work.
-
-## Assistant Integration Blueprint
-- **Context Packs**: curated embeddings per track with citations, diagrams, deliverables, and policy references.
-- **Tool Suite**: plan synthesizer, rubric scorer, evaluation lab launcher, compliance mapper, stakeholder comms generator.
-- **Meta-learning**: assistant tracks learner gaps, suggests spaced repetition prompts, and simulates stakeholder Q&A.
-- **Agent Interoperability**: APIs allow companion agents to fetch module manifests, schedule labs, or submit reflections.
-
-## Success Metrics
-- 85% of learners ship production-ready deliverables within six weeks of enrollment.
-- 90% of governance reviews meet or exceed compliance thresholds on first submission.
-- 70% of alumni lead AI initiative portfolios within six months.
-- 95% assistant satisfaction rating across critique, planning, and research tasks.
-- Community contributions add ≥12 new vetted modules or playbooks per quarter.
-
-## Next Actions
-1. Implement MDX front matter schema in the content pipeline and tag existing modules accordingly.
-2. Launch track-specific curator pods and schedule monthly research synthesis briefings.
-3. Build assistant rubric scorer MVP with retrieval prompts tied to module metadata.
-4. Publish cohort onboarding flow with orientation micro-paths and telemetry instrumentation.
-5. Design credentialing workflow (badge, verifiable credential JSON, API) and pilot with alpha cohort.
