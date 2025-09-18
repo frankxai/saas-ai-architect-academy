@@ -805,10 +805,16 @@ export default function Home() {
               </p>
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Link
-                  href="#experience"
+                  href="/curriculum"
                   className="rounded-full bg-cyan-400 px-6 py-3 text-center text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
                 >
-                  Explore the experience
+                  Launch the curriculum experience
+                </Link>
+                <Link
+                  href="#experience"
+                  className="rounded-full border border-white/20 px-6 py-3 text-center text-sm font-semibold text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
+                >
+                  Explore the academy overview
                 </Link>
                 <Link
                   href="#library"
