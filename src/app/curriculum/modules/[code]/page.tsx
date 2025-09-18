@@ -19,13 +19,13 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: { params: { code: string } }) {
-  const module = getModule(params.code);
-  if (!module) {
+  const selectedModule = getModule(params.code);
+  if (!selectedModule) {
     return { title: "Module not found" };
   }
   return {
-    title: `${module.code} - ${module.title} | AI Architect Academy`,
-    description: module.outcomes.join(" - "),
+    title: `${selectedModule.code} - ${selectedModule.title} | AI Architect Academy`,
+    description: selectedModule.outcomes.join(" - "),
   };
 }
 
@@ -40,17 +40,19 @@ const personaLabels: Record<string, string> = {
 };
 
 export default function ModuleDetail({ params }: { params: { code: string } }) {
-  const module = getModule(params.code);
-  if (!module) {
+  const selectedModule = getModule(params.code);
+  if (!selectedModule) {
     notFound();
   }
 
-  const galaxyMeta = learningGalaxies.find((galaxy) => galaxy.code === module!.galaxy);
+  const galaxyMeta = learningGalaxies.find((galaxy) => galaxy.code === selectedModule!.galaxy);
   const relatedMicroPaths = personaMicroPaths.filter((path) =>
-    path.days.some((day) => day.modules.includes(module!.code))
+    path.days.some((day) => day.modules.includes(selectedModule!.code))
   );
   const relevantCredentials = credentialLadder.filter((tier) =>
-    tier.requirements.some((requirement) => requirement.toLowerCase().includes(module!.code.toLowerCase()))
+    tier.requirements.some((requirement) =>
+      requirement.toLowerCase().includes(selectedModule!.code.toLowerCase())
+    )
   );
 
   return (
@@ -58,24 +60,26 @@ export default function ModuleDetail({ params }: { params: { code: string } }) {
       <header className="border-b border-white/10 bg-slate-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10">
           <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-cyan-200">
-            <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module!.code}</span>
-            <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module!.modality}</span>
-            <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module!.mastery}</span>
-            <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module!.arc}</span>
+            <span className="rounded-full border border-cyan-300/40 px-3 py-1">{selectedModule!.code}</span>
+            <span className="rounded-full border border-cyan-300/40 px-3 py-1">{selectedModule!.modality}</span>
+            <span className="rounded-full border border-cyan-300/40 px-3 py-1">{selectedModule!.mastery}</span>
+            <span className="rounded-full border border-cyan-300/40 px-3 py-1">{selectedModule!.arc}</span>
             <span className="rounded-full border border-cyan-300/40 px-3 py-1">
-              {module!.durationHours} hrs
+              {selectedModule!.durationHours} hrs
             </span>
-            <span className="rounded-full border border-cyan-300/40 px-3 py-1">Refreshed {module!.freshness}</span>
+            <span className="rounded-full border border-cyan-300/40 px-3 py-1">
+              Refreshed {selectedModule!.freshness}
+            </span>
           </div>
           <div className="space-y-4">
-            <h1 className="text-4xl font-semibold tracking-tight">{module!.title}</h1>
+            <h1 className="text-4xl font-semibold tracking-tight">{selectedModule!.title}</h1>
             {galaxyMeta && (
               <p className="text-sm text-cyan-200">
                 {galaxyMeta.code} - {galaxyMeta.title} ({galaxyMeta.focus})
               </p>
             )}
             <p className="max-w-3xl text-base text-slate-200">
-              {module!.outcomes.join(" - ")}
+              {selectedModule!.outcomes.join(" - ")}
             </p>
           </div>
           <div className="flex flex-wrap gap-3 text-sm font-semibold">
@@ -103,16 +107,19 @@ export default function ModuleDetail({ params }: { params: { code: string } }) {
 
       <main className="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-10">
         <section className="grid gap-6 md:grid-cols-2">
-          <DetailCard title="Key outcomes" items={module!.outcomes} />
-          <DetailCard title="Deliverables" items={module!.deliverables} />
-          <DetailCard title="Prerequisites" items={module!.prerequisites.length ? module!.prerequisites : ["None"]} />
-          <DetailCard title="Evaluation signals" items={module!.evaluationSignals} />
+          <DetailCard title="Key outcomes" items={selectedModule!.outcomes} />
+          <DetailCard title="Deliverables" items={selectedModule!.deliverables} />
+          <DetailCard
+            title="Prerequisites"
+            items={selectedModule!.prerequisites.length ? selectedModule!.prerequisites : ["None"]}
+          />
+          <DetailCard title="Evaluation signals" items={selectedModule!.evaluationSignals} />
         </section>
 
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold">Persona fit</h2>
           <div className="flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.3em] text-slate-400">
-            {module!.personaFit.map((persona) => (
+            {selectedModule!.personaFit.map((persona) => (
               <span key={persona} className="rounded-full border border-white/15 px-3 py-1">
                 {personaLabels[persona] ?? persona}
               </span>
@@ -170,7 +177,12 @@ export default function ModuleDetail({ params }: { params: { code: string } }) {
                         </div>
                         <div className="mt-2 flex flex-wrap gap-2 text-[11px] text-slate-400">
                           {day.modules.map((code) => (
-                            <span key={code} className={`rounded-full border px-2 py-1 ${code === module!.code ? "border-cyan-300 text-cyan-200" : "border-white/15"}`}>
+                            <span
+                              key={code}
+                              className={`rounded-full border px-2 py-1 ${
+                                code === selectedModule!.code ? "border-cyan-300 text-cyan-200" : "border-white/15"
+                              }`}
+                            >
                               {code}
                             </span>
                           ))}

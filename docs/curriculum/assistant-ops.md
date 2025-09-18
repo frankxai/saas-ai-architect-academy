@@ -10,6 +10,7 @@ Operational standards for the AI Architect assistant constellation (Scout, Coach
 | Critic | Guardrail enforcement, anomaly detection | Detect 98% evaluation anomalies, zero unlogged high-severity incidents |
 | Archivist | Evidence completeness, schema compliance | 100% deliverables tagged, schema drift <1% |
 | Companion | Personalization, wellness signals | On-time nudges ≥90%, burnout false positive rate <5% |
+| Navigator | Micro-path orchestration, CTA accuracy | Persona CTA coverage ≥92%, sponsor digest <5 min, mastery variance ≤1 tier |
 
 ## Core Pipelines
 1. **Research Ingestion** (Scout)
@@ -34,6 +35,10 @@ Operational standards for the AI Architect assistant constellation (Scout, Coach
 5. **Learner Support & Wellness** (Companion)
    - Signals: workload hours, sentiment surveys, nudges accepted/ignored, rest days taken.
    - Responses: micro-path adjustments, rest prompts, escalation to mentor for sustained risk.
+6. **Experience Orchestration** (Navigator)
+   - Inputs: persona telemetry, CTA conversion, sponsor feedback, module freshness.
+   - Process: Recommend micro-pages, adjust button states, generate sponsor digests, trigger roadmap nudges.
+   - Safeguards: mastery variance guardrails, governance coverage checks, manual override for mentors.
 
 ## Guardrails & Safety Protocols
 - Policy-as-code rules enforce data residency, PII redaction, and confidentiality tags before agent access.

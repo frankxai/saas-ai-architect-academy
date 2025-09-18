@@ -39,6 +39,15 @@ This blueprint describes how the AI Architect Academy Platform serves human arch
 - **Insight Playlists** – thematic content clusters (e.g., Responsible AI, Creator Ops, Agent Automation) linking to evergreen SEO articles and upcoming releases.
 - **Community Layer** – invites to waitlists, masterminds, GitHub discussions, and supporter updates.
 
+## Micro-Learning Surface Architecture
+1. **Page frame**: hero outcome → time commitment & mastery tags → assistant starter button row → stepper with expandable tasks → evidence checklist & reflection panel.
+2. **Button grid**: `Start with Coach`, `Preview Evidence`, `Launch Lab`, `Sync to Workspace`, and `Send Sponsor Update` appear consistently above the fold for human + agent flows.
+3. **Dynamic cues**: prerequisite alerts, governance badges, telemetry status, and mentor recommendations stream in from `moduleCatalog` metadata and assistant SLO events.
+4. **Assistant dock**: collapsible panel shows reasoning trace, recommended follow-ups, citations, and quick exports (ADR, runbook, stakeholder memo).
+5. **Progress ledger**: inline tracker logs deliverable uploads, evaluation completion, and sponsor approvals with links to the evidence locker.
+6. **Reflection rituals**: closing cards capture insights, decisions, and open risks; outputs route to persona dashboards and credential reviews.
+7. **Instrumentation**: event taxonomy includes `micro_step.view`, `cta.click`, `evidence.submit`, `assistant.invoke`, and `reflection.publish` for analytics and recommendation loops.
+
 ## Navigation & Information Architecture
 - **Global nav**: Vision, Experience, Curriculum, Assistant, Workspaces, Personas, Services, Library, Projects, Insights, Operations, Roadmap, Community, Resources.
 - **Anchor map**: `#vision`, `#experience`, `#curriculum`, `#assistant`, `#workspaces`, `#personas`, `#services`, `#library`, `#projects`, `#search`, `#insights`, `#operations`, `#roadmap`, `#community`, `#resources`, `#sitemap`, `#faq`.

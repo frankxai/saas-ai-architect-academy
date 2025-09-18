@@ -861,7 +861,7 @@ export default function Home() {
               href="#sitemap"
               className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-200 transition hover:text-cyan-100"
             >
-              Jump to sitemap ->
+              Jump to sitemap &rarr;
             </Link>
           </div>
           <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
@@ -1063,7 +1063,7 @@ export default function Home() {
                         href={item.href}
                         className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-cyan-200 transition hover:text-cyan-100"
                       >
-                        Access resource ->
+                        Access resource &rarr;
                       </Link>
                     </li>
                   ))}
@@ -1123,7 +1123,7 @@ export default function Home() {
                 <div className="text-lg font-semibold text-cyan-100">{intent.term}</div>
                 <p className="mt-3 text-sm text-slate-200">{intent.human}</p>
                 <p className="mt-2 text-xs text-slate-300">Agent need: {intent.agent}</p>
-                <p className="mt-4 text-xs uppercase tracking-[0.3em] text-cyan-200">Jump to section -></p>
+                <p className="mt-4 text-xs uppercase tracking-[0.3em] text-cyan-200">Jump to section &rarr;</p>
               </Link>
             ))}
           </div>
@@ -1238,7 +1238,7 @@ export default function Home() {
                   href={item.href}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-200 transition hover:text-cyan-100"
                 >
-                  {item.ctaLabel} ->
+                  {item.ctaLabel} &rarr;
                 </Link>
               </div>
             ))}

@@ -42,6 +42,13 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 | AI Pair-Partner | Full assistant with workflow automation, project intake, evaluation exports, credentialing. |
 | Marketplace + Ops | Community modules, integration marketplace, governance dashboards, enterprise licensing. |
 
+## Autonomous Execution Sprint (Sept 2025)
+- **T1 · Micro-Learning Surface Blueprint**: Deepen the UI/UX patterns for micro-lesson pages, including navigable steps, evidence checklists, and assistive controls.
+- **T2 · Module Depth Expansion**: Enrich the module catalog and curriculum data with 2025 frontier topics, explicit deliverable scaffolds, and assistant prompt packs.
+- **T3 · Adaptive Path Weaving**: Extend micro-path guidance with multi-week cadences, mastery checkpoints, and sponsor-ready reflection rituals.
+- **T4 · Assistant Ops & Telemetry**: Document advanced companion agent responsibilities, SLO instrumentation, and evaluation feedback loops for each learning arc.
+- **T5 · Interactive Learning Hub UI**: Ship curriculum UI updates that surface quick actions, filterable galaxies, and guided start buttons for every persona.
+
 ## Curriculum Assets
 - [Curriculum Blueprint (2025 Edition)](docs/curriculum-blueprint.md)
 - [Learning System Architecture](docs/curriculum/architecture.md)
@@ -62,6 +69,13 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 - [Frontier Intelligence Grid](docs/curriculum/frontier-intelligence.md)
 - [Track Explorer Specification](docs/curriculum/track-explorer.md)
 - [Curriculum Changelog](docs/curriculum/changelog.md)
+
+## Micro-Learning Experience (2025 Preview)
+- **Stepwise micro-pages** pair a top-level outcome, three to five guided steps, and a closing reflection prompt so architects always know the next click.
+- **Contextual buttons** for `Start with Coach`, `Review Evidence`, and `Download Blueprint` keep assistant actions, deliverables, and templates one tap away.
+- **Adaptive scaffolds** surface prerequisite warnings, estimated effort, and governance checks dynamically from the curriculum dataset.
+- **Signal overlays** display telemetry badges (On Track, Needs Review, Blocked) and tie into assistant alerts for mentors and sponsors.
+- **Personalized quick-starts** show persona-specific CTAs (e.g., Lead Architect, Program Leader, Risk Partner) driven by micro-path intent signals.
 
 ## Strategic References
 - [Product Blueprint](docs/product-blueprint.md)

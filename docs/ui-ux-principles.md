@@ -31,6 +31,20 @@
 3. **In-product module**: overview → steps → resources → deliverable upload → assistant suggestions → reflection.
 4. **Assistant session**: intake prompt → context confirmation → response + actions → follow-up clarifications → export.
 
+## Micro-Learning Page Pattern
+- **Outcome banner**: headline outcome, 2-sentence why-it-matters, time estimate, mastery badge, and CTA stack.
+- **Stepper body**: three to five collapsible steps with sub-tasks, resources, and embedded assistant prompts.
+- **Evidence rail**: right-hand panel lists required deliverables, evaluation signals, and telemetry status chips.
+- **Assistant dock**: persistent button row (`Ask Coach`, `Review Critic`, `Log Evidence`) with panel that slides in from the edge.
+- **Reflection footer**: prompt carousel (insights, blockers, sponsor-ready summary) with export buttons to workspace tools.
+
+## Interaction Control Principles
+- Buttons default to primary cyan for the next action, ghost style for secondary exploration, and inline links for references.
+- Sticky action bar on mobile ensures `Start`, `Assistant`, and `Evidence` remain reachable without scrolling.
+- Step completion toggles trigger confetti micro-interaction under 200ms and update telemetry in real time.
+- Every actionable component exposes aria-labels and keyboard shortcuts, with focus states tested for dark/light contrast.
+- Assistant suggestions surface as pill buttons that can be accepted, edited, or saved for later; each records telemetry.
+
 ## Research and Validation Plan
 - Conduct moderated sessions with 5-7 AI architects to validate navigation, module layout, and assistant UX.
 - Run heuristic evaluation against standard enterprise UX checklists (Nielsen, GOV.UK, WCAG).

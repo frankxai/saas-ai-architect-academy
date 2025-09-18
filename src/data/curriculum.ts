@@ -1,4 +1,4 @@
-export type GalaxyArc = {
+﻿export type GalaxyArc = {
   name: string;
   summary: string;
   deliverables: string[];
@@ -541,6 +541,44 @@ export const personaMicroPaths: PersonaMicroPath[] = [
     ctaLabel: "Deploy automation micro-path",
     ctaHref: "#micro-paths",
   },
+  {
+    persona: "Executive Sponsor",
+    phase: "Strategist",
+    intent: "Communicate trust, value, and governance confidence to stakeholders",
+    highlights: [
+      "Trust telemetry storytelling",
+      "Governance council readiness",
+      "Sponsor communication system",
+    ],
+    days: [
+      { label: "Day 1", focus: "Telemetry pulse review", modules: ["G0-L1", "G8-S3"] },
+      { label: "Day 2", focus: "Roadmap narrative", modules: ["G10-S2", "G10-L1"] },
+      { label: "Day 3", focus: "Governance alignment", modules: ["G6-L2", "G6-L4"] },
+      { label: "Day 4", focus: "Sponsor communications", modules: ["G10-L3", "G10-L6"] },
+      { label: "Day 5", focus: "Reflection and evidence", modules: ["G0-L6", "Reflection RP-410"] },
+    ],
+    ctaLabel: "Brief executive sponsor path",
+    ctaHref: "#micro-paths",
+  },
+  {
+    persona: "Creator & Influence Partner",
+    phase: "Architect",
+    intent: "Amplify adoption stories with frontier insights and trust cues",
+    highlights: [
+      "Signal harvesting and storytelling",
+      "Trust drift remediation",
+      "Cross-channel amplification",
+    ],
+    days: [
+      { label: "Day 1", focus: "Signal harvest", modules: ["G11-S1", "G8-C3"] },
+      { label: "Day 2", focus: "Narrative assembly", modules: ["G8-L3", "G1-L1"] },
+      { label: "Day 3", focus: "Trust forensics", modules: ["G8-S7", "G8-S2"] },
+      { label: "Day 4", focus: "Community amplification", modules: ["G8-L4", "G11-L1"] },
+      { label: "Day 5", focus: "Sponsor digest", modules: ["G10-L1", "Reflection RP-512"] },
+    ],
+    ctaLabel: "Launch creator influence sprint",
+    ctaHref: "#micro-paths",
+  },
 ];
 
 export type CredentialTier = {
@@ -725,6 +763,15 @@ export const assistantOps: AssistantOps[] = [
       "Surface sponsor ready summaries weekly",
     ],
   },
+  {
+    name: "Navigator",
+    focus: "Micro-learning orchestration, CTA instrumentation, sponsor briefings",
+    slos: [
+      "Keep micro-page recommendations within one mastery tier of persona baseline",
+      "Maintain persona CTA coverage above 92 percent per sprint",
+      "Generate sponsor digest drafts within five minutes of path completion",
+    ],
+  },
 ];
 
 export type SponsorView = {
@@ -778,12 +825,30 @@ export const documentationLinks = [
     href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evaluation-registry.md",
   },
 ];
+export type ModuleResource = {
+  label: string;
+  type: "doc" | "template" | "repo" | "toolkit";
+  url: string;
+};
+
+export type AssistantPrompt = {
+  agent: "Scout" | "Coach" | "Critic" | "Archivist" | "Companion";
+  prompt: string;
+};
+
+export type ModuleStep = {
+  title: string;
+  description: string;
+};
+
 export type ModuleDefinition = {
   code: string;
   title: string;
   galaxy: string;
   arc: "Core" | "Systems Studio" | "Leadership";
   mastery: "Explorer" | "Builder" | "Architect" | "Strategist" | "Luminary";
+  journeyStage: string;
+  phase: string;
   personaFit: string[];
   durationHours: number;
   modality: "ML" | "LB" | "WK" | "SP" | "CL" | "MC" | "RT" | "RS";
@@ -792,6 +857,9 @@ export type ModuleDefinition = {
   prerequisites: string[];
   evaluationSignals: string[];
   freshness: string;
+  resources: ModuleResource[];
+  assistantPrompts: AssistantPrompt[];
+  steps: ModuleStep[];
 };
 
 export const moduleCatalog: ModuleDefinition[] = [
@@ -801,18 +869,56 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G0",
     arc: "Core",
     mastery: "Explorer",
+    journeyStage: "Orientation Runway",
+    phase: "Phase 0 - Onboard",
     personaFit: ["lead-architect", "program-leader", "risk-partner", "agent-lead"],
     durationHours: 3,
     modality: "ML",
     outcomes: [
-      "Establish cohort baseline telemetry",
+      "Establish baseline telemetry",
       "Align assistant configuration to mission charter",
       "Capture sponsor objectives"
     ],
     deliverables: ["Orientation diagnostic report", "Assistant configuration log"],
     prerequisites: [],
     evaluationSignals: ["FUNC-BASELINE-001", "SAFE-POLICY-INIT"],
-    freshness: "2025-09-10",
+    freshness: "2025-09-16",
+    resources: [
+      {
+        label: "Orientation checklist",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/architecture.md"
+      },
+      {
+        label: "Assistant configuration guide",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/assistant-ops.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Coach",
+        prompt: "Review my telemetry baseline and highlight blind spots for the cohort onboarding."
+      },
+      {
+        agent: "Archivist",
+        prompt: "File the mission charter and orientation diagnostic into the evidence locker."
+      }
+    ],
+    steps: [
+      {
+        title: "Collect signals",
+        description: "Import readiness survey responses and hard metrics for the cohort."
+      },
+      {
+        title: "Calibrate assistant",
+        description: "Configure knowledge packs and mission context for the companion agents."
+      },
+      {
+        title: "Publish orientation brief",
+        description: "Share the diagnostic summary with mentors and sponsors."
+      }
+    ]
   },
   {
     code: "G0-S2",
@@ -820,6 +926,8 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G0",
     arc: "Systems Studio",
     mastery: "Builder",
+    journeyStage: "Orientation Runway",
+    phase: "Phase 0 - Onboard",
     personaFit: ["lead-architect", "agent-lead"],
     durationHours: 7,
     modality: "LB",
@@ -831,7 +939,43 @@ export const moduleCatalog: ModuleDefinition[] = [
     deliverables: ["Telemetry pipeline spec", "Cohort cockpit dashboard"],
     prerequisites: ["G0-C1"],
     evaluationSignals: ["FUNC-RAG-001", "OPS-OBS-002"],
-    freshness: "2025-09-12",
+    freshness: "2025-09-14",
+    resources: [
+      {
+        label: "Telemetry schema",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evidence-locker.md"
+      },
+      {
+        label: "Cohort cockpit template",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/mentor-ops.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Archivist",
+        prompt: "Map telemetry events to evidence locker tables and flag missing fields."
+      },
+      {
+        agent: "Companion",
+        prompt: "Notify mentors when telemetry coverage drops below the cohort threshold."
+      }
+    ],
+    steps: [
+      {
+        title: "Connect data sources",
+        description: "Wire the LMS, GitHub, and evaluation tools into the telemetry broker."
+      },
+      {
+        title: "Define metrics",
+        description: "Choose completion, quality, and governance metrics for the cohort dashboard."
+      },
+      {
+        title: "Launch dashboard",
+        description: "Surface telemetry in the mentor cockpit and sponsor cockpit APIs."
+      }
+    ]
   },
   {
     code: "G1-C1",
@@ -839,6 +983,8 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G1",
     arc: "Core",
     mastery: "Explorer",
+    journeyStage: "Systems Foundation",
+    phase: "Phase 1 - Vision",
     personaFit: ["program-leader", "lead-architect"],
     durationHours: 4,
     modality: "WK",
@@ -850,7 +996,100 @@ export const moduleCatalog: ModuleDefinition[] = [
     deliverables: ["AI mission charter", "Stakeholder intent dossier"],
     prerequisites: ["G0-C1"],
     evaluationSignals: ["STRAT-VAL-003", "GOV-ALIGN-001"],
-    freshness: "2025-09-14",
+    freshness: "2025-09-12",
+    resources: [
+      {
+        label: "Mission charter canvas",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/micro-paths.md"
+      },
+      {
+        label: "Stakeholder interview guide",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/mentor-ops.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Coach",
+        prompt: "Pressure test the mission charter for measurable impact statements."
+      },
+      {
+        agent: "Scout",
+        prompt: "Gather the latest industry benchmarks for AI portfolio maturity to cite in the charter."
+      }
+    ],
+    steps: [
+      {
+        title: "Frame the ambition",
+        description: "Capture the north star, value metrics, and risk appetite for the program."
+      },
+      {
+        title: "Interview stakeholders",
+        description: "Synthesize executive, operations, and compliance voices into the charter."
+      },
+      {
+        title: "Publish charter",
+        description: "Distribute the artifact with companion prompts for ongoing refinement."
+      }
+    ]
+  },
+  {
+    code: "G1-S2",
+    title: "Scenario Portfolio Modeling",
+    galaxy: "G1",
+    arc: "Systems Studio",
+    mastery: "Builder",
+    journeyStage: "Systems Foundation",
+    phase: "Phase 1 - Vision",
+    personaFit: ["program-leader", "risk-partner"],
+    durationHours: 6,
+    modality: "SP",
+    outcomes: [
+      "Model cost and value scenarios for top initiatives",
+      "Align guardrails with investment tiers",
+      "Create sponsor ready storyboards"
+    ],
+    deliverables: ["Scenario financial model", "Executive storyboard"],
+    prerequisites: ["G1-C1"],
+    evaluationSignals: ["STRAT-VAL-003", "FIN-ROI-002"],
+    freshness: "2025-09-10",
+    resources: [
+      {
+        label: "Scenario spreadsheet",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/sponsor-cockpit.md"
+      },
+      {
+        label: "Risk appetite primer",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/credentials.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Coach",
+        prompt: "Summarize key trade-offs between scenarios for the executive storyboard."
+      },
+      {
+        agent: "Companion",
+        prompt: "Generate sponsor comms that highlight required approvals per scenario."
+      }
+    ],
+    steps: [
+      {
+        title: "Define scenarios",
+        description: "Select the top initiatives and articulate assumptions for each one."
+      },
+      {
+        title: "Model value and risk",
+        description: "Build cost, value, and guardrail projections with sensitivity analysis."
+      },
+      {
+        title: "Craft story",
+        description: "Compose sponsor narratives and link them into the cockpit for review."
+      }
+    ]
   },
   {
     code: "G2-S3",
@@ -858,6 +1097,8 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G2",
     arc: "Systems Studio",
     mastery: "Architect",
+    journeyStage: "Systems Spine",
+    phase: "Phase 2 - Architecture",
     personaFit: ["lead-architect", "agent-lead", "risk-partner"],
     durationHours: 8,
     modality: "LB",
@@ -869,7 +1110,43 @@ export const moduleCatalog: ModuleDefinition[] = [
     deliverables: ["Interaction contract pack", "Fallback runbook"],
     prerequisites: ["G2-C1", "G2-C4"],
     evaluationSignals: ["SAFE-JB-002", "FUNC-RAG-001"],
-    freshness: "2025-08-31",
+    freshness: "2025-09-05",
+    resources: [
+      {
+        label: "Interaction template",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/capabilities.md"
+      },
+      {
+        label: "Guardrail library",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/credentials.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Critic",
+        prompt: "Stress test the contract for adversarial tool misuse and log findings."
+      },
+      {
+        agent: "Coach",
+        prompt: "Generate fallback playbooks for each tool routing scenario."
+      }
+    ],
+    steps: [
+      {
+        title: "Map touchpoints",
+        description: "Document how agents, humans, and systems exchange information."
+      },
+      {
+        title: "Design safeguards",
+        description: "Define guardrails, fallback routes, and oversight checkpoints."
+      },
+      {
+        title: "Publish contract",
+        description: "Store the interaction contract in the evidence locker with versioning."
+      }
+    ]
   },
   {
     code: "G3-S2",
@@ -877,6 +1154,8 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G3",
     arc: "Systems Studio",
     mastery: "Builder",
+    journeyStage: "Data Spine",
+    phase: "Phase 2 - Architecture",
     personaFit: ["lead-architect", "risk-partner"],
     durationHours: 6,
     modality: "SP",
@@ -888,7 +1167,100 @@ export const moduleCatalog: ModuleDefinition[] = [
     deliverables: ["Synthetic data pipeline", "Bias mitigation checklist"],
     prerequisites: ["G3-C3"],
     evaluationSignals: ["FAIR-BIAS-004", "EVAL-COVER-002"],
-    freshness: "2025-09-08",
+    freshness: "2025-09-09",
+    resources: [
+      {
+        label: "Bias mitigation checklist",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evaluation-ops.md"
+      },
+      {
+        label: "Synthetic data notebook",
+        type: "repo",
+        url: "https://github.com/AI-Architect-Academy/ai-architect-academy"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Scout",
+        prompt: "Gather the latest synthetic data research summaries since last week."
+      },
+      {
+        agent: "Critic",
+        prompt: "Evaluate generated datasets for demographic parity and report anomalies."
+      }
+    ],
+    steps: [
+      {
+        title: "Define goals",
+        description: "Clarify coverage gaps and bias risks that synthetic data must address."
+      },
+      {
+        title: "Generate data",
+        description: "Produce datasets with guardrails and document quality metrics."
+      },
+      {
+        title: "Review governance",
+        description: "Log approvals and link governance notes into the evidence locker."
+      }
+    ]
+  },
+  {
+    code: "G3-S5",
+    title: "Knowledge Evaluation Link",
+    galaxy: "G3",
+    arc: "Systems Studio",
+    mastery: "Architect",
+    journeyStage: "Data Spine",
+    phase: "Phase 2 - Architecture",
+    personaFit: ["lead-architect", "risk-partner", "agent-lead"],
+    durationHours: 7,
+    modality: "LB",
+    outcomes: [
+      "Link knowledge assets to evaluation datasets",
+      "Automate freshness checks",
+      "Create retrieval annotations"
+    ],
+    deliverables: ["Knowledge evaluation spec", "Annotation playbook"],
+    prerequisites: ["G3-C3", "G4-C3"],
+    evaluationSignals: ["FUNC-RAG-001", "CURR-REFRESH-001"],
+    freshness: "2025-09-15",
+    resources: [
+      {
+        label: "Knowledge fabric guide",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/architecture.md"
+      },
+      {
+        label: "Evaluation registry",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evaluation-registry.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Archivist",
+        prompt: "Annotate new knowledge assets with evaluation dataset references."
+      },
+      {
+        agent: "Scout",
+        prompt: "Alert when knowledge sources require refresh based on scout thresholds."
+      }
+    ],
+    steps: [
+      {
+        title: "Inventory assets",
+        description: "Compile critical knowledge sources and map them to evaluation needs."
+      },
+      {
+        title: "Configure links",
+        description: "Tie knowledge embeddings to evaluation datasets with metadata."
+      },
+      {
+        title: "Automate refresh",
+        description: "Build watchdog jobs that trigger assistant alerts when content stales."
+      }
+    ]
   },
   {
     code: "G4-C3",
@@ -896,18 +1268,113 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G4",
     arc: "Core",
     mastery: "Builder",
+    journeyStage: "Delivery Spine",
+    phase: "Phase 3 - Delivery",
     personaFit: ["lead-architect", "agent-lead", "risk-partner"],
     durationHours: 7,
     modality: "LB",
     outcomes: [
-      "Implement statistical + LLM judges",
+      "Implement statistical and LLM judges",
       "Automate regression testing",
       "Expose metrics to sponsor dashboard"
     ],
     deliverables: ["Evaluation harness repo", "Metrics dashboard"],
     prerequisites: ["G3-C3", "G0-S2"],
     evaluationSignals: ["FUNC-RAG-001", "SAFE-JB-002", "OPS-OBS-002"],
-    freshness: "2025-09-05",
+    freshness: "2025-09-11",
+    resources: [
+      {
+        label: "Evaluation ops guide",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evaluation-ops.md"
+      },
+      {
+        label: "LangSmith starter",
+        type: "repo",
+        url: "https://github.com/AI-Architect-Academy/ai-architect-academy"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Critic",
+        prompt: "Run regression suite and summarize pass or fail rates with remediation hints."
+      },
+      {
+        agent: "Companion",
+        prompt: "Nudge module owners when evaluation KPIs drift outside agreed thresholds."
+      }
+    ],
+    steps: [
+      {
+        title: "Define metrics",
+        description: "Choose quality, safety, and latency signals tied to governance needs."
+      },
+      {
+        title: "Build harness",
+        description: "Create evaluation pipeline and integrate it into CI."
+      },
+      {
+        title: "Publish results",
+        description: "Push metrics to sponsor dashboards and archive evidence."
+      }
+    ]
+  },
+  {
+    code: "G4-S4",
+    title: "Red Team Simulation",
+    galaxy: "G4",
+    arc: "Systems Studio",
+    mastery: "Architect",
+    journeyStage: "Delivery Spine",
+    phase: "Phase 3 - Delivery",
+    personaFit: ["risk-partner", "agent-lead"],
+    durationHours: 6,
+    modality: "WK",
+    outcomes: [
+      "Conduct adversarial prompt drills",
+      "Prioritize mitigation backlog",
+      "Update runbooks with lessons"
+    ],
+    deliverables: ["Red team dossier", "Mitigation plan"],
+    prerequisites: ["G4-C3"],
+    evaluationSignals: ["SAFE-JB-002", "GOV-CONTROL-005"],
+    freshness: "2025-09-03",
+    resources: [
+      {
+        label: "Red team scenario pack",
+        type: "toolkit",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evaluation-ops.md"
+      },
+      {
+        label: "Incident playbook",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/mentor-ops.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Critic",
+        prompt: "Generate adversarial prompts targeting this module and log responses."
+      },
+      {
+        agent: "Archivist",
+        prompt: "Attach mitigation notes and red team evidence to the control library."
+      }
+    ],
+    steps: [
+      {
+        title: "Select scenarios",
+        description: "Choose high risk contexts and craft adversarial prompts."
+      },
+      {
+        title: "Execute drill",
+        description: "Run the simulation with assistant guidance and capture outputs."
+      },
+      {
+        title: "Document lessons",
+        description: "Update runbooks, backlog items, and evidence locker records."
+      }
+    ]
   },
   {
     code: "G5-S2",
@@ -915,6 +1382,8 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G5",
     arc: "Systems Studio",
     mastery: "Architect",
+    journeyStage: "Delivery Spine",
+    phase: "Phase 3 - Delivery",
     personaFit: ["lead-architect", "agent-lead", "ops-lead"],
     durationHours: 8,
     modality: "LB",
@@ -926,7 +1395,43 @@ export const moduleCatalog: ModuleDefinition[] = [
     deliverables: ["Observability blueprint", "Alert routing matrix"],
     prerequisites: ["G5-C3", "G4-C3"],
     evaluationSignals: ["OPS-OBS-002", "OPS-INC-003"],
-    freshness: "2025-09-01",
+    freshness: "2025-09-08",
+    resources: [
+      {
+        label: "Observability templates",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evaluation-ops.md"
+      },
+      {
+        label: "Incident response guide",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/mentor-ops.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Companion",
+        prompt: "Alert ops leads when SLO trends degrade beyond the agreed threshold."
+      },
+      {
+        agent: "Coach",
+        prompt: "Recommend dashboards to review before governance council meetings."
+      }
+    ],
+    steps: [
+      {
+        title: "Define signals",
+        description: "Select KPIs, SLOs, and trust metrics that must be monitored."
+      },
+      {
+        title: "Implement instrumentation",
+        description: "Deploy traces, metrics, and logs with correlation IDs."
+      },
+      {
+        title: "Wire alerting",
+        description: "Route alerts to playbooks and sponsor cockpit widgets."
+      }
+    ]
   },
   {
     code: "G6-S3",
@@ -934,6 +1439,8 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G6",
     arc: "Systems Studio",
     mastery: "Architect",
+    journeyStage: "Governance Spine",
+    phase: "Phase 4 - Governance",
     personaFit: ["risk-partner", "lead-architect"],
     durationHours: 9,
     modality: "SP",
@@ -945,7 +1452,43 @@ export const moduleCatalog: ModuleDefinition[] = [
     deliverables: ["Policy as code repo", "Compliance drift monitor"],
     prerequisites: ["G6-C3", "G4-C3"],
     evaluationSignals: ["GOV-CONTROL-005", "SAFE-JB-002"],
-    freshness: "2025-09-09",
+    freshness: "2025-09-10",
+    resources: [
+      {
+        label: "Control library",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/credentials.md"
+      },
+      {
+        label: "Policy-as-code examples",
+        type: "repo",
+        url: "https://github.com/AI-Architect-Academy/ai-architect-academy"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Critic",
+        prompt: "Scan policy code for conflicting rules and propose simplifications."
+      },
+      {
+        agent: "Archivist",
+        prompt: "Attach control evidence to the compliance drift monitor after each run."
+      }
+    ],
+    steps: [
+      {
+        title: "Interpret regulation",
+        description: "Map clauses to existing control families and identify gaps."
+      },
+      {
+        title: "Codify policies",
+        description: "Implement guardrails in the policy engine with tests."
+      },
+      {
+        title: "Deploy monitoring",
+        description: "Set drift alerts and escalation protocols for risk council review."
+      }
+    ]
   },
   {
     code: "G7-S4",
@@ -953,6 +1496,8 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G7",
     arc: "Systems Studio",
     mastery: "Architect",
+    journeyStage: "Delivery Spine",
+    phase: "Phase 3 - Delivery",
     personaFit: ["agent-lead", "ops-lead"],
     durationHours: 6,
     modality: "WK",
@@ -964,7 +1509,43 @@ export const moduleCatalog: ModuleDefinition[] = [
     deliverables: ["Reliability drill dossier", "Incident action plan"],
     prerequisites: ["G7-C3", "G5-S2"],
     evaluationSignals: ["SAFE-JB-002", "OPS-INC-003"],
-    freshness: "2025-08-28",
+    freshness: "2025-09-06",
+    resources: [
+      {
+        label: "Reliability scenarios",
+        type: "toolkit",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/mentor-ops.md"
+      },
+      {
+        label: "Incident templates",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evaluation-ops.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Companion",
+        prompt: "Record drill outcomes and schedule follow ups for unresolved actions."
+      },
+      {
+        agent: "Coach",
+        prompt: "Analyze incident telemetry and highlight improvement opportunities."
+      }
+    ],
+    steps: [
+      {
+        title: "Plan drill",
+        description: "Select attack vectors and readiness criteria for the simulation."
+      },
+      {
+        title: "Execute scenario",
+        description: "Run the drill with mentors observing and logging outcomes."
+      },
+      {
+        title: "Review and remediate",
+        description: "Prioritize backlog items and update reliability dashboards."
+      }
+    ]
   },
   {
     code: "G8-S3",
@@ -972,6 +1553,8 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G8",
     arc: "Systems Studio",
     mastery: "Architect",
+    journeyStage: "Adoption Spine",
+    phase: "Phase 3 - Delivery",
     personaFit: ["product-lead", "risk-partner", "creator"],
     durationHours: 8,
     modality: "LB",
@@ -983,7 +1566,43 @@ export const moduleCatalog: ModuleDefinition[] = [
     deliverables: ["Trust experience spec", "Transparency checklist"],
     prerequisites: ["G8-C1", "G6-C3"],
     evaluationSignals: ["UX-TRUST-006", "GOV-CONTROL-005"],
-    freshness: "2025-09-11",
+    freshness: "2025-09-12",
+    resources: [
+      {
+        label: "Trust pattern library",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/industry-playbooks.md"
+      },
+      {
+        label: "Transparency copy kit",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/teaching-model.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Coach",
+        prompt: "Draft transparency messaging for the current release using platform data."
+      },
+      {
+        agent: "Scout",
+        prompt: "Collect regulatory updates affecting disclosure requirements for this module."
+      }
+    ],
+    steps: [
+      {
+        title: "Audit experience",
+        description: "Document user journeys and identify trust-critical moments."
+      },
+      {
+        title: "Design transparency",
+        description: "Define messaging, consent controls, and fallback interactions."
+      },
+      {
+        title: "Validate",
+        description: "Test messaging with stakeholders and log updates for governance review."
+      }
+    ]
   },
   {
     code: "G9-S1",
@@ -991,6 +1610,8 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G9",
     arc: "Systems Studio",
     mastery: "Architect",
+    journeyStage: "Operations Spine",
+    phase: "Phase 4 - Governance",
     personaFit: ["ops-lead", "lead-architect"],
     durationHours: 7,
     modality: "LB",
@@ -1003,6 +1624,42 @@ export const moduleCatalog: ModuleDefinition[] = [
     prerequisites: ["G5-S2", "G4-C3"],
     evaluationSignals: ["OPS-OBS-002", "OPS-SLO-004"],
     freshness: "2025-09-07",
+    resources: [
+      {
+        label: "SLO primer",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evaluation-ops.md"
+      },
+      {
+        label: "Monitoring dashboard pack",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/mentor-ops.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Companion",
+        prompt: "Send weekly SLO summaries to sponsors with trend commentary."
+      },
+      {
+        agent: "Coach",
+        prompt: "Highlight anomalies in the monitoring stack that need mentor review."
+      }
+    ],
+    steps: [
+      {
+        title: "Define service levels",
+        description: "Establish SLOs aligned to sponsor and governance expectations."
+      },
+      {
+        title: "Implement stack",
+        description: "Configure metrics, traces, logs, and dashboards."
+      },
+      {
+        title: "Integrate alerts",
+        description: "Link alert pipelines to incident playbooks and sponsor cockpit."
+      }
+    ]
   },
   {
     code: "G10-S2",
@@ -1010,6 +1667,8 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G10",
     arc: "Systems Studio",
     mastery: "Strategist",
+    journeyStage: "Influence Spine",
+    phase: "Phase 5 - Influence",
     personaFit: ["program-leader", "risk-partner", "creator"],
     durationHours: 5,
     modality: "WK",
@@ -1022,6 +1681,42 @@ export const moduleCatalog: ModuleDefinition[] = [
     prerequisites: ["G1-S3", "G6-S3"],
     evaluationSignals: ["STRAT-BOARD-007", "GOV-CONTROL-005"],
     freshness: "2025-09-13",
+    resources: [
+      {
+        label: "Board simulation deck",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/sponsor-cockpit.md"
+      },
+      {
+        label: "Executive comms guide",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/mentor-ops.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Coach",
+        prompt: "Generate board level talking points with telemetry call outs for this module."
+      },
+      {
+        agent: "Companion",
+        prompt: "Summarize sponsor feedback after the simulation and log actions."
+      }
+    ],
+    steps: [
+      {
+        title: "Assemble narrative",
+        description: "Collect telemetry, investment figures, and risk updates."
+      },
+      {
+        title: "Facilitate simulation",
+        description: "Run the board session with mentors observing and logging commentary."
+      },
+      {
+        title: "Capture actions",
+        description: "Document decisions, assign owners, and update sponsor cockpit."
+      }
+    ]
   },
   {
     code: "G11-S1",
@@ -1029,6 +1724,8 @@ export const moduleCatalog: ModuleDefinition[] = [
     galaxy: "G11",
     arc: "Systems Studio",
     mastery: "Builder",
+    journeyStage: "Frontier Spine",
+    phase: "Phase 6 - Frontier",
     personaFit: ["lead-architect", "agent-lead", "research"],
     durationHours: 7,
     modality: "LB",
@@ -1041,5 +1738,212 @@ export const moduleCatalog: ModuleDefinition[] = [
     prerequisites: ["G11-C1", "G0-S2"],
     evaluationSignals: ["FRONTIER-SIGNAL-002", "CURR-REFRESH-001"],
     freshness: "2025-09-15",
+    resources: [
+      {
+        label: "Frontier intelligence grid",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/frontier-intelligence.md"
+      },
+      {
+        label: "Research guild playbook",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/research-pipeline.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Scout",
+        prompt: "Summarize the top research signals for this module and recommend refresh actions."
+      },
+      {
+        agent: "Archivist",
+        prompt: "Update module freshness metadata and log citations into the knowledge graph."
+      }
+    ],
+    steps: [
+      {
+        title: "Collect feeds",
+        description: "Connect research, vendor, and regulatory sources to the pipeline."
+      },
+      {
+        title: "Score signals",
+        description: "Prioritize updates using impact and urgency heuristics."
+      },
+      {
+        title: "Trigger updates",
+        description: "Create curriculum tickets and notify module owners via the assistant."
+      }
+    ]
   },
+  {
+    code: "G3-S7",
+    title: "Semantic Knowledge Fabric Lab",
+    galaxy: "G3",
+    arc: "Systems Studio",
+    mastery: "Architect",
+    journeyStage: "Data Spine",
+    phase: "Phase 2 - Architecture",
+    personaFit: ["lead-architect", "risk-partner", "agent-lead"],
+    durationHours: 8,
+    modality: "LB",
+    outcomes: [
+      "Model governed semantic relationships across knowledge assets",
+      "Instrument freshness, lineage, and evidence tags",
+      "Publish knowledge fabric spec consumable by assistant agents"
+    ],
+    deliverables: ["Semantic knowledge fabric blueprint", "Lineage telemetry dashboard"],
+    prerequisites: ["G3-S2", "G3-S5"],
+    evaluationSignals: ["DATA-SEM-021", "EVID-LINEAGE-005"],
+    freshness: "2025-09-19",
+    resources: [
+      {
+        label: "Knowledge graph governance checklist",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evidence-locker.md"
+      },
+      {
+        label: "Semantic schema template",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/architecture.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Archivist",
+        prompt: "Generate lineage tags for newly mapped knowledge assets and sync them to the evidence locker."
+      },
+      {
+        agent: "Scout",
+        prompt: "Verify semantic drift across the fabric and flag relationships needing review."
+      }
+    ],
+    steps: [
+      {
+        title: "Design semantic model",
+        description: "Define node and edge types aligned to evidence, evaluation, and sponsor reporting needs."
+      },
+      {
+        title: "Wire telemetry",
+        description: "Instrument freshness checks, drift detection, and lineage provenance metrics."
+      },
+      {
+        title: "Publish fabric spec",
+        description: "Document integration guidance and assistant consumption contracts for the knowledge fabric."
+      }
+    ]
+  },
+  {
+    code: "G7-C7",
+    title: "Agent Guardrail Simulation",
+    galaxy: "G7",
+    arc: "Core",
+    mastery: "Builder",
+    journeyStage: "Automation Foundation",
+    phase: "Phase 4 - Automate",
+    personaFit: ["agent-lead", "lead-architect", "risk-partner"],
+    durationHours: 5,
+    modality: "WK",
+    outcomes: [
+      "Design guardrail scenarios across failure modes and tool misuse",
+      "Exercise escalation playbooks with mentors and compliance",
+      "Instrument telemetry for agent resilience and human oversight"
+    ],
+    deliverables: ["Guardrail simulation report", "Escalation telemetry dashboard"],
+    prerequisites: ["G7-C3", "G7-C4"],
+    evaluationSignals: ["AGENT-GUARD-009", "SAFE-ESC-003"],
+    freshness: "2025-09-19",
+    resources: [
+      {
+        label: "Agent safety drill kit",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/assistant-ops.md"
+      },
+      {
+        label: "Escalation runbook template",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/mentor-ops.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Critic",
+        prompt: "Execute the guardrail scenarios, log violations, and recommend remediation."
+      },
+      {
+        agent: "Coach",
+        prompt: "Provide live guidance to facilitators during the simulation and capture key learnings."
+      }
+    ],
+    steps: [
+      {
+        title: "Map scenarios",
+        description: "Select representative failure modes and align them to control objectives."
+      },
+      {
+        title: "Run drills",
+        description: "Facilitate simulations with human reviewers capturing telemetry and qualitative notes."
+      },
+      {
+        title: "Publish findings",
+        description: "Summarize issues, corrective actions, and evidence for governance sign-off."
+      }
+    ]
+  },
+  {
+    code: "G8-S7",
+    title: "Trust Drift Forensics Sprint",
+    galaxy: "G8",
+    arc: "Systems Studio",
+    mastery: "Architect",
+    journeyStage: "Experience Scale",
+    phase: "Phase 4 - Adoption",
+    personaFit: ["program-leader", "agent-lead", "risk-partner"],
+    durationHours: 7,
+    modality: "SP",
+    outcomes: [
+      "Identify trust signal degradation across channels",
+      "Run qualitative feedback loops with creators and customers",
+      "Activate remediation experiments and sponsor communications"
+    ],
+    deliverables: ["Trust drift dossier", "Remediation experiment roadmap"],
+    prerequisites: ["G8-S3", "G8-S4"],
+    evaluationSignals: ["UX-TRUST-007", "OPS-SENTI-004"],
+    freshness: "2025-09-20",
+    resources: [
+      {
+        label: "Trust telemetry playbook",
+        type: "doc",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/industry-playbooks.md"
+      },
+      {
+        label: "Experiment design canvas",
+        type: "template",
+        url: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/micro-paths.md"
+      }
+    ],
+    assistantPrompts: [
+      {
+        agent: "Companion",
+        prompt: "Summarize trust sentiment signals and propose next best adoption nudges."
+      },
+      {
+        agent: "Scout",
+        prompt: "Collect external trust benchmarks and compare them against current telemetry."
+      }
+    ],
+    steps: [
+      {
+        title: "Diagnose drift",
+        description: "Analyze telemetry, qualitative feedback, and sponsor escalations to pinpoint trust gaps."
+      },
+      {
+        title: "Design experiments",
+        description: "Pair creators and product teams to prototype trust restorations with measurable hypotheses."
+      },
+      {
+        title: "Communicate outcomes",
+        description: "Publish findings and adoption updates to sponsors, community, and assistant knowledge graph."
+      }
+    ]
+  }
 ];

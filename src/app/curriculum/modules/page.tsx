@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   moduleCatalog,
@@ -10,6 +10,12 @@ import {
 
 const masteryLevels = ["Explorer", "Builder", "Architect", "Strategist", "Luminary"] as const;
 const modalities = ["ML", "LB", "WK", "SP", "CL", "MC", "RT", "RS"] as const;
+const sortOptions = [
+  { value: "freshness", label: "Freshest" },
+  { value: "duration", label: "Duration" },
+  { value: "mastery", label: "Mastery" },
+  { value: "alphabetical", label: "A to Z" },
+];
 
 const personaLabels: Record<string, string> = {
   "lead-architect": "Lead Architect",
@@ -22,17 +28,38 @@ const personaLabels: Record<string, string> = {
 };
 
 function formatDuration(hours: number) {
-  if (hours < 2) return `${hours} hr`;
-  if (hours % 1 !== 0) return `${hours.toFixed(1)} hrs`;
+  if (hours <= 1) return `${hours} hr`;
+  if (!Number.isInteger(hours)) return `${hours.toFixed(1)} hrs`;
   return `${hours} hrs`;
 }
 
+function parseFreshness(value: string) {
+  const timestamp = Date.parse(value);
+  return Number.isNaN(timestamp) ? 0 : timestamp;
+}
+
 export default function ModulesPage() {
+  const sampleModuleCode = moduleCatalog[0]?.code.toLowerCase() ?? "";
+
   const [selectedGalaxy, setSelectedGalaxy] = useState<string>("ALL");
   const [selectedMastery, setSelectedMastery] = useState<string[]>([]);
   const [selectedPersona, setSelectedPersona] = useState<string[]>([]);
   const [selectedModality, setSelectedModality] = useState<string[]>([]);
+  const [selectedJourney, setSelectedJourney] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState<string>("freshness");
+
+  const personaOptions = useMemo(() => {
+    const set = new Set<string>();
+    moduleCatalog.forEach((module) => module.personaFit.forEach((persona) => set.add(persona)));
+    return Array.from(set);
+  }, []);
+
+  const journeyStages = useMemo(() => {
+    const set = new Set<string>();
+    moduleCatalog.forEach((module) => set.add(module.journeyStage));
+    return Array.from(set);
+  }, []);
 
   const filteredModules = useMemo(() => {
     return moduleCatalog.filter((module) => {
@@ -40,6 +67,9 @@ export default function ModulesPage() {
         return false;
       }
       if (selectedMastery.length && !selectedMastery.includes(module.mastery)) {
+        return false;
+      }
+      if (selectedJourney.length && !selectedJourney.includes(module.journeyStage)) {
         return false;
       }
       if (
@@ -58,6 +88,8 @@ export default function ModulesPage() {
           module.title,
           module.outcomes.join(" "),
           module.deliverables.join(" "),
+          module.journeyStage,
+          module.phase,
         ]
           .join(" ")
           .toLowerCase();
@@ -67,13 +99,39 @@ export default function ModulesPage() {
       }
       return true;
     });
-  }, [selectedGalaxy, selectedMastery, selectedPersona, selectedModality, searchTerm]);
+  }, [selectedGalaxy, selectedMastery, selectedJourney, selectedPersona, selectedModality, searchTerm]);
 
-  const personaOptions = useMemo(() => {
-    const set = new Set<string>();
-    moduleCatalog.forEach((module) => module.personaFit.forEach((p) => set.add(p)));
-    return Array.from(set);
-  }, []);
+  const sortedModules = useMemo(() => {
+    const mapped = [...filteredModules];
+    switch (sortBy) {
+      case "duration":
+        mapped.sort((a, b) => a.durationHours - b.durationHours);
+        break;
+      case "mastery":
+        mapped.sort((a, b) =>
+          masteryLevels.indexOf(a.mastery as typeof masteryLevels[number]) -
+          masteryLevels.indexOf(b.mastery as typeof masteryLevels[number])
+        );
+        break;
+      case "alphabetical":
+        mapped.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "freshness":
+      default:
+        mapped.sort((a, b) => parseFreshness(b.freshness) - parseFreshness(a.freshness));
+        break;
+    }
+    return mapped;
+  }, [filteredModules, sortBy]);
+
+  const activeFilters = [
+    selectedGalaxy !== "ALL" ? "Galaxy" : null,
+    selectedMastery.length ? "Mastery" : null,
+    selectedJourney.length ? "Journey" : null,
+    selectedPersona.length ? "Persona" : null,
+    selectedModality.length ? "Modality" : null,
+    searchTerm.trim() ? "Search" : null,
+  ].filter(Boolean) as string[];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-slate-100">
@@ -83,7 +141,7 @@ export default function ModulesPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Curriculum</p>
             <h1 className="text-3xl font-semibold tracking-tight">Micro-learning module explorer</h1>
             <p className="max-w-2xl text-sm text-slate-300">
-              Filter hundreds of modules by galaxy, mastery ladder, persona, and modality. Every module connects to the evidence locker, evaluation registry, and assistant guidance so you can drop it into cohort journeys instantly.
+              Filter hundreds of modules by galaxy, mastery, journey stage, persona, and modality. Each module connects to evidence, evaluation, and assistant prompts so you can orchestrate learning paths instantly.
             </p>
             <div className="flex flex-wrap gap-3 text-sm">
               <Link
@@ -92,6 +150,14 @@ export default function ModulesPage() {
               >
                 Back to curriculum hub
               </Link>
+              {sampleModuleCode && (
+                <Link
+                  href={`/curriculum/modules/${sampleModuleCode}`}
+                  className="rounded-full border border-white/20 px-4 py-2 transition hover:border-cyan-300 hover:text-cyan-200"
+                >
+                  Sample module detail
+                </Link>
+              )}
               <Link
                 href="https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/modules.md"
                 target="_blank"
@@ -101,7 +167,7 @@ export default function ModulesPage() {
               </Link>
             </div>
           </div>
-          <div className="w-full max-w-md">
+          <div className="w-full max-w-md space-y-3">
             <input
               type="search"
               placeholder="Search modules, outcomes, deliverables..."
@@ -109,6 +175,17 @@ export default function ModulesPage() {
               onChange={(event) => setSearchTerm(event.target.value)}
               className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-slate-100 placeholder:text-slate-500 focus:border-cyan-300 focus:outline-none"
             />
+            <select
+              value={sortBy}
+              onChange={(event) => setSortBy(event.target.value)}
+              className="w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-slate-100 focus:border-cyan-300 focus:outline-none"
+            >
+              {sortOptions.map((option) => (
+                <option key={option.value} value={option.value} className="text-slate-900">
+                  Sort by {option.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </header>
@@ -128,6 +205,18 @@ export default function ModulesPage() {
             selected={selectedMastery}
             onToggle={(value) =>
               setSelectedMastery((current) =>
+                current.includes(value)
+                  ? current.filter((item) => item !== value)
+                  : [...current, value]
+              )
+            }
+          />
+          <FilterGroup
+            title="Journey stage"
+            options={journeyStages}
+            selected={selectedJourney}
+            onToggle={(value) =>
+              setSelectedJourney((current) =>
                 current.includes(value)
                   ? current.filter((item) => item !== value)
                   : [...current, value]
@@ -163,9 +252,16 @@ export default function ModulesPage() {
 
         <section className="space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="text-xl font-semibold text-slate-100">
-              {filteredModules.length} module{filteredModules.length === 1 ? "" : "s"}
-            </h2>
+            <div className="space-y-1">
+              <h2 className="text-xl font-semibold text-slate-100">
+                {sortedModules.length} module{sortedModules.length === 1 ? "" : "s"}
+              </h2>
+              {activeFilters.length > 0 && (
+                <p className="text-xs text-slate-400">
+                  Active filters: {activeFilters.join(", ")}
+                </p>
+              )}
+            </div>
             <button
               type="button"
               onClick={() => {
@@ -173,7 +269,9 @@ export default function ModulesPage() {
                 setSelectedMastery([]);
                 setSelectedPersona([]);
                 setSelectedModality([]);
+                setSelectedJourney([]);
                 setSearchTerm("");
+                setSortBy("freshness");
               }}
               className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200 transition hover:text-cyan-100"
             >
@@ -181,10 +279,10 @@ export default function ModulesPage() {
             </button>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
-            {filteredModules.map((module) => (
+            {sortedModules.map((module) => (
               <ModuleCard key={module.code} module={module} />
             ))}
-            {!filteredModules.length && (
+            {!sortedModules.length && (
               <div className="col-span-full rounded-3xl border border-white/10 bg-white/[0.03] p-10 text-center text-sm text-slate-300">
                 <p>No modules match the current filters. Adjust filters or search keywords.</p>
               </div>
@@ -257,37 +355,53 @@ type ModuleCardProps = {
 };
 
 function ModuleCard({ module }: ModuleCardProps) {
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    if (!copied) return;
+    const id = setTimeout(() => setCopied(false), 2000);
+    return () => clearTimeout(id);
+  }, [copied]);
+
   const galaxyMeta = learningGalaxies.find((g) => g.code === module.galaxy);
 
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(module.code);
+      setCopied(true);
+    } catch (error) {
+      console.error("Unable to copy module code", error);
+    }
+  };
+
+  const topResources = module.resources.slice(0, 2);
+
   return (
-    <div className="flex h-full flex-col justify-between gap-4 rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+    <div className="flex h-full flex-col justify-between gap-5 rounded-3xl border border-white/10 bg-white/[0.03] p-6">
       <div className="space-y-4">
-        <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.3em] text-cyan-200">
-          <span className="rounded-full border border-cyan-300/30 px-3 py-1">{module.code}</span>
-          <span className="rounded-full border border-cyan-300/30 px-3 py-1">{module.modality}</span>
-          <span className="rounded-full border border-cyan-300/30 px-3 py-1">{module.mastery}</span>
+        <div className="flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-cyan-200">
+          <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.code}</span>
+          <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.modality}</span>
+          <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.mastery}</span>
+          <span className="rounded-full border border-cyan-300/40 px-3 py-1">{module.phase}</span>
         </div>
         <div className="space-y-2">
           <h3 className="text-xl font-semibold text-slate-100">{module.title}</h3>
-          <p className="text-sm text-slate-300">
-            {module.outcomes.slice(0, 2).join(" - ")}
-            {module.outcomes.length > 2 ? "..." : ""}
-          </p>
+          <p className="text-sm text-slate-300">Journey: {module.journeyStage}</p>
+          <p className="text-sm text-slate-300">{module.outcomes.slice(0, 2).join(" - ")}</p>
         </div>
         <div className="flex flex-wrap gap-2 text-[11px] text-slate-400">
-          <span className="rounded-full border border-white/15 px-3 py-1">{module.arc}</span>
           <span className="rounded-full border border-white/15 px-3 py-1">{formatDuration(module.durationHours)}</span>
           {galaxyMeta && (
-            <span className="rounded-full border border-white/15 px-3 py-1">
-              {galaxyMeta.title}
-            </span>
+            <span className="rounded-full border border-white/15 px-3 py-1">{galaxyMeta.title}</span>
           )}
+          <span className="rounded-full border border-white/15 px-3 py-1">Fresh {module.freshness}</span>
         </div>
       </div>
-      <div className="space-y-3 text-xs text-slate-300">
+
+      <div className="space-y-3">
         <div>
-          <h4 className="font-semibold uppercase tracking-[0.3em] text-cyan-200">Deliverables</h4>
-          <ul className="mt-2 space-y-1">
+          <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Deliverables</h4>
+          <ul className="mt-2 space-y-1 text-xs text-slate-300">
             {module.deliverables.map((deliverable) => (
               <li key={deliverable} className="flex gap-2">
                 <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-cyan-300" />
@@ -296,6 +410,16 @@ function ModuleCard({ module }: ModuleCardProps) {
             ))}
           </ul>
         </div>
+        <div>
+          <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Quick steps</h4>
+          <ol className="mt-2 space-y-1 text-xs text-slate-300">
+            {module.steps.slice(0, 3).map((step) => (
+              <li key={step.title}>
+                <span className="font-semibold text-cyan-100">{step.title}:</span> {step.description}
+              </li>
+            ))}
+          </ol>
+        </div>
         <div className="flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.3em] text-slate-400">
           {module.personaFit.map((persona) => (
             <span key={persona} className="rounded-full border border-white/15 px-2 py-1">
@@ -303,29 +427,41 @@ function ModuleCard({ module }: ModuleCardProps) {
             </span>
           ))}
         </div>
-        <div className="flex flex-wrap gap-2 text-[11px] text-slate-400">
-          {module.evaluationSignals.map((signal) => (
-            <span key={signal} className="rounded-full border border-white/15 px-3 py-1">
-              {signal}
-            </span>
-          ))}
-        </div>
-        <div className="text-[10px] uppercase tracking-[0.3em] text-slate-500">
-          Refreshed {module.freshness}
-        </div>
+        {topResources.length > 0 && (
+          <div className="flex flex-wrap gap-2 text-xs">
+            {topResources.map((resource) => (
+              <Link
+                key={resource.label}
+                href={resource.url}
+                target="_blank"
+                className="rounded-full border border-white/15 px-3 py-1 text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
+              >
+                {resource.label}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
+
       <div className="flex flex-wrap gap-3 text-sm font-semibold">
         <Link
           href={`/curriculum/modules/${module.code.toLowerCase()}`}
           className="rounded-full bg-cyan-400 px-4 py-2 text-slate-900 transition hover:bg-cyan-300"
         >
-          View module detail
+          View detail
         </Link>
-        <Link
-          href="/curriculum"
+        <button
+          type="button"
+          onClick={handleCopy}
           className="rounded-full border border-white/20 px-4 py-2 text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
         >
-          Add to micro path
+          {copied ? "Code copied" : "Copy code"}
+        </button>
+        <Link
+          href="/curriculum#micro-paths"
+          className="rounded-full border border-white/20 px-4 py-2 text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
+        >
+          Add to journey
         </Link>
       </div>
     </div>

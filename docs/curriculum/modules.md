@@ -113,6 +113,7 @@ This atlas enumerates the modular experiences powering the AI Architect Academy.
 | G3-S4 | Architect | WK | 6 | Review data residency, localization, and export controls. | Data residency matrix | Jurisdiction compliance tracker |
 | G3-S5 | Architect | LB | 7 | Link knowledge assets to evaluation datasets and observability hubs. | Knowledge-eval linkage spec | Evaluation coverage index |
 | G3-S6 | Architect | CL | 5 | Run data risk council aligning policy, privacy, and engineering. | Data risk resolutions | Risk remediation tracker |
+| G3-S7 | Architect | LB | 8 | Model semantic knowledge fabric with telemetry and assistant contracts. | Semantic knowledge fabric blueprint | Lineage telemetry dashboard |
 
 ### Leadership & Influence Arc (Strategist/Luminary)
 | Code | Level | Format | Hours | Key Outcomes | Keystone Deliverable | Instrumentation |
@@ -220,6 +221,7 @@ This atlas enumerates the modular experiences powering the AI Architect Academy.
 | G7-C4 | Builder | LB | 6 | Design human-in-loop checkpoints and escalation triggers. | HILO orchestration spec | Intervention telemetry |
 | G7-C5 | Builder | WK | 5 | Prototype agent workflow for knowledge synthesis. | Knowledge synthesis workflow | Accuracy and latency metrics |
 | G7-C6 | Builder | CL | 4 | Conduct failure analysis and mitigation for agent incidents. | Agent incident ledger | Mitigation effectiveness score |
+| G7-C7 | Builder | WK | 5 | Simulate guardrail failure modes and refine escalation playbooks. | Guardrail simulation report | Escalation telemetry dashboard |
 
 ### Systems Studio Arc (Builder/Architect)
 | Code | Level | Format | Hours | Key Outcomes | Keystone Deliverable | Instrumentation |
@@ -258,6 +260,7 @@ This atlas enumerates the modular experiences powering the AI Architect Academy.
 | G8-S4 | Architect | WK | 6 | Facilitate adoption accelerator workshop with change champions. | Adoption accelerator plan | Adoption velocity telemetry |
 | G8-S5 | Architect | LB | 7 | Align AI product analytics with business KPIs and experimentation. | AI product analytics framework | Experiment telemetry |
 | G8-S6 | Architect | CL | 5 | Conduct cross-functional review on support, legal, marketing readiness. | Go-to-market readiness pack | Readiness decision log |
+| G8-S7 | Architect | SP | 7 | Investigate trust drift signals and launch remediation experiments. | Trust drift dossier | Sentiment recovery telemetry |
 
 ### Leadership & Influence Arc (Strategist/Luminary)
 | Code | Level | Format | Hours | Key Outcomes | Keystone Deliverable | Instrumentation |

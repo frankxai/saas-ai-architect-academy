@@ -1,6 +1,12 @@
 ﻿# Curriculum Changelog
 
-> Last updated: 2025-09-18
+> Last updated: 2025-09-20
+
+## 2025-09-20
+- Added semantic knowledge fabric, agent guardrail simulation, and trust drift forensics modules to deepen 2025 frontier coverage.
+- Expanded persona micro-paths with executive sponsor and creator/influence tracks tied to new telemetry rituals.
+- Introduced Navigator assistant role to orchestrate micro-learning CTAs, sponsor digests, and mastery guardrails.
+- Updated micro-learning experience blueprint, UI principles, and README with contextual button architecture and reflection flows.
 
 ## 2025-09-18
 - Bootstrapped Module Atlas with 216 modules spanning 12 learning galaxies and three arcs each.
