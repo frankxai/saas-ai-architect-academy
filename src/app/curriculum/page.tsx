@@ -417,7 +417,7 @@ export default function CurriculumPage() {
                           ))}
                         </div>
                         <Link
-                          href={}
+                          href={`/curriculum/modules/${module.code.toLowerCase()}`}
                           className="mt-4 inline-flex items-center justify-center rounded-full border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
                         >
                           View detail
@@ -543,7 +543,7 @@ export default function CurriculumPage() {
                   ))}
                 </div>
                 <Link
-                  href={}
+                  href={`/curriculum/modules/${module.code.toLowerCase()}`}
                   className="inline-flex items-center justify-center rounded-full bg-cyan-400 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900 transition hover:bg-cyan-300"
                 >
                   View module detail
