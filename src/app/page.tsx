@@ -1,105 +1,76 @@
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import { ProgressIndicator } from "@/components/ui/progress-indicator";
+import { SectionHeader, SectionShell } from "@/components/ui/section";
 
 const navLinks = [
   { label: "Vision", href: "#vision" },
-  { label: "Experience", href: "#experience" },
   { label: "Curriculum", href: "#curriculum" },
-  { label: "Modules", href: "/curriculum/modules" },
   { label: "Assistant", href: "#assistant" },
   { label: "Workspaces", href: "#workspaces" },
   { label: "Personas", href: "#personas" },
   { label: "Services", href: "#services" },
-  { label: "Library", href: "#library" },
-  { label: "Projects", href: "#projects" },
-  { label: "Insights", href: "#insights" },
-  { label: "Operations", href: "#operations" },
-  { label: "Roadmap", href: "#roadmap" },
-  { label: "Community", href: "#community" },
   { label: "Resources", href: "#resources" },
 ];
 
+const heroHighlights = [
+  "Sprint-ready curriculum mapped to guardrails and evaluation signals",
+  "Learner + agent workspace with telemetry, evidence, and coaching",
+  "Creator and sponsor storytelling kits grounded in production proof",
+];
+
 const stats = [
+  { value: "220+", label: "Curriculum artefacts", note: "Blueprints, checklists, playbooks" },
+  { value: "60+", label: "Advisory playbooks", note: "Executive-ready packages" },
+  { value: "12", label: "Signature tracks", note: "Agents, prototyping, ops, leadership" },
+  { value: "4.8/5", label: "Learner satisfaction", note: "Field-test cohorts & creators" },
+];
+
+const specFlow = [
   {
-    value: "220+",
-    label: "Architecture & governance assets",
-    description: "Blueprints, checklists, and playbooks curated from the Academy knowledge base.",
+    step: "01",
+    title: "Discover & Frame",
+    description: "Intake PRDs, business goals, and guardrails to anchor every build in measurable outcomes.",
+    artifacts: ["AI CoE PRD template", "Sponsor goal brief", "Risk posture summary"],
   },
   {
-    value: "60+",
-    label: "Premium advisory playbooks",
-    description: "Executive-ready canvases, ROI calculators, and governance workshops.",
+    step: "02",
+    title: "Pattern & Playbook",
+    description: "Select prototyping and SDLC patterns, then author XML/YAML agent playbooks for every role.",
+    artifacts: ["Pattern rationale note", "Agent instruction files", "Interface checklist"],
   },
   {
-    value: "12",
-    label: "Signature service tracks",
-    description: "Cohorts, intensives, and retainers engineered for enterprise impact.",
+    step: "03",
+    title: "Build & Instrument",
+    description: "Run Sprint 1 labs, wire evaluation harnesses, and capture telemetry for humans and copilots.",
+    artifacts: ["Field test journal", "scripts/eval-harness run", "Telemetry snapshot"],
   },
   {
-    value: "4.8/5",
-    label: "Creator & client satisfaction",
-    description: "Feedback from pilots, advisory sessions, and creator partnerships.",
+    step: "04",
+    title: "Evidence & Amplify",
+    description: "Publish system cards, compliance scorecards, and storytelling kits that prove value and trust.",
+    artifacts: ["System card draft", "Compliance scorecard", "Progress digest"],
   },
 ];
 
-const keywordCloud = [
-  "ai architecture hub",
-  "ai governance advisory",
-  "enterprise ai blueprint",
-  "ai assistant for architects",
-  "agentic automation playbook",
-  "ai influencer toolkit",
-  "ai thought leadership engine",
-  "responsible ai controls",
-  "ai program roadmap",
-  "ai evaluation strategy",
-  "ai resource vault",
-  "ai progress digest",
-  "ai executive briefing template",
-  "agent-ready dataset",
-];
-
-const experiencePillars = [
+const specPrinciples = [
   {
-    title: "Agent Momentum",
-    description:
-      "Stand up dependable coding agents with guardrails, telemetry, and human-in-the-loop rituals baked in from day one.",
-    highlights: [
-      "Opportunity framing canvases and guardrail baselines",
-      "Reusable agent starter kits with evaluation hooks",
-      "Field-test journals and sponsor-ready summaries",
-    ],
+    title: "Specs before sprints",
+    description: "Every initiative starts with a spec referencing AI CoE templates and explicit acceptance criteria.",
   },
   {
-    title: "Prototype Velocity",
-    description:
-      "Move from hypothesis to pilot-ready demos in days using rapid prototyping labs, storyboard studios, and evidence packs.",
-    highlights: [
-      "Hypothesis briefs, storyboards, and component libraries",
-      "Pilot facilitation scripts with qualitative + quantitative capture",
-      "Iteration decision memos that feed investment stories",
-    ],
+    title: "Agent + human parity",
+    description: "Playbooks, artefacts, and telemetry are designed for autonomous agents and human teams together.",
   },
   {
-    title: "Architecture & Ops",
-    description:
-      "Translate prototypes into resilient architectures, observability stacks, and runbooks that keep production calm.",
-    highlights: [
-      "Interface contracts and retrieval blueprints",
-      "Observability rollout plans and guardrail coverage reports",
-      "Incident simulations with insight briefs for sponsors",
-    ],
+    title: "Evidence everywhere",
+    description: "Ship evaluation outputs, guardrail coverage, and storytelling assets together to reinforce trust.",
   },
   {
-    title: "Story & Scale",
-    description:
-      "Activate communication kits, governance cadences, and community playbooks so wins travel across the organisation.",
-    highlights: [
-      "Collaboration charters and enablement loops",
-      "Progress digests tailored to executives, teams, and communities",
-      "Investment narratives and activation plans grounded in telemetry",
-    ],
+    title: "Continuous frontier sync",
+    description: "Weekly lab scans feed updates into modules, harnesses, and dashboards to stay aligned with top AI labs.",
   },
 ];
 
@@ -127,10 +98,49 @@ const moduleTracks = [
   },
   {
     title: "Story & Scale",
-    description: "Align teams, sponsors, and communities with clear narratives and activation plans.",
+    description: "Align teams, sponsors, and communities with narratives and activation plans.",
     modules: ["Collaboration operating system", "Storytelling lab", "Investment story studio"],
-    duration: "Ongoing leadership lane",
+    duration: "Leadership lane",
     deliverable: "Enablement toolkit, progress digest, and investment narrative.",
+  },
+];
+
+const experiencePillars = [
+  {
+    title: "Agent Momentum",
+    description: "Stand up dependable coding agents with guardrails, telemetry, and human-in-the-loop rituals.",
+    highlights: [
+      "Opportunity canvases and guardrail baselines",
+      "Reusable agent starter kits with evaluation hooks",
+      "Field-test journals and sponsor-ready summaries",
+    ],
+  },
+  {
+    title: "Prototype Velocity",
+    description: "Move from hypothesis to pilot-ready demos in days with instrumentation and evidence packs.",
+    highlights: [
+      "Hypothesis briefs and storyboard studios",
+      "Pilot facilitation scripts with qualitative + quantitative capture",
+      "Iteration decision memos that feed investment stories",
+    ],
+  },
+  {
+    title: "Architecture & Ops",
+    description: "Translate prototypes into resilient architectures, observability stacks, and runbooks.",
+    highlights: [
+      "Interface contracts and retrieval blueprints",
+      "Observability rollout plans and guardrail coverage reports",
+      "Incident simulations with insight briefs for sponsors",
+    ],
+  },
+  {
+    title: "Story & Scale",
+    description: "Activate communication kits, governance cadences, and community playbooks so wins travel fast.",
+    highlights: [
+      "Collaboration charters and enablement loops",
+      "Progress digests tailored to executives, teams, and communities",
+      "Investment narratives grounded in telemetry",
+    ],
   },
 ];
 
@@ -161,12 +171,12 @@ const assistantWorkflows = [
   {
     title: "Evidence & handover",
     description:
-      "Publish dashboards, stakeholder updates, compliance packets, and ROI narratives to Slack, Jira, Linear, or Confluence.",
+      "Publish dashboards, stakeholder updates, compliance packets, and ROI narratives to the channels your sponsors expect.",
   },
   {
     title: "Amplify & syndicate",
     description:
-      "Produce newsletters, podcast briefs, social posts, and supporter digests so every win is celebrated across channels.",
+      "Produce newsletters, podcast briefs, social posts, and supporter digests so every win is celebrated.",
   },
 ];
 
@@ -177,7 +187,7 @@ const workspaceStreams = [
       "Define ambition, map maturity, and surface the next most valuable capability to activate.",
     elements: [
       "Capability heatmap keyed to personas",
-      "Portfolio prioritization and impact sizing",
+      "Portfolio prioritisation and impact sizing",
       "Value narrative generator for executive updates",
     ],
   },
@@ -196,7 +206,7 @@ const workspaceStreams = [
     description:
       "Continuous monitoring for governance, adoption, and ROI once solutions ship to production.",
     elements: [
-      "Control center for approvals, attestations, and evidence",
+      "Control centre for approvals, attestations, and evidence",
       "Integration timeline across analytics, observability, and ITSM",
       "Audit-ready exports with contextual commentary",
     ],
@@ -207,12 +217,11 @@ const workspaceStreams = [
       "Transform delivery learnings into influence with reusable content systems and analytics.",
     elements: [
       "Editorial planner synced to project milestones",
-      "Atomization prompts for newsletter, podcast, and social drops",
+      "Atomisation prompts for newsletter, podcast, and social drops",
       "Audience telemetry dashboard highlighting resonance and reach",
     ],
   },
 ];
-
 const personaGroups = [
   {
     title: "Lead Architect",
@@ -237,12 +246,12 @@ const personaGroups = [
     summary: "Safeguards policy alignment while enabling innovation.",
     outcomes: [
       "Continuous assurance with evidence collection hooks",
-      "Approval workflow with audit-ready artifacts",
+      "Approval workflow with audit-ready artefacts",
       "Policy mapping to modules, deliverables, and integrations",
     ],
   },
   {
-    title: "High-Value Client Sponsor",
+    title: "High-Value Sponsor",
     summary: "Invests in governed AI acceleration and expects measurable ROI.",
     outcomes: [
       "Curated advisory package with ROI and trust benchmarks",
@@ -251,10 +260,10 @@ const personaGroups = [
     ],
   },
   {
-    title: "Creator & Influencer Partner",
+    title: "Creator Partner",
     summary: "Amplifies the AI Architect voice across media channels.",
     outcomes: [
-      "Editorial runway and content atomization recipes",
+      "Editorial runway and content atomisation recipes",
       "Co-branded assets grounded in governed delivery wins",
       "Performance insights to grow community and sponsorships",
     ],
@@ -269,7 +278,7 @@ const personaGroups = [
     ],
   },
   {
-    title: "Autonomous Agents & Copilots",
+    title: "Autonomous Agents",
     summary: "Extend the platform, trigger workflows, and monitor signals.",
     outcomes: [
       "Stable JSON endpoints for modules, personas, and roadmap milestones",
@@ -286,9 +295,9 @@ const serviceOffers = [
       "Rapid engagement aligning policies, controls, and delivery rhythms so innovation stays compliant without friction.",
     ideal: "Ideal for Chief AI, Chief Risk, and transformation leaders.",
     outcomes: [
-      "Policy-to-delivery mapping with risk heatmap and mitigation plan",
-      "Evaluation operating model with metrics, owners, and tooling",
-      "Executive-ready narrative plus board briefing artifacts",
+      "Policy-to-delivery mapping with risk heatmap",
+      "Evaluation operating model with metrics and owners",
+      "Executive-ready narrative plus board briefing artefacts",
     ],
     ctaLabel: "Book the sprint",
     href: "mailto:frank@aiarchitect.academy?subject=Executive%20Governance%20Sprint",
@@ -296,7 +305,7 @@ const serviceOffers = [
   {
     title: "Enterprise Transformation Lab",
     summary:
-      "Embedded build-operate-transfer partnership delivering production architectures, evaluation harnesses, and change management.",
+      "Embedded build-operate-transfer partnership delivering production architectures and change management.",
     ideal: "Ideal for AI CoE leads, program directors, and innovation sponsors.",
     outcomes: [
       "Customized learning path and workspace for cross-functional teams",
@@ -313,7 +322,7 @@ const serviceOffers = [
     ideal: "Ideal for creators, influencers, and partners amplifying the Academy voice.",
     outcomes: [
       "Editorial calendar synced to launches and cohorts",
-      "Content atomization prompts and workflow automation",
+      "Content atomisation prompts and workflow automation",
       "Analytics dashboard with sponsorship and conversion insights",
     ],
     ctaLabel: "Request media kit",
@@ -325,7 +334,7 @@ const serviceOffers = [
       "Dedicated support channel for family, close supporters, and premium patrons to stay ahead of every milestone.",
     ideal: "Ideal for inner circle champions and philanthropic partners.",
     outcomes: [
-      "Monthly studio briefing with private Q&A and behind-the-scenes access",
+      "Monthly studio briefing with private Q&A",
       "Curated resource bundles tailored to each supporter",
       "Early invites to launches, masterminds, and community rituals",
     ],
@@ -339,7 +348,7 @@ const resourceVault = [
     tier: "Open Source Essentials",
     badge: "Free",
     description:
-      "Foundational resources sourced from the AI Architect Academy knowledge base. Share freely with teams, collaborators, and family members getting started.",
+      "Foundational resources sourced from the AI Architect Academy knowledge base. Share freely with teams and collaborators getting started.",
     items: [
       {
         name: "AI Architect Academy Knowledge Base",
@@ -349,1007 +358,576 @@ const resourceVault = [
       },
       {
         name: "Responsible AI Readiness Checklist",
-        summary: "Step-by-step readiness checklist aligned to NIST AI RMF and ISO/IEC 42001 principles.",
+        summary: "Checklist aligned to NIST AI RMF and ISO/IEC 42001 principles.",
         format: "Markdown guide",
-        href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/capabilities.md",
+        href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evaluation-ops.md",
       },
       {
-        name: "AI Progress Digest Template",
-        summary: "Newsletter framework for sharing weekly wins, metrics, and upcoming experiments with supporters.",
-        format: "Notion-style template",
-        href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/experience-blueprint.md",
+        name: "Frontier Intelligence Digest Template",
+        summary: "Weekly signal tracker covering OpenAI, Anthropic, DeepMind, xAI, Microsoft, Meta, and more.",
+        format: "Markdown template",
+        href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/frontier-intelligence.md",
       },
     ],
-    note: "Updated weekly with new canvases and implementation notes.",
   },
   {
-    tier: "Premium Studio Kits",
-    badge: "Paid",
+    tier: "Academy Workspace",
+    badge: "Included",
     description:
-      "High-touch toolkits for executives and creators looking for concierge support, office hours, and white-glove onboarding.",
+      "Learner workspace with track navigation, assistant prompts, evaluation harness starter, and sponsor storytelling kits.",
     items: [
       {
-        name: "Governed AI Program Canvas",
-        summary: "Miro-ready canvas mapping stakeholders, controls, and milestone telemetry for transformation initiatives.",
-        format: "Miro board + PDF",
-        href: "mailto:frank@aiarchitect.academy?subject=Governed%20AI%20Program%20Canvas",
+        name: "Curriculum Explorer",
+        summary: "Interactive navigator for tracks, micro-paths, and module details.",
+        format: "Web experience",
+        href: "/curriculum",
       },
       {
-        name: "Executive ROI Narrative Pack",
-        summary: "Slide decks, calculators, and prompt packs to communicate value across the C-suite.",
-        format: "Slide deck + prompt pack",
-        href: "mailto:frank@aiarchitect.academy?subject=Executive%20ROI%20Narrative%20Pack",
+        name: "Evaluation Harness Starter",
+        summary: "Toxicity, hallucination, realtime, perception, and preparedness checks with telemetry export hooks.",
+        format: "Python toolkit",
+        href: "https://github.com/frankxai/saas-ai-architect-academy/tree/main/scripts/eval-harness",
       },
       {
-        name: "Creator Influence Playbook",
-        summary: "Video series, worksheets, and automation recipes for consistent thought leadership drops.",
-        format: "Video series + worksheets",
-        href: "mailto:frank@aiarchitect.academy?subject=Creator%20Influence%20Playbook",
+        name: "Sprint 1 Field Test Lab",
+        summary: "Step-by-step workflow for agent field testing with deliverables and evaluation gates.",
+        format: "Lab guide",
+        href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/labs/sprint1-agent-field-test.md",
       },
     ],
-    note: "Includes cohort invites and priority assistant access.",
   },
   {
-    tier: "Agent API Beta",
-    badge: "Beta",
+    tier: "Premium Advisory",
+    badge: "Invite-only",
     description:
-      "Structured data surfaces for autonomous agents and automation teams. Designed to keep human and agent experiences in sync.",
+      "White-glove support for enterprise transformation, creators, and inner circle patrons.",
     items: [
       {
-        name: "Resource Metadata Endpoint",
-        summary: "JSON schema exposing resource titles, tiers, personas, formats, and canonical links.",
-        format: "JSON schema",
-        href: "mailto:frank@aiarchitect.academy?subject=Agent%20API%20Access",
+        name: "Executive Governance Sprint",
+        summary: "Four-week engagement aligning policy, evaluation, and launch rhythms.",
+        format: "Advisory sprint",
+        href: "mailto:frank@aiarchitect.academy?subject=Executive%20Governance%20Sprint",
       },
       {
-        name: "Persona & Journey Feed",
-        summary: "Machine-readable feed of personas, outcomes, and recommended journeys for quick onboarding.",
-        format: "JSON feed",
-        href: "mailto:frank@aiarchitect.academy?subject=Agent%20API%20Access",
+        name: "Enterprise Transformation Lab",
+        summary: "Embedded partnership shipping governed architectures and enablement.",
+        format: "Advisory lab",
+        href: "mailto:frank@aiarchitect.academy?subject=Enterprise%20Transformation%20Lab",
       },
       {
-        name: "Project Pulse Webhooks",
-        summary: "Event-driven webhooks broadcasting roadmap updates, evaluations, and content releases.",
-        format: "Webhook subscription",
-        href: "mailto:frank@aiarchitect.academy?subject=Agent%20API%20Access",
+        name: "Creator Influence Accelerator",
+        summary: "Systems, analytics, and assistant prompts for multi-channel influence.",
+        format: "Creator accelerator",
+        href: "mailto:frank@aiarchitect.academy?subject=Creator%20Influence%20Accelerator",
       },
     ],
-    note: "Invite-only until GA; partner with us to define the contract.",
   },
 ];
 
-const projectPulses = [
-  {
-    title: "Book: Architecting Governed AI Programs",
-    stage: "Drafting chapter four",
-    lastUpdated: "This week",
-    nextMilestone: "Peer review circle & beta reader invite",
-    summary:
-      "Field-tested patterns, governance scorecards, and stakeholder scripts captured from enterprise engagements.",
-    tags: ["Publishing", "Governance", "Thought leadership"],
-  },
-  {
-    title: "AI Architect Academy Hub",
-    stage: "Alpha release v0.4",
-    lastUpdated: "Sprint six",
-    nextMilestone: "Resource Vault API preview & workspace walkthroughs",
-    summary:
-      "Hub expansion with services deck, Resource Vault tiers, and agent-ready schema definitions.",
-    tags: ["Product", "Hub", "Agent API"],
-  },
-  {
-    title: "Creator Influence Engine",
-    stage: "Content sprint two",
-    lastUpdated: "Bi-weekly cadence",
-    nextMilestone: "Launch newsletter cross-posting automations",
-    summary:
-      "Editorial runway turning platform updates into newsletters, podcasts, and social stories with metrics instrumentation.",
-    tags: ["Creator ops", "Marketing", "Automation"],
-  },
-  {
-    title: "Family Circle Digest",
-    stage: "Monthly broadcast",
-    lastUpdated: "This month",
-    nextMilestone: "Private Q&A livestream and behind-the-scenes tour",
-    summary:
-      "Curated digest featuring personal updates, favorite resources, and ways to support the mission.",
-    tags: ["Community", "Family", "Supporters"],
-  },
+const keywordCloud = [
+  "AI architecture hub",
+  "AI governance advisory",
+  "Enterprise AI blueprint",
+  "Agentic automation playbook",
+  "Responsible AI controls",
+  "AI evaluation strategy",
+  "AI progress digest",
+  "AI assistant for architects",
+  "AI program roadmap",
+  "AI resource vault",
+  "AI executive briefing template",
+  "Agent-ready dataset",
 ];
-
-const insightPlaylists = [
-  {
-    title: "Responsible AI Operations",
-    focus: "Operationalize guardrails, evaluation, and compliance without slowing delivery.",
-    keywords: ["responsible ai controls", "ai governance checklist", "model risk management"],
-    assets: ["Playbook article", "Evaluation metric cheat sheet", "Podcast segment"],
-  },
-  {
-    title: "Enterprise Architecture Patterns",
-    focus: "Blueprint production-ready RAG, agentic automation, and observability stacks.",
-    keywords: ["enterprise ai blueprint", "rag platform design", "agentic automation framework"],
-    assets: ["Deep-dive guide", "Architecture diagram pack", "Live build workshop"],
-  },
-  {
-    title: "Creator Influence Ops",
-    focus: "Scale the AI Architect voice across newsletters, podcasts, and social channels.",
-    keywords: ["ai thought leadership engine", "ai influencer toolkit", "ai progress digest"],
-    assets: ["Editorial calendar", "Short-form prompt pack", "Analytics dashboard walk-through"],
-  },
-];
-
-const searchIntents = [
-  {
-    term: "ai architecture patterns",
-    human: "Compare reference designs and production-ready blueprints.",
-    agent: "Retrieve modules tagged architecture + diagrams with citations.",
-    destination: "#curriculum",
-  },
-  {
-    term: "ai governance advisory",
-    human: "Understand premium services and ROI benchmarks for executives.",
-    agent: "Fetch service offers, proof points, and engagement cadences.",
-    destination: "#services",
-  },
-  {
-    term: "ai influencer content strategy",
-    human: "Plan multi-channel thought leadership drops backed by technical depth.",
-    agent: "Request insight playlists, prompt packs, and distribution workflows.",
-    destination: "#insights",
-  },
-  {
-    term: "ai resource vault",
-    human: "Download templates, checklists, and premium kits for immediate use.",
-    agent: "Query resource metadata with tiers, formats, and persona tags.",
-    destination: "#library",
-  },
-  {
-    term: "ai progress digest",
-    human: "Follow platform, book, and community milestones in real time.",
-    agent: "Subscribe to project pulses and webhook updates.",
-    destination: "#projects",
-  },
-  {
-    term: "agent-ready dataset",
-    human: "Give companion agents structured access to modules and personas.",
-    agent: "Call beta API endpoints for resources, personas, and project pulses.",
-    destination: "#library",
-  },
-];
-
-const operationsPractices = [
-  {
-    title: "Responsible AI controls",
-    description: "Codify policy expectations into day-to-day workflows for every persona.",
-    practices: [
-      "Policy mapping to module steps and deliverables",
-      "Risk scoring triggers with auto-escalation",
-      "Approval workflows and digital signatures tracked over time",
-    ],
-  },
-  {
-    title: "Evaluation observability",
-    description: "Treat evaluations like production systems with traceability and guardrails.",
-    practices: [
-      "Scenario libraries and scorecards fed by telemetry",
-      "Pre-commit and post-deploy gates with exception logging",
-      "Langfuse, Weights & Biases, and custom dashboards wired in",
-    ],
-  },
-  {
-    title: "Value instrumentation",
-    description: "Quantify business impact, adoption, and operational efficiency across programs.",
-    practices: [
-      "KPI handshake templates and measurement cadences",
-      "Impact tracking pulses for stakeholders and sponsors",
-      "Executive briefing generator summarizing wins and risks",
-    ],
-  },
-  {
-    title: "Reputation & trust signals",
-    description: "Showcase proof points for clients, creators, and supporters across channels.",
-    practices: [
-      "Testimonials, case studies, and success metrics mapped to services",
-      "Creator analytics and content performance loops",
-      "Family & inner circle feedback woven into product priorities",
-    ],
-  },
-];
-
-const integrationHighlights = [
-  "OpenRouter + Supabase Vector for grounded retrieval and personalization.",
-  "GitHub, Linear, Jira, and Notion syncing architecture artifacts, tasks, and knowledge.",
-  "Slack, Teams, email digests, and private RSS for assistant handoffs and supporter updates.",
-  "Langfuse, Weights & Biases, and analytics connectors for evaluation and reputation telemetry.",
-  "API hooks for newsletter automation, podcast syndication, and creator distribution.",
-];
-
-const knowledgeLinks = [
-  {
-    label: "Hub Content & Data Model",
-    href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/hub-content-model.md",
-  },
-  {
-    label: "Experience Blueprint",
-    href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/experience-blueprint.md",
-  },
-  {
-    label: "SEO & Findability",
-    href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/seo-strategy.md",
-  },
-  {
-    label: "Product Blueprint",
-    href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/product-blueprint.md",
-  },
-  {
-    label: "Strategy Overview",
-    href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/strategy.md",
-  },
-  {
-    label: "Agent Journeys",
-    href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/agent-journeys.md",
-  },
-  {
-    label: "Capabilities & Specs",
-    href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/capabilities.md",
-  },
-  {
-    label: "UI & UX Principles",
-    href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/ui-ux-principles.md",
-  },
-];
-
-const sitemapSections = [
-  {
-    title: "Platform overview",
-    links: [
-      { label: "Vision", href: "#vision" },
-      { label: "Experience pillars", href: "#experience" },
-      { label: "Persona outcomes", href: "#personas" },
-      { label: "Search studio", href: "#search" },
-    ],
-  },
-  {
-    title: "Build & operate",
-    links: [
-      { label: "Micro-learning curriculum", href: "#curriculum" },
-      { label: "AI Architect assistant", href: "#assistant" },
-      { label: "Workspaces & dashboards", href: "#workspaces" },
-      { label: "Operations & governance", href: "#operations" },
-      { label: "Roadmap", href: "#roadmap" },
-    ],
-  },
-  {
-    title: "Engage & grow",
-    links: [
-      { label: "Signature services", href: "#services" },
-      { label: "Resource vault", href: "#library" },
-      { label: "Projects pulseboard", href: "#projects" },
-      { label: "Insight playlists", href: "#insights" },
-      { label: "Community & access", href: "#community" },
-    ],
-  },
-  {
-    title: "Reference",
-    links: [
-      { label: "Knowledge network", href: "#resources" },
-      { label: "FAQ", href: "#faq" },
-    ],
-  },
-];
-
-const roadmap = [
-  {
-    phase: "Phase 1 - Foundations",
-    focus:
-      "Marketing site, waitlist, curriculum browser, Resource Vault essentials, and showcase modules seeded from the AI Architect Academy repository.",
-    outcome: "Public launch with SEO foundations, content tagging, and waitlist instrumentation.",
-  },
-  {
-    phase: "Phase 2 - Guided Delivery",
-    focus:
-      "Authenticated workspace with learning paths, progress tracking, companion notebooks, services CRM, and project pulse exports.",
-    outcome: "Teams co-build with the assistant, share workspaces, and monitor evaluation health with stakeholder updates.",
-  },
-  {
-    phase: "Phase 3 - AI Pair-Partner",
-    focus:
-      "Full AI assistant with retrieval-augmented generation, sandbox execution, insight playlist automation, and team collaboration hooks (Slack, Linear, Notion).",
-    outcome: "Adaptive plans, automated evidence packages, and agent-triggered workflows across delivery and content channels.",
-  },
-  {
-    phase: "Phase 4 - Marketplace + Ops",
-    focus:
-      "Community-sourced modules, evaluation benchmarks, premium services marketplace, and operational analytics for AI Centers of Excellence.",
-    outcome: "Ecosystem of reusable assets with performance benchmarks, monetization options, and supporter experiences.",
-  },
-];
-
-const communityHighlights = [
-  {
-    title: "Waitlist & cohort interest",
-    description: "Secure an invite to upcoming accelerators, masterminds, and advisory sprints.",
-    ctaLabel: "Join the waitlist",
-    href: "mailto:frank@aiarchitect.academy?subject=AI%20Architect%20Academy%20Waitlist",
-  },
-  {
-    title: "GitHub discussions",
-    description: "Collaborate on modules, share feedback, and shape the open-source knowledge base.",
-    ctaLabel: "Contribute on GitHub",
-    href: "https://github.com/frankxai/saas-ai-architect-academy/discussions",
-  },
-  {
-    title: "Creator mastermind",
-    description: "Monthly salons for creators and influencers amplifying responsible AI narratives.",
-    ctaLabel: "Request an invite",
-    href: "mailto:frank@aiarchitect.academy?subject=Creator%20Mastermind%20Invite",
-  },
-  {
-    title: "Inner circle digest",
-    description: "Private monthly digest and live Q&A for family, friends, and premium supporters.",
-    ctaLabel: "Subscribe to the digest",
-    href: "mailto:frank@aiarchitect.academy?subject=Inner%20Circle%20Digest",
-  },
-];
-
-const faqItems = [
-  {
-    question: "How does the AI Architect Assistant stay grounded and trustworthy?",
-    answer:
-      "The assistant retrieves answers from the Academy knowledge graph, GitHub artifacts, premium service playbooks, and verified partner stories. Every response includes citations, evaluation status, and suggested next steps so humans and companion agents can verify outputs before execution.",
-  },
-  {
-    question: "What deliverables do teams, creators, and supporters receive as they engage?",
-    answer:
-      "Each module or service ends with a concrete asset - architecture diagram, ADR, runbook, checklist, ROI calculator, editorial kit, or KPI tracker. Deliverables are versioned, exportable to Jira/Linear/Notion, and linked back to policy controls and content prompts for amplification.",
-  },
-  {
-    question: "How do high-value clients activate premium services?",
-    answer:
-      "Choose from the service deck and schedule a consult. We align on scope, ROI targets, governance expectations, and collaboration rhythms. Engagements include dedicated assistant channels, weekly telemetry, and executive-ready storytelling assets.",
-  },
-  {
-    question: "How do friends, family, and the community stay updated?",
-    answer:
-      "Subscribe to the inner circle digest, join community rituals, and follow the projects pulseboard. We share personal milestones, behind-the-scenes progress, and curated resource recommendations designed for every experience level.",
-  },
-  {
-    question: "How can autonomous agents plug into the platform?",
-    answer:
-      "Agents can request structured JSON views of modules, personas, services, and roadmap data (beta), trigger assistant workflows, and receive webhooks when evaluations drift or approvals are required. Stable anchor IDs ensure reliable scraping and referencing across experiences.",
-  },
-];
-
-const faqStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer,
-    },
-  })),
-};
-
-export default function Home() {
+function Navigation() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-slate-100">
-      <Script id="faq-schema" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify(faqStructuredData)}
-      </Script>
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <Link href="/" className="flex items-center gap-3 text-cyan-100">
-            <Image src="/logo.svg" alt="AI Architect Academy" width={40} height={40} className="h-10 w-10" />
-          </Link>
-          <nav className="hidden items-center gap-5 text-sm font-medium xl:flex">
-            {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="transition hover:text-cyan-300">
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex items-center gap-3 text-sm font-semibold">
-            <Link
-              href="/curriculum"
-              className="rounded-full bg-cyan-400 px-4 py-2 text-slate-900 transition hover:bg-cyan-300"
-            >
-              Curriculum experience
-            </Link>
-            <Link
-              href="#services"
-              className="hidden rounded-full border border-white/30 px-4 py-2 transition hover:border-cyan-300 hover:text-cyan-200 sm:inline-flex"
-            >
-              View services
-            </Link>
-            <Link
-              href="https://github.com/frankxai/saas-ai-architect-academy"
-              className="rounded-full border border-white/30 px-4 py-2 transition hover:border-cyan-300 hover:text-cyan-200"
-            >
-              Follow the build
-            </Link>
-          </div>
-        </div>
-        <div className="flex gap-3 overflow-x-auto px-6 pb-4 text-xs font-medium text-slate-300 xl:hidden">
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/80 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center gap-3">
+          <Image src="/logo.svg" alt="AI Architect Academy" width={36} height={36} className="h-9 w-9" />
+          <span className="text-sm font-semibold uppercase tracking-[0.35em] text-cyan-200">
+            AI Architect Academy
+          </span>
+        </Link>
+        <nav className="hidden items-center gap-2 text-xs uppercase tracking-[0.35em] text-slate-300 lg:flex">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="whitespace-nowrap rounded-full border border-white/10 px-3 py-1">
+            <Link key={link.label} href={link.href} className="rounded-full px-3 py-2 transition hover:text-cyan-200">
               {link.label}
             </Link>
           ))}
+        </nav>
+        <div className="hidden items-center gap-3 lg:flex">
+          <Link
+            href="/curriculum"
+            className="rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
+          >
+            Explore curriculum
+          </Link>
+          <Link
+            href="/workspaces"
+            className="rounded-full bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300"
+          >
+            Enter workspace
+          </Link>
         </div>
-      </header>
+      </div>
+    </header>
+  );
+}
 
-      <main className="mx-auto flex max-w-7xl flex-col gap-24 px-6 py-16">
-        <section id="vision" className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-10">
-          <div className="pointer-events-none absolute inset-0 opacity-60">
-            <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-cyan-500/20 to-transparent" />
-            <div className="absolute -left-16 top-20 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl" />
-            <div className="absolute -right-10 bottom-0 h-52 w-52 rounded-full bg-indigo-500/10 blur-3xl" />
-          </div>
-          <div className="relative space-y-10">
-            <div className="space-y-6">
-              <span className="inline-flex items-center rounded-full border border-cyan-300/40 bg-cyan-300/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">
-                Sprint-based academy - coding agents - production proof
-              </span>
-              <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-                Build, test, and scale coding agents with a curriculum that delivers proof every sprint.
-              </h1>
-              <p className="max-w-3xl text-base text-slate-200 sm:text-lg">
-                Start with dependable agent foundations, move into rapid prototyping, translate wins into production
-                architectures, and brief sponsors with evidence. Companion assistants keep telemetry, CTAs, and progress
-                digests flowing so humans and agents stay aligned.
-              </p>
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="/curriculum"
-                  className="rounded-full bg-cyan-400 px-6 py-3 text-center text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
-                >
-                  Explore the sprint tracks
-                </Link>
-                <Link
-                  href="#experience"
-                  className="rounded-full border border-white/20 px-6 py-3 text-center text-sm font-semibold text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
-                >
-                  See how the academy works
-                </Link>
-                <Link
-                  href="#library"
-                  className="rounded-full border border-white/20 px-6 py-3 text-center text-sm font-semibold text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
-                >
-                  Download the templates
-                </Link>
-              </div>
-            </div>
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {stats.map((stat) => (
-                <div key={stat.label} className="rounded-2xl border border-white/10 bg-slate-950/40 p-5 shadow-lg shadow-cyan-500/5">
-                  <div className="text-3xl font-semibold text-cyan-200">{stat.value}</div>
-                  <div className="mt-2 text-sm font-semibold text-slate-100">{stat.label}</div>
-                  <p className="mt-2 text-xs text-slate-300">{stat.description}</p>
-                </div>
-              ))}
-            </div>
-            <div className="relative rounded-2xl border border-cyan-300/20 bg-cyan-300/5 p-5 text-sm text-cyan-100">
-              <p>
-                Powered by the <span className="font-semibold">AI Architect Academy</span> knowledge base: design patterns, projects, governance playbooks, and creator prompt libraries - all cross-linked inside the platform experience.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2 text-[10px] font-medium uppercase tracking-[0.3em] text-cyan-200">
-                {keywordCloud.map((keyword) => (
-                  <span key={keyword} className="rounded-full border border-cyan-300/30 bg-slate-950/60 px-3 py-1">
-                    {keyword}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="experience" className="space-y-10">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl space-y-3">
-              <h2 className="text-3xl font-semibold">Experience pillars</h2>
-              <p className="text-base text-slate-200">
-                Designed with architects, program leads, creators, and compliance partners to balance innovation with accountability. Humans and autonomous agents share a consistent interface, structured data, and traceable decisions.
-              </p>
-            </div>
+function HeroSection() {
+  return (
+    <SectionShell id="vision" className="bg-gradient-to-br from-slate-900/80 via-slate-950/90 to-slate-900/80">
+      <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+        <div className="space-y-6">
+          <Badge tone="accent">Sprint-ready SaaS MVP</Badge>
+          <h1 className="max-w-2xl text-4xl font-semibold tracking-tight sm:text-5xl">
+            Ship governed AI outcomes with an academy, assistant, and workspace built for architects.
+          </h1>
+          <p className="max-w-3xl text-base text-slate-300 sm:text-lg">
+            The AI Architect Academy SaaS platform blends learning, execution, telemetry, and storytelling so teams and their
+            copilots move from intent to production proof without losing trust.
+          </p>
+          <div className="flex flex-wrap gap-3">
             <Link
-              href="#sitemap"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-200 transition hover:text-cyan-100"
+              href="/workspaces"
+              className="rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300"
             >
-              Jump to sitemap &rarr;
+              Launch learner workspace
             </Link>
-          </div>
-          <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
-            {experiencePillars.map((pillar) => (
-              <div key={pillar.title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-                <h3 className="text-xl font-semibold text-cyan-100">{pillar.title}</h3>
-                <p className="mt-3 text-sm text-slate-200">{pillar.description}</p>
-                <ul className="mt-4 space-y-2 text-sm text-slate-300">
-                  {pillar.highlights.map((highlight) => (
-                    <li key={highlight} className="flex gap-2">
-                      <span aria-hidden className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-200" />
-                      <span>{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="rounded-3xl border border-cyan-300/30 bg-cyan-300/10 p-6 text-sm text-cyan-50">
-            <h3 className="text-lg font-semibold text-cyan-100">Integration fabric</h3>
-            <ul className="mt-4 space-y-2">
-              {integrationHighlights.map((highlight) => (
-                <li key={highlight} className="flex gap-2">
-                  <span aria-hidden className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-200" />
-                  <span>{highlight}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section id="curriculum" className="space-y-10">
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold">Micro-learning architecture</h2>
-            <p className="max-w-3xl text-base text-slate-200">
-              Hundreds of bite-sized modules compose journeys for architects, product leaders, creators, and governance teams. Each module ends with a deliverable - canvas, runbook, code lab, or storytelling asset - so learning translates directly into execution and amplification.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {moduleTracks.map((track) => (
-              <div key={track.title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-                <h3 className="text-xl font-semibold text-cyan-100">{track.title}</h3>
-                <p className="mt-3 text-sm text-slate-200">{track.description}</p>
-                <ul className="mt-4 space-y-2 text-sm text-slate-300">
-                  {track.modules.map((module) => (
-                    <li key={module}>- {module}</li>
-                  ))}
-                </ul>
-                <div className="mt-4 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-cyan-200">
-                  <span className="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1">{track.duration}</span>
-                  <span className="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1">{track.deliverable}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 text-sm text-slate-200">
-            <p>
-              <span className="font-semibold text-slate-100">Module sources:</span> existing playbooks in the Academy repository, partner case studies, creator collaborations, and community stories curated by maintainers. Content is versioned, tagged by maturity and persona, and enriched with evaluation rubrics plus policy mappings for AI agents.
-            </p>
-          </div>
-        </section>
-
-        <section id="assistant" className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-3xl border border-cyan-300/40 bg-cyan-400/10 p-6">
-            <h2 className="text-3xl font-semibold text-cyan-100">AI Architect Assistant</h2>
-            <p className="mt-3 text-sm text-cyan-50">
-              Retrieval-augmented copilot trained on the Academy corpus, architecture decisions, premium services, and storytelling kits. Tuned for both human collaborators and autonomous agents.
-            </p>
-            <ul className="mt-6 space-y-3 text-sm text-cyan-50">
-              {assistantHighlights.map((highlight) => (
-                <li key={highlight} className="flex gap-3">
-                  <span className="mt-1 inline-flex h-2 w-2 rounded-full bg-cyan-200" />
-                  <span>{highlight}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-6 rounded-2xl border border-white/20 bg-white/10 p-4 text-xs uppercase tracking-[0.3em] text-slate-900 shadow-lg">
-              Launching with OpenRouter + Supabase Vector - Session orchestration via LangChain - Inline citations to primary sources
-            </div>
-          </div>
-          <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6">
-            <h3 className="text-lg font-semibold text-slate-100">Assistant workflow</h3>
-            <ol className="mt-4 space-y-4 text-sm text-slate-200">
-              {assistantWorkflows.map((step, index) => (
-                <li key={step.title} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-                  <div className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Step {index + 1}</div>
-                  <div className="mt-1 text-base font-semibold text-slate-100">{step.title}</div>
-                  <p className="mt-2 text-sm text-slate-300">{step.description}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
-        <section id="workspaces" className="space-y-10">
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold">Architect workspaces</h2>
-            <p className="max-w-3xl text-base text-slate-200">
-              A shared operating picture that keeps architects, program leads, risk partners, creators, family supporters, and AI agents aligned from strategy through operations.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {workspaceStreams.map((stream) => (
-              <div key={stream.title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-                <h3 className="text-xl font-semibold text-cyan-100">{stream.title}</h3>
-                <p className="mt-3 text-sm text-slate-200">{stream.description}</p>
-                <ul className="mt-4 space-y-2 text-sm text-slate-300">
-                  {stream.elements.map((element) => (
-                    <li key={element} className="flex gap-2">
-                      <span aria-hidden className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-300" />
-                      <span>{element}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="personas" className="space-y-6">
-          <h2 className="text-3xl font-semibold">Designed for the whole AI program</h2>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-            {personaGroups.map((persona) => (
-              <div key={persona.title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-200">
-                <h3 className="text-lg font-semibold text-cyan-100">{persona.title}</h3>
-                <p className="mt-2 text-sm text-slate-300">{persona.summary}</p>
-                <ul className="mt-3 space-y-2 text-sm text-slate-300">
-                  {persona.outcomes.map((outcome) => (
-                    <li key={outcome}>- {outcome}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="services" className="space-y-10">
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold">Signature services</h2>
-            <p className="max-w-3xl text-base text-slate-200">
-              Advisory intensives, embedded labs, creator accelerators, and inner circle experiences designed for executive sponsors, partners, and supporters who need concierge support.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {serviceOffers.map((offer) => (
-              <div key={offer.title} className="flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-200">
-                <div className="space-y-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-cyan-100">{offer.title}</h3>
-                    <p className="mt-2 text-sm text-slate-300">{offer.summary}</p>
-                    <p className="mt-2 text-xs uppercase tracking-[0.3em] text-cyan-200">{offer.ideal}</p>
-                  </div>
-                  <ul className="space-y-2 text-sm text-slate-300">
-                    {offer.outcomes.map((outcome) => (
-                      <li key={outcome} className="flex gap-2">
-                        <span aria-hidden className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-200" />
-                        <span>{outcome}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <Link
-                  href={offer.href}
-                  className="mt-6 inline-flex items-center justify-center rounded-full bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300"
-                >
-                  {offer.ctaLabel}
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="library" className="space-y-10">
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold">Resource Vault</h2>
-            <p className="max-w-3xl text-base text-slate-200">
-              Curated assets for humans and their agents - spanning free knowledge, premium studio kits, and structured data contracts. Every card includes persona tags, formats, and access tiers for fast decision-making.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {resourceVault.map((tier) => (
-              <div key={tier.tier} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-200">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-semibold text-cyan-100">{tier.tier}</h3>
-                  <span className="rounded-full border border-cyan-300/40 bg-cyan-300/10 px-3 py-1 text-xs uppercase tracking-[0.3em] text-cyan-200">
-                    {tier.badge}
-                  </span>
-                </div>
-                <p className="mt-3 text-sm text-slate-300">{tier.description}</p>
-                <ul className="mt-4 space-y-3">
-                  {tier.items.map((item) => (
-                    <li key={item.name} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-sm font-semibold text-slate-100">{item.name}</span>
-                        <span className="text-[10px] uppercase tracking-[0.3em] text-cyan-200">{item.format}</span>
-                      </div>
-                      <p className="mt-2 text-xs text-slate-300">{item.summary}</p>
-                      <Link
-                        href={item.href}
-                        className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-cyan-200 transition hover:text-cyan-100"
-                      >
-                        Access resource &rarr;
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-4 text-xs text-cyan-200">{tier.note}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="projects" className="space-y-10">
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold">Project pulseboard</h2>
-            <p className="max-w-3xl text-base text-slate-200">
-              Live telemetry across books, platform releases, creator initiatives, and community rituals. Follow along or plug your agent into webhooks for automated updates.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {projectPulses.map((project) => (
-              <div key={project.title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-200">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="text-lg font-semibold text-cyan-100">{project.title}</h3>
-                  <span className="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-[11px] uppercase tracking-[0.3em] text-cyan-200">
-                    {project.stage}
-                  </span>
-                </div>
-                <p className="mt-3 text-sm text-slate-300">{project.summary}</p>
-                <div className="mt-4 grid gap-3 text-xs text-slate-300">
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-3">
-                    <span className="text-slate-200">Last updated:</span> {project.lastUpdated}
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-3">
-                    <span className="text-slate-200">Next milestone:</span> {project.nextMilestone}
-                  </div>
-                </div>
-                <div className="mt-4 flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.3em] text-cyan-200">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="search" className="space-y-6">
-          <h2 className="text-3xl font-semibold">Search & discovery for humans and agents</h2>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {searchIntents.map((intent) => (
-              <Link
-                key={intent.term}
-                href={intent.destination}
-                className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition hover:border-cyan-300/60 hover:text-cyan-100"
-              >
-                <div className="text-lg font-semibold text-cyan-100">{intent.term}</div>
-                <p className="mt-3 text-sm text-slate-200">{intent.human}</p>
-                <p className="mt-2 text-xs text-slate-300">Agent need: {intent.agent}</p>
-                <p className="mt-4 text-xs uppercase tracking-[0.3em] text-cyan-200">Jump to section &rarr;</p>
-              </Link>
-            ))}
-          </div>
-          <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 text-sm text-slate-200">
-            <p>
-              Need structured access? Request the upcoming <span className="font-semibold text-slate-100">API & agent toolkit</span> to query modules, personas, services, and roadmap data directly. Stable anchor IDs keep autonomous agents synchronized with the human experience.
-            </p>
-          </div>
-        </section>
-
-        <section id="insights" className="space-y-10">
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold">Insight playlists</h2>
-            <p className="max-w-3xl text-base text-slate-200">
-              SEO-powered content clusters that translate platform expertise into evergreen articles, podcasts, videos, and prompt packs. Perfect for creators, clients, and agents searching for structured narratives.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {insightPlaylists.map((playlist) => (
-              <div key={playlist.title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-200">
-                <h3 className="text-lg font-semibold text-cyan-100">{playlist.title}</h3>
-                <p className="mt-2 text-sm text-slate-300">{playlist.focus}</p>
-                <div className="mt-4 space-y-2">
-                  <div>
-                    <div className="text-xs uppercase tracking-[0.3em] text-cyan-200">Keywords</div>
-                    <div className="mt-2 flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.2em] text-slate-300">
-                      {playlist.keywords.map((keyword) => (
-                        <span key={keyword} className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1">
-                          {keyword}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-xs uppercase tracking-[0.3em] text-cyan-200">Planned assets</div>
-                    <ul className="mt-2 space-y-1 text-sm text-slate-300">
-                      {playlist.assets.map((asset) => (
-                        <li key={asset}>- {asset}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="operations" className="space-y-10">
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold">Operate with confidence</h2>
-            <p className="max-w-3xl text-base text-slate-200">
-              Governance, evaluation, value tracking, and reputation proof points woven through the platform so teams can scale AI responsibly without slowing momentum.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {operationsPractices.map((practice) => (
-              <div key={practice.title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-                <h3 className="text-xl font-semibold text-cyan-100">{practice.title}</h3>
-                <p className="mt-3 text-sm text-slate-200">{practice.description}</p>
-                <ul className="mt-4 space-y-2 text-sm text-slate-300">
-                  {practice.practices.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <span aria-hidden className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-300" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="rounded-3xl border border-cyan-300/30 bg-cyan-300/10 p-6 text-sm text-cyan-50">
-            <h3 className="text-lg font-semibold text-cyan-100">Integration fabric</h3>
-            <ul className="mt-4 space-y-2">
-              {integrationHighlights.map((highlight) => (
-                <li key={highlight} className="flex gap-2">
-                  <span aria-hidden className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-200" />
-                  <span>{highlight}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        <section id="roadmap" className="space-y-6">
-          <h2 className="text-3xl font-semibold">Build roadmap</h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {roadmap.map((entry) => (
-              <div key={entry.phase} className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 text-sm text-slate-200">
-                <div className="text-slate-100">{entry.phase}</div>
-                <p className="mt-2">{entry.focus}</p>
-                <p className="mt-3 text-slate-300">Outcome: {entry.outcome}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="community" className="space-y-10">
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold">Community & access</h2>
-            <p className="max-w-3xl text-base text-slate-200">
-              Join the movement - co-build modules, amplify stories, and stay close to every milestone through masterminds, digests, and advisory circles.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {communityHighlights.map((item) => (
-              <div key={item.title} className="flex h-full flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-200">
-                <div>
-                  <h3 className="text-lg font-semibold text-cyan-100">{item.title}</h3>
-                  <p className="mt-2 text-sm text-slate-300">{item.description}</p>
-                </div>
-                <Link
-                  href={item.href}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-200 transition hover:text-cyan-100"
-                >
-                  {item.ctaLabel} &rarr;
-                </Link>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="resources" className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-sm text-slate-200">
-          <h2 className="text-2xl font-semibold text-slate-100">Dive into the build artifacts</h2>
-          <p className="mt-3 max-w-3xl">
-            Explore the public roadmap, capabilities, experience blueprint, and UX guidance that shape the platform. Perfect for architects, PMs, creators, and AI agents that need deeper context and reusable assets.
-          </p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            {knowledgeLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="rounded-full border border-white/20 px-4 py-2 text-xs uppercase tracking-[0.25em] text-slate-100 transition hover:border-cyan-300/70 hover:text-cyan-200"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <section id="sitemap" className="space-y-6">
-          <h2 className="text-3xl font-semibold">Site map</h2>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {sitemapSections.map((section) => (
-              <div key={section.title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-200">
-                <h3 className="text-lg font-semibold text-cyan-100">{section.title}</h3>
-                <ul className="mt-3 space-y-2 text-slate-300">
-                  {section.links.map((link) => (
-                    <li key={link.href}>
-                      <Link href={link.href} className="transition hover:text-cyan-200">
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="faq" className="space-y-6">
-          <h2 className="text-3xl font-semibold">FAQ</h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            {faqItems.map((item) => (
-              <div key={item.question} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-200">
-                <h3 className="text-lg font-semibold text-cyan-100">{item.question}</h3>
-                <p className="mt-2 text-slate-300">{item.answer}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-center text-sm text-slate-200">
-          <h2 className="text-2xl font-semibold text-slate-100">Co-build with the Academy</h2>
-          <p className="mx-auto mt-3 max-w-3xl">
-            We are building in public. Join the waitlist, contribute modules, amplify stories, or partner on alpha cohorts to shape how AI programs deliver governed value at scale.
-          </p>
-          <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              href="https://github.com/frankxai/saas-ai-architect-academy/discussions"
-              className="rounded-full bg-cyan-400 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300"
+              href="/curriculum"
+              className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
             >
-              Join the discussion
+              Browse modules & labs
             </Link>
             <Link
               href="mailto:frank@aiarchitect.academy"
-              className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-cyan-200 hover:text-cyan-200"
+              className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
             >
-              Partner with us
+              Talk to the team
             </Link>
           </div>
-        </section>
-      </main>
-
-      <footer className="border-t border-white/10 bg-slate-950/80">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-8 text-sm text-slate-400 lg:flex-row lg:items-start lg:justify-between">
-          <div className="space-y-3">
-            <p>
-              Built in public by the AI Architect Academy team. Contributions welcome via GitHub issues and discussions.
-            </p>
-            <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-slate-500">
-              <span>Architecture</span>
-              <span>Governance</span>
-              <span>Agents</span>
-              <span>Creators</span>
-              <span>Community</span>
-            </div>
-          </div>
-          <div className="flex flex-col items-start gap-3 text-sm text-slate-300 lg:items-end">
-            <div className="flex flex-wrap justify-end gap-4">
-              <Link href="https://github.com/AI-Architect-Academy/ai-architect-academy" className="hover:text-cyan-200">
-                Open-source library
-              </Link>
-              <Link href="https://github.com/frankxai/saas-ai-architect-academy" className="hover:text-cyan-200">
-                Platform repo
-              </Link>
-              <Link href="mailto:frank@aiarchitect.academy" className="hover:text-cyan-200">
-                Contact the team
-              </Link>
-            </div>
-            <div className="flex flex-wrap justify-end gap-2 text-xs text-slate-500">
-              {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="hover:text-cyan-200">
-                  {link.label}
-                </Link>
+        </div>
+        <div className="flex flex-col items-center gap-6">
+          <ProgressIndicator value={0.68} label="Learner completion" />
+          <div className="w-full max-w-xs space-y-3 rounded-3xl border border-white/10 bg-white/5 p-4 text-xs text-slate-200">
+            <p className="font-semibold uppercase tracking-[0.3em] text-cyan-200">Highlights</p>
+            <ul className="space-y-2">
+              {heroHighlights.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                  <span>{item}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
-      </footer>
+      </div>
+    </SectionShell>
+  );
+}
+
+function StatsBar() {
+  return (
+    <SectionShell className="bg-white/[0.03]">
+      <SectionHeader
+        eyebrow="Signals"
+        title="Evidence that learners and sponsors already rely on"
+        subtitle="Every asset is grounded in the open-source academy and updated weekly with frontier lab research."
+      />
+      <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {stats.map((stat) => (
+          <Card key={stat.label} tone="outline">
+            <p className="text-3xl font-semibold text-cyan-200">{stat.value}</p>
+            <p className="text-sm font-semibold text-slate-100">{stat.label}</p>
+            <p className="text-xs text-slate-400">{stat.note}</p>
+          </Card>
+        ))}
+      </div>
+    </SectionShell>
+  );
+}
+
+function SpecLoop() {
+  return (
+    <SectionShell id="spec" className="bg-gradient-to-br from-slate-900/80 via-slate-950/80 to-slate-900/80">
+      <SectionHeader
+        eyebrow="Spec-driven delivery"
+        title="One operating loop for humans and agents"
+        subtitle="Every sprint begins with a mission brief and ends with evidence packaged for stakeholders, copilots, and community."
+      />
+      <div className="mt-10 grid gap-6 lg:grid-cols-4">
+        {specFlow.map((step) => (
+          <Card key={step.step} title={step.step + ". " + step.title} subtitle={step.description} tone="outline">
+            <ul className="space-y-2 text-xs text-slate-400">
+              {step.artifacts.map((artifact) => (
+                <li key={artifact} className="flex gap-2">
+                  <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                  <span>{artifact}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+      <div className="mt-12 grid gap-4 md:grid-cols-2">
+        {specPrinciples.map((principle) => (
+          <Card key={principle.title} tone="default" title={principle.title}>
+            <p className="text-sm text-slate-300">{principle.description}</p>
+          </Card>
+        ))}
+      </div>
+    </SectionShell>
+  );
+}
+
+function CurriculumTracks() {
+  return (
+    <SectionShell id="curriculum">
+      <SectionHeader
+        eyebrow="Curriculum"
+        title="Learning tracks designed to produce artefacts every five days"
+        subtitle="Adaptive micro-learning, labs, and evaluation hooks meet you where your team is and keep momentum visible."
+        actions={<Link href="/curriculum" className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Open curriculum hub</Link>}
+      />
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
+        {moduleTracks.map((track) => (
+          <Card key={track.title} title={track.title} subtitle={track.duration + " • " + track.deliverable}>
+            <p className="text-sm text-slate-300">{track.description}</p>
+            <ul className="mt-4 space-y-2 text-xs text-slate-400">
+              {track.modules.map((module) => (
+                <li key={module} className="flex gap-2">
+                  <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                  <span>{module}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+      <div className="mt-10 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-slate-400">
+        {keywordCloud.map((keyword) => (
+          <Badge key={keyword} tone="neutral">
+            {keyword}
+          </Badge>
+        ))}
+      </div>
+    </SectionShell>
+  );
+}
+
+function ExperienceStack() {
+  return (
+    <SectionShell id="experience" className="bg-white/[0.03]">
+      <SectionHeader
+        eyebrow="Experience"
+        title="The learner journey spans four momentum pillars"
+        subtitle="Each pillar ships guides, automation, and telemetry so learners, mentors, and copilots stay aligned on progress."
+      />
+      <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        {experiencePillars.map((pillar) => (
+          <Card key={pillar.title} title={pillar.title} subtitle={pillar.description}>
+            <ul className="space-y-2 text-xs text-slate-400">
+              {pillar.highlights.map((highlight) => (
+                <li key={highlight} className="flex gap-2">
+                  <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+    </SectionShell>
+  );
+}
+
+function AssistantSection() {
+  return (
+    <SectionShell id="assistant" className="bg-gradient-to-br from-slate-900/80 via-slate-950/80 to-slate-900/80">
+      <SectionHeader
+        eyebrow="AI Architect Assistant"
+        title="Your copilots co-build, evaluate, and communicate with you"
+        subtitle="Scout, Coach, Critic, Archivist, and Companion operate across the learner experience with clear SLAs and telemetry."
+        actions={<Link href="/curriculum#assistant" className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Assistant playbooks</Link>}
+      />
+      <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+        <div className="space-y-6">
+          <Card tone="default">
+            <ul className="space-y-3 text-sm text-slate-300">
+              {assistantHighlights.map((highlight) => (
+                <li key={highlight} className="flex gap-2">
+                  <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+          <div className="grid gap-4 md:grid-cols-2">
+            {assistantWorkflows.map((workflow) => (
+              <Card key={workflow.title} tone="outline" title={workflow.title}>
+                <p className="text-xs text-slate-400">{workflow.description}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+        <Card tone="accent" title="Assistant telemetry stack" subtitle="Planned MVP integrations">
+          <ul className="space-y-3 text-sm text-slate-200">
+            <li className="flex flex-col gap-1">
+              <span className="font-semibold text-slate-100">Supabase learner hub</span>
+              <span className="text-xs text-slate-300">
+                Store module progress, evaluation snapshots, and sponsor artefacts with row level security.
+              </span>
+            </li>
+            <li className="flex flex-col gap-1">
+              <span className="font-semibold text-slate-100">Langfuse & OpenTelemetry</span>
+              <span className="text-xs text-slate-300">Trace assistant actions, runtime SLAs, and guardrail verdicts.</span>
+            </li>
+            <li className="flex flex-col gap-1">
+              <span className="font-semibold text-slate-100">Knowledge graph sync</span>
+              <span className="text-xs text-slate-300">Daily ingestion from Academy docs, labs, and Evidence Locker entries.</span>
+            </li>
+          </ul>
+          <p className="mt-4 text-xs text-slate-300">
+            Want to help wire the Supabase experience? Reach out and we will provision a build preview with the current MVP.
+          </p>
+          <Link
+            href="mailto:frank@aiarchitect.academy?subject=Supabase%20Workspace%20Collab"
+            className="mt-4 inline-flex w-max rounded-full bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900 transition hover:bg-slate-200"
+          >
+            Support the MVP build
+          </Link>
+        </Card>
+      </div>
+    </SectionShell>
+  );
+}
+function WorkspaceSection() {
+  return (
+    <SectionShell id="workspaces" className="bg-white/[0.03]">
+      <SectionHeader
+        eyebrow="Learner workspace"
+        title="One cockpit ties modules, assistant prompts, telemetry, and storytelling"
+        subtitle="Every stream keeps learners on track while sponsors and creators can see progress in one place."
+        actions={<Link href="/workspaces" className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">View workspace MVP</Link>}
+      />
+      <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        {workspaceStreams.map((stream) => (
+          <Card key={stream.title} title={stream.title} subtitle={stream.description}>
+            <ul className="space-y-2 text-xs text-slate-400">
+              {stream.elements.map((element) => (
+                <li key={element} className="flex gap-2">
+                  <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                  <span>{element}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+    </SectionShell>
+  );
+}
+
+function PersonaSection() {
+  return (
+    <SectionShell id="personas" className="bg-gradient-to-br from-slate-900/80 via-slate-950/80 to-slate-900/80">
+      <SectionHeader
+        eyebrow="Personas"
+        title="Designed for every stakeholder in the AI Architect orbit"
+        subtitle="Learners, sponsors, creators, and even autonomous agents get clear outcomes and artefacts tailored to them."
+      />
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
+        {personaGroups.map((persona) => (
+          <Card key={persona.title} title={persona.title} subtitle={persona.summary}>
+            <ul className="space-y-2 text-xs text-slate-400">
+              {persona.outcomes.map((outcome) => (
+                <li key={outcome} className="flex gap-2">
+                  <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-purple-300" />
+                  <span>{outcome}</span>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+    </SectionShell>
+  );
+}
+
+function ServicesSection() {
+  return (
+    <SectionShell id="services">
+      <SectionHeader
+        eyebrow="Premium services"
+        title="Advisory and accelerators that plug directly into the platform"
+        subtitle="Enterprise, creator, and inner circle partners can extend the SaaS experience with white-glove guidance."
+      />
+      <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        {serviceOffers.map((offer) => (
+          <Card key={offer.title} title={offer.title} subtitle={offer.summary}>
+            <p className="text-xs text-slate-400">{offer.ideal}</p>
+            <ul className="mt-4 space-y-2 text-xs text-slate-400">
+              {offer.outcomes.map((outcome) => (
+                <li key={outcome} className="flex gap-2">
+                  <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                  <span>{outcome}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="pt-4">
+              <Link
+                href={offer.href}
+                className="inline-flex rounded-full border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
+              >
+                {offer.ctaLabel}
+              </Link>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </SectionShell>
+  );
+}
+
+function ResourceSection() {
+  return (
+    <SectionShell id="resources" className="bg-white/[0.03]">
+      <SectionHeader
+        eyebrow="Resource vault"
+        title="Choose the access level that matches your mission"
+        subtitle="Open-source assets, learner workspace, and premium advisory channels are ready when you are."
+      />
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
+        {resourceVault.map((tier) => (
+          <Card key={tier.tier} tone="outline">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-xl font-semibold text-slate-100">{tier.tier}</h3>
+                <p className="text-xs uppercase tracking-[0.3em] text-cyan-200">{tier.badge}</p>
+              </div>
+            </div>
+            <p className="text-sm text-slate-300">{tier.description}</p>
+            <ul className="space-y-3 text-xs text-slate-400">
+              {tier.items.map((item) => (
+                <li key={item.name} className="rounded-2xl border border-white/10 bg-slate-950/60 p-4 transition hover:border-cyan-300/40">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-semibold text-slate-100">{item.name}</p>
+                      <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">{item.format}</p>
+                    </div>
+                    <Link
+                      href={item.href}
+                      target={item.href.startsWith("http") ? "_blank" : undefined}
+                      className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200"
+                    >
+                      Open
+                    </Link>
+                  </div>
+                  <p className="mt-3 text-xs text-slate-400">{item.summary}</p>
+                </li>
+              ))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+    </SectionShell>
+  );
+}
+
+function ClosingCta() {
+  return (
+    <SectionShell className="bg-gradient-to-br from-cyan-500/15 via-slate-950/80 to-indigo-500/20 text-slate-100">
+      <div className="flex flex-col gap-6 text-center">
+        <Badge tone="highlight" className="self-center">
+          Ready to co-build
+        </Badge>
+        <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+          Ship your next AI milestone with governed velocity.
+        </h2>
+        <p className="mx-auto max-w-2xl text-sm text-slate-200 sm:text-base">
+          Join the sprint, explore the workspace, or bring the assistant into your portfolio. The MVP is live — let&apos;s make your
+          learners unstoppable.
+        </p>
+        <div className="flex flex-wrap justify-center gap-3">
+          <Link
+            href="/workspaces"
+            className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-200"
+          >
+            Enter learner workspace
+          </Link>
+          <Link
+            href="/curriculum/modules"
+            className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
+          >
+            Explore module atlas
+          </Link>
+          <Link
+            href="mailto:frank@aiarchitect.academy"
+            className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
+          >
+            Become a launch partner
+          </Link>
+        </div>
+      </div>
+    </SectionShell>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-white/10 bg-slate-950/90">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 text-xs text-slate-400 sm:px-6 lg:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2">
+            <Image src="/logo.svg" alt="AI Architect Academy" width={28} height={28} className="h-7 w-7" />
+            <span className="text-[11px] uppercase tracking-[0.35em] text-cyan-200">AI Architect Academy</span>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="mailto:frank@aiarchitect.academy" className="hover:text-cyan-200">
+              frank@aiarchitect.academy
+            </Link>
+            <Link href="https://github.com/frankxai/saas-ai-architect-academy" target="_blank" className="hover:text-cyan-200">
+              GitHub
+            </Link>
+            <Link href="https://github.com/AI-Architect-Academy/ai-architect-academy" target="_blank" className="hover:text-cyan-200">
+              Open source knowledge base
+            </Link>
+          </div>
+        </div>
+        <p>
+          Built in public to accelerate real-world AI value delivery. Curriculum, assistant playbooks, evaluation harnesses, and
+          governance artefacts update weekly with signals from OpenAI, Anthropic, DeepMind, xAI, Microsoft, Meta, and the broader
+          ecosystem.
+        </p>
+      </div>
+    </footer>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="pointer-events-none fixed inset-0 select-none opacity-60">
+        <div className="absolute -left-32 top-16 h-72 w-72 rounded-full bg-cyan-500/10 blur-3xl" />
+        <div className="absolute -right-32 top-1/3 h-80 w-80 rounded-full bg-indigo-500/10 blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl" />
+      </div>
+      <Navigation />
+      <main className="relative z-10 mx-auto flex max-w-6xl flex-col gap-12 px-4 pb-32 pt-12 sm:px-6 lg:px-8">
+        <HeroSection />
+        <StatsBar />
+        <SpecLoop />
+        <CurriculumTracks />
+        <ExperienceStack />
+        <AssistantSection />
+        <WorkspaceSection />
+        <PersonaSection />
+        <ServicesSection />
+        <ResourceSection />
+        <ClosingCta />
+      </main>
+      <Footer />
     </div>
   );
 }

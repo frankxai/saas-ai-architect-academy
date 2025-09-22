@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -49,27 +50,37 @@ const quickActions = [
 
 type QuickActionKey = (typeof quickActions)[number]["key"];
 
+const sectionNav = [
+  { label: "Tracks", href: "#tracks" },
+  { label: "Journey", href: "#journey" },
+  { label: "Micro sprints", href: "#micro-paths" },
+  { label: "Modules", href: "#module-spotlights" },
+  { label: "Assistants", href: "#assistant" },
+  { label: "Sponsors", href: "#sponsors" },
+  { label: "Docs", href: "#docs" },
+];
+
 const journeyTimeline = [
   {
-    stage: "Sprint 0 · Frame",
+    stage: "Sprint 0 - Frame",
     focus: "Clarify agent outcomes, policy guardrails, and prototype hypotheses.",
     milestones: ["Agent opportunity canvas", "Prototype hypothesis brief", "Stakeholder clarity map"],
     moduleCodes: ["AE-101", "AE-102", "RP-201", "CC-401"],
   },
   {
-    stage: "Sprint 1 · Build",
+    stage: "Sprint 1 - Build",
     focus: "Compose working agents and prototypes with instrumentation baked in.",
     milestones: ["Agent starter repo", "Prototype component kit", "Telemetry checklist"],
     moduleCodes: ["AE-103", "RP-203", "SA-302"],
   },
   {
-    stage: "Sprint 2 · Proof",
+    stage: "Sprint 2 - Proof",
     focus: "Run field tests, pilots, and enablement sessions that gather evidence.",
     milestones: ["Field test journal", "Pilot evidence pack", "Enablement loop"],
     moduleCodes: ["AE-104", "RP-204", "CC-403"],
   },
   {
-    stage: "Sprint 3 · Launch",
+    stage: "Sprint 3 - Launch",
     focus: "Translate results into solution architectures, operational plans, and sponsor briefs.",
     milestones: ["Architecture briefing", "Observability rollout", "Sponsor digest"],
     moduleCodes: ["SA-304", "OR-502", "CC-404"],
@@ -87,6 +98,7 @@ const priorityModules = ["AE-101", "RP-203", "SA-304", "OR-502", "LS-602"];
 export default function CurriculumPage() {
   const [activeTrackIndex, setActiveTrackIndex] = useState(0);
   const activeTrack = learningTracks[activeTrackIndex];
+  const router = useRouter();
 
   const moduleSpotlights = useMemo(() => {
     const highlighted = priorityModules
@@ -122,16 +134,16 @@ export default function CurriculumPage() {
 
   const handleQuickAction = (key: QuickActionKey) => {
     if (key === "agent") {
-      focusSection("tracks");
+      router.push("/curriculum/modules?track=T1");
       return;
     }
     if (key === "prototype") {
-      focusSection("module-spotlights");
+      router.push("/curriculum/modules?track=T2");
       return;
     }
     if (key === "digest") {
       focusSection("assistant");
-      setTimeout(() => focusSection("micro-paths"), 600);
+      setTimeout(() => focusSection("sponsors"), 600);
     }
   };
 
@@ -238,12 +250,23 @@ export default function CurriculumPage() {
                   </div>
                 ))}
               </div>
+              <div className="flex flex-wrap gap-2 pt-4 text-[11px] uppercase tracking-[0.3em] text-slate-400">
+                {sectionNav.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="rounded-full border border-white/15 px-3 py-1 transition hover:border-cyan-300 hover:text-cyan-200"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
             <div className="grid gap-4 text-sm text-cyan-100">
               <div className="rounded-2xl border border-white/10 bg-slate-950/50 p-5 shadow-lg shadow-cyan-500/5">
                 <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-cyan-200">What you get</h3>
                 <p className="mt-2 text-slate-200">
-                  Every module ends with a tangible asset—canvas, repo, deck, or digest—plus assistant prompts and
+                  Every module ends with a tangible asset-canvas, repo, deck, or digest-plus assistant prompts and
                   evaluation signals so the work fuels production delivery.
                 </p>
               </div>
@@ -269,8 +292,8 @@ export default function CurriculumPage() {
             <div className="space-y-2">
               <h2 className="text-3xl font-semibold">Learning tracks</h2>
               <p className="max-w-2xl text-sm text-slate-300">
-                Six tracks guide you from agent foundations to leadership and scale. Each track includes three stages—Discover,
-                Build, Launch—with clear deliverables you can put in front of stakeholders.
+                Six tracks guide you from agent foundations to leadership and scale. Each track includes three stages-Discover,
+                Build, Launch-with clear deliverables you can put in front of stakeholders.
               </p>
             </div>
             <Link
@@ -337,7 +360,7 @@ export default function CurriculumPage() {
               <h2 className="text-3xl font-semibold">Sprint journey</h2>
               <p className="max-w-3xl text-sm text-slate-300">
                 Follow the recommended sequence from framing to scale. Each phase bundles modules that create tangible
-                outputs—repos, decks, digests—ready for teams and sponsors.
+                outputs-repos, decks, digests-ready for teams and sponsors.
               </p>
             </div>
             <Link
@@ -377,7 +400,7 @@ export default function CurriculumPage() {
                         </div>
                         <div className="mt-3 space-y-1">
                           <h4 className="text-base font-semibold text-slate-100">{module.title}</h4>
-                          <p className="text-xs text-slate-300">{module.outcomes.slice(0, 2).join(" · ")}</p>
+                          <p className="text-xs text-slate-300">{module.outcomes.slice(0, 2).join(" - ")}</p>
                         </div>
                         <div className="mt-3 flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.3em] text-slate-400">
                           {module.personaFit.map((persona) => (
@@ -469,7 +492,14 @@ export default function CurriculumPage() {
           </div>
         </section>
 
-        <section id="module-spotlights" className="space-y-8">
+        <section
+          id="module-spotlights"
+          className={`space-y-8 transition-shadow duration-500 ${
+            highlightedSection === "module-spotlights"
+              ? "ring-2 ring-cyan-300 ring-offset-2 ring-offset-slate-900"
+              : ""
+          }`}
+        >
           <div className="flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
             <div className="space-y-2">
               <h2 className="text-3xl font-semibold">Featured modules</h2>
@@ -495,7 +525,7 @@ export default function CurriculumPage() {
                 </div>
                 <div className="space-y-2">
                   <h3 className="text-lg font-semibold text-slate-100">{module.title}</h3>
-                  <p className="text-xs text-slate-300">{module.outcomes.slice(0, 2).join(" · ")}</p>
+                  <p className="text-xs text-slate-300">{module.outcomes.slice(0, 2).join(" - ")}</p>
                 </div>
                 <ul className="space-y-2 text-xs text-slate-300">
                   {module.deliverables.map((deliverable) => (
@@ -523,11 +553,18 @@ export default function CurriculumPage() {
           </div>
         </section>
 
-        <section id="assistant" className="space-y-8">
+        <section
+          id="assistant"
+          className={`space-y-8 transition-shadow duration-500 ${
+            highlightedSection === "assistant"
+              ? "ring-2 ring-cyan-300 ring-offset-2 ring-offset-slate-900"
+              : ""
+          }`}
+        >
           <div className="space-y-2">
             <h2 className="text-3xl font-semibold">Assistant constellation</h2>
             <p className="max-w-3xl text-sm text-slate-300">
-              Scout, Coach, Critic, Archivist, Companion, and Navigator work in the background—refreshing research,
+              Scout, Coach, Critic, Archivist, Companion, and Navigator work in the background-refreshing research,
               pairing during builds, running evaluations, and composing sponsor-ready digests.
             </p>
           </div>
@@ -552,7 +589,14 @@ export default function CurriculumPage() {
           </div>
         </section>
 
-        <section id="sponsors" className="space-y-8">
+        <section
+          id="sponsors"
+          className={`space-y-8 transition-shadow duration-500 ${
+            highlightedSection === "sponsors"
+              ? "ring-2 ring-cyan-300 ring-offset-2 ring-offset-slate-900"
+              : ""
+          }`}
+        >
           <div className="space-y-2">
             <h2 className="text-3xl font-semibold">Sponsor dashboards</h2>
             <p className="max-w-3xl text-sm text-slate-300">
@@ -577,7 +621,14 @@ export default function CurriculumPage() {
           </div>
         </section>
 
-        <section id="docs" className="space-y-8">
+        <section
+          id="docs"
+          className={`space-y-8 transition-shadow duration-500 ${
+            highlightedSection === "docs"
+              ? "ring-2 ring-cyan-300 ring-offset-2 ring-offset-slate-900"
+              : ""
+          }`}
+        >
           <div className="space-y-2">
             <h2 className="text-3xl font-semibold">Source of truth docs</h2>
             <p className="max-w-3xl text-sm text-slate-300">

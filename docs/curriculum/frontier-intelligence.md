@@ -32,6 +32,36 @@ System for aggregating, prioritizing, and disseminating the most relevant intell
 - Change log updates (docs/curriculum/changelog.md) with summary, citations, and effective date.
 - Companion agent pushes micro-path adjustments if learners rely on impacted modules.
 
+## Weekly Digest Cadence (Q4 2025 Pilot)
+- **Monday - Signal Intake (Scout lead)**: Aggregate top lab drops (OpenAI system cards, Anthropic policy notes, Google DeepMind releases) and flag module refresh triggers for Sprint 1 labs.
+- **Tuesday - Mentor Synthesis (Curriculum council)**: Review intake queue, assign owners, and prep field test callouts for `docs/curriculum/labs/sprint1-agent-field-test.md` participants.
+- **Wednesday - Assistant Briefing (Coach & Companion)**: Update assistant prompt packs, schedule nudges, and pre-fill evaluation guardrail alerts for active cohorts.
+- **Thursday - Digest Production (Archivist)**: Publish markdown digest (template below), push telemetry snapshots, and notify sponsors via dashboard alerts.
+- **Friday - Live Pulse (Program lead)**: Host 20-minute sync to review risk radar changes, backlog shifts, and outstanding mitigations. Capture decisions in Evidence Locker.
+
+### Weekly Digest Template
+```
+# Frontier Intelligence Digest - Week of <date>
+
+## Headline Signals
+- Source / Date - Summary - Recommended Action - Linked Modules
+
+## Risk Radar Updates
+- Regulatory: <notes>
+- Evaluation: <notes>
+- Ops & Cost: <notes>
+
+## Sprint 1 Focus
+- Lab highlight: <link to sprint1-agent-field-test journal>
+- Guardrail watch: <open issues>
+- Suggested mitigations: <actions>
+
+## Upcoming Releases
+- <bullet list of expected launches, policy hearings, benchmarks>
+
+## Actions & Owners
+- <name> - <task> - due <date>
+```
 ## External Partnerships
 - `RegIntel Network`: consortium of policy experts providing embargoed insights before public release.
 - `Ops Pulse Alliance`: shared telemetry with select enterprise partners for anonymized benchmarking.
@@ -41,4 +71,6 @@ System for aggregating, prioritizing, and disseminating the most relevant intell
 - Q4 2025: Launch `/api/signals` endpoint for partners to query curated intelligence.
 - Q1 2026: Integrate scenario-based simulations triggered by signal combinations.
 - Q2 2026: Offer premium subscribers access to interactive knowledge graph and forecasting models.
+
+
 

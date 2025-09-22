@@ -1,4 +1,4 @@
-# AI Architect Academy
+﻿# AI Architect Academy
 
 Progressive learning and execution platform for AI Architects, program leaders, and Centers of Excellence. The goal is to deliver a micro-learning operating system backed by the open-source [AI Architect Academy](https://github.com/AI-Architect-Academy/ai-architect-academy) knowledge base and an AI assistant that helps teams ship governed, production-grade AI systems.
 
@@ -8,6 +8,24 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 - **Execution Workspaces**: Dashboards, labs, runbooks, and collaboration rituals built to join delivery tools (Slack/Teams, Linear, Jira, GitHub) without context switching.
 - **Operational Intelligence**: Evaluation reporting, guardrail monitoring, portfolio analytics, stakeholder communications, and verifiable credentials.
 
+## Learning Tracks (2025)
+| Track | Focus | Signature Deliverables |
+| --- | --- | --- |
+| T1 Agent Engineering Foundations | Frame, prompt, and field-test dependable coding agents. | Opportunity canvas, guardrail baseline, field test journal |
+| T2 Rapid Prototyping Studio | Ship high-signal prototypes with instrumentation and evidence. | Prototype repo, storyboard deck, pilot decision memo |
+| T3 Architecture Systems Lab | Translate prototypes into solution architectures and runbooks. | Capability map, interface contract, architecture briefing |
+| T4 Collaboration & Communication | Align teams with operating rituals, storytelling, and enablement. | Collaboration charter, story arc deck, progress digest |
+| T5 Operations & Reliability | Instrument, automate, and rehearse operations for production AI. | Reliability baseline report, observability dashboard, incident insight brief |
+| T6 Leadership & Scale | Drive portfolio governance, investment narratives, and activation. | Signal dashboard, investment narrative, community activation plan |
+
+## Massive Action Education Backlog (Q4 2025)
+- **Sprint 1 Agent Field Tests**: Activate the new `docs/curriculum-blueprint.md` plan with a red-team rehearsal and agent telemetry upload.
+- **Evaluation Harness Starter**: Stand up `scripts/eval-harness/` with OpenAI Evals templates, LangSmith suites, and Anthropic safety probes.
+- **Telemetry Stack Launch**: Wire Langfuse + OpenTelemetry collector + Supabase warehouse schema to capture cohort signals.
+- **Governance Control Checklist**: Publish the NIST + OpenAI Preparedness derived control stack inside `docs/curriculum/evaluation-ops.md`.
+- **Frontier Intelligence Digest**: Issue the weekly brief that triangulates releases from OpenAI, Anthropic, Google DeepMind, Meta, and Microsoft.
+- **Sponsor Progress Digest Beta**: Ship the leadership-ready narrative kit pairing sprint outcomes with telemetry.
+- **Frontier Model Alignment**: Apply GPT-5, Claude 4, Grok 4, Gemini 2.5, and Mistral Nano best practices across modules and assistant playbooks.
 ## Repository Structure
 `
 .
@@ -67,6 +85,9 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 - [Sponsor Cockpit Specification](docs/curriculum/sponsor-cockpit.md)
 - [Assistant Operations Playbook](docs/curriculum/assistant-ops.md)
 - [Frontier Intelligence Grid](docs/curriculum/frontier-intelligence.md)
+- [Frontier Lab Teaching Alignment](docs/curriculum/lab-teaching-alignment.md)
+- [Research, Development & Curriculum Plan](docs/curriculum/research-development-plan.md)
+- [Module Excellence Playbook](docs/curriculum/module-excellence.md)
 - [Track Explorer Specification](docs/curriculum/track-explorer.md)
 - [Curriculum Changelog](docs/curriculum/changelog.md)
 
@@ -81,6 +102,7 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 - [Product Blueprint](docs/product-blueprint.md)
 - [Platform Strategy](docs/strategy.md)
 - [Capabilities & Agentic Specs](docs/capabilities.md)
+- [Spec-Driven Development Backlog](docs/product/spec-driven-backlog.md)
 - [Agent Journey Mapping](docs/agent-journeys.md)
 - [Experience Blueprint](docs/experience-blueprint.md)
 - [Hub Content Model](docs/hub-content-model.md)
@@ -108,6 +130,11 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 - Partnerships & cohorts: [frank@aiarchitect.academy](mailto:frank@aiarchitect.academy).
 
 Built in public to accelerate real-world AI value delivery.
+
+
+
+
+
 
 
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { moduleCatalog, learningTracks, ModuleDefinition } from "@/data/curriculum";
 
@@ -41,6 +42,8 @@ function parseFreshness(value: string) {
 export default function ModulesPage() {
   const sampleModuleCode = moduleCatalog[0]?.code.toLowerCase() ?? "";
 
+  const searchParams = useSearchParams();
+
   const [selectedTrack, setSelectedTrack] = useState<string>("ALL");
   const [selectedMastery, setSelectedMastery] = useState<string[]>([]);
   const [selectedPersona, setSelectedPersona] = useState<string[]>([]);
@@ -54,6 +57,16 @@ export default function ModulesPage() {
     moduleCatalog.forEach((module) => module.personaFit.forEach((persona) => set.add(persona)));
     return Array.from(set);
   }, []);
+
+  useEffect(() => {
+    const trackParam = searchParams.get("track");
+    if (trackParam) {
+      const validIds = new Set(["ALL", ...learningTracks.map((track) => track.id)]);
+      if (validIds.has(trackParam)) {
+        setSelectedTrack(trackParam);
+      }
+    }
+  }, [searchParams]);
 
   const journeyStages = useMemo(() => {
     const set = new Set<string>();
@@ -413,15 +426,35 @@ function ModuleCard({ module }: ModuleCardProps) {
             ))}
           </ul>
         </div>
-        <div>
-          <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Quick steps</h4>
-          <ol className="mt-2 space-y-1 text-xs text-slate-300">
-            {module.steps.slice(0, 3).map((step) => (
-              <li key={step.title}>
-                <span className="font-semibold text-cyan-100">{step.title}:</span> {step.description}
-              </li>
-            ))}
-          </ol>
+        <div className="grid gap-3 md:grid-cols-2">
+          <div>
+            <h4 className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Quick steps</h4>
+            <ol className="mt-2 space-y-1 text-xs text-slate-300">
+              {module.steps.slice(0, 3).map((step) => (
+                <li key={step.title}>
+                  <span className="font-semibold text-cyan-100">{step.title}:</span> {step.description}
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 text-xs text-slate-300">
+            <p className="font-semibold text-slate-100">Learning summary</p>
+            <div className="mt-2 space-y-1">
+              {module.microLessons && module.microLessons.length > 0 && (
+                <p>
+                  <span className="text-cyan-200">{module.microLessons.length}</span> micro lesson{module.microLessons.length === 1 ? "" : "s"} with guided activities.
+                </p>
+              )}
+              {module.knowledgePoints && module.knowledgePoints.length > 0 && (
+                <p>
+                  <span className="text-cyan-200">{module.knowledgePoints.length}</span> knowledge point{module.knowledgePoints.length === 1 ? "" : "s"} to deepen expertise.
+                </p>
+              )}
+              <p>
+                Includes {module.assistantPrompts.length} assistant prompt{module.assistantPrompts.length === 1 ? "" : "s"} and {module.resources.length} curated resource{module.resources.length === 1 ? "" : "s"}.
+              </p>
+            </div>
+          </div>
         </div>
         <div className="flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.3em] text-slate-400">
           {module.personaFit.map((persona) => (
@@ -466,6 +499,22 @@ function ModuleCard({ module }: ModuleCardProps) {
         >
           Add to journey
         </Link>
+        {module.microLessons && module.microLessons.length > 0 && (
+          <Link
+            href={"/curriculum/modules/" + module.code.toLowerCase() + "#micro-lessons"}
+            className="rounded-full border border-white/20 px-4 py-2 text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
+          >
+            Micro lessons
+          </Link>
+        )}
+        {module.knowledgePoints && module.knowledgePoints.length > 0 && (
+          <Link
+            href={"/curriculum/modules/" + module.code.toLowerCase() + "#knowledge-points"}
+            className="rounded-full border border-white/20 px-4 py-2 text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
+          >
+            Knowledge points
+          </Link>
+        )}
       </div>
     </div>
   );

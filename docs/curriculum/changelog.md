@@ -1,6 +1,17 @@
 # Curriculum Changelog
 
-> Last updated: 2025-09-21
+> Last updated: 2025-09-23
+
+## 2025-09-23
+- Refreshed Module Excellence playbook with GPT-4o/o1, Claude 3.5, Gemini 1.5, Grok-2, Llama 3.1, and Mistral deployment guidance plus frontier model matrix.
+- Updated Sprint 1 agent field test lab with current model suites, realtime probes, and reasoning trace metrics.
+- Upgraded evaluation harness docs and checks (perception, realtime, preparedness) with telemetry-ready scoring and SLA reporting.
+
+## 2025-09-22
+- Expanded evaluation harness with GPT-5 preparedness scoring, Grok realtime probes, and Gemini perception checks plus new readiness metrics.
+- Added Module Excellence Playbook and surfaced excellence badges across module detail views.
+- Updated Sprint 1 field test, curriculum blueprint, and lab alignment matrix with GPT-5, Claude 4, Grok 4, Gemini 2.5, and Mistral Nano practices.
+
 
 ## 2025-09-21
 - Replaced the legacy galaxy model with six sprint-based learning tracks (Agent Foundations through Leadership & Scale).

@@ -50,6 +50,13 @@ export default function ModuleDetail({ params }: { params: { code: string } }) {
   }
 
   const trackMeta = learningTracks.find((track) => track.id === selectedModule!.galaxy);
+  const excellenceTags = selectedModule!.excellenceTags ?? [
+    "GPT-5 Preparedness",
+    "Claude 4 Constitutional",
+    "Grok Realtime",
+    "Gemini Perception",
+    "Edge Ready",
+  ];
   const relatedMicroPaths = personaMicroPaths.filter((path) =>
     path.days.some((day) => day.modules.includes(selectedModule!.code))
   );
@@ -75,11 +82,18 @@ export default function ModuleDetail({ params }: { params: { code: string } }) {
               Refreshed {selectedModule!.freshness}
             </span>
           </div>
+          <div className="flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.3em] text-cyan-100">
+            {excellenceTags.map((tag) => (
+              <span key={tag} className="rounded-full border border-cyan-300/30 px-3 py-1 text-cyan-100/80">
+                {tag}
+              </span>
+            ))}
+          </div>
           <div className="space-y-4">
             <h1 className="text-4xl font-semibold tracking-tight">{selectedModule!.title}</h1>
             {trackMeta && (
               <p className="text-sm text-cyan-200">
-                {trackMeta.id} · {trackMeta.title}
+                {trackMeta.id} - {trackMeta.title}
               </p>
             )}
             <p className="max-w-3xl text-base text-slate-200">
@@ -100,8 +114,32 @@ export default function ModuleDetail({ params }: { params: { code: string } }) {
               href="/curriculum#micro-paths"
               className="rounded-full bg-cyan-400 px-4 py-2 text-slate-900 transition hover:bg-cyan-300"
             >
-              Add to micro path
+              Add to micro sprint
             </Link>
+            {selectedModule!.microLessons && selectedModule!.microLessons.length > 0 && (
+              <Link
+                href="#micro-lessons"
+                className="rounded-full border border-white/20 px-4 py-2 text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
+              >
+                Micro lessons
+              </Link>
+            )}
+            {selectedModule!.knowledgePoints && selectedModule!.knowledgePoints.length > 0 && (
+              <Link
+                href="#knowledge-points"
+                className="rounded-full border border-white/20 px-4 py-2 text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
+              >
+                Knowledge points
+              </Link>
+            )}
+            {trackMeta && (
+              <Link
+                href={`/curriculum/modules?track=${trackMeta.id}`}
+                className="rounded-full border border-white/20 px-4 py-2 text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
+              >
+                View {trackMeta.title}
+              </Link>
+            )}
             <Link
               href="mailto:frank@aiarchitect.academy"
               className="rounded-full border border-white/20 px-4 py-2 text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
@@ -164,6 +202,73 @@ export default function ModuleDetail({ params }: { params: { code: string } }) {
             ))}
           </div>
         </section>
+
+
+        {selectedModule!.microLessons && selectedModule!.microLessons.length > 0 && (
+          <section id="micro-lessons" className="space-y-4">
+            <h2 className="text-2xl font-semibold">Micro lessons</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              {selectedModule!.microLessons?.map((lesson) => (
+                <div key={lesson.title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-sm text-slate-200">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold text-cyan-100">{lesson.title}</h3>
+                    <span className="text-xs uppercase tracking-[0.3em] text-cyan-200">{lesson.estimatedMinutes} min</span>
+                  </div>
+                  <p className="mt-3 text-xs text-slate-300">Objective: {lesson.objective}</p>
+                  <div className="mt-4 space-y-2 text-xs text-slate-300">
+                    <p className="font-semibold text-slate-200">Activities</p>
+                    <ul className="space-y-1">
+                      {lesson.activities.map((activity) => (
+                        <li key={activity} className="flex gap-2">
+                          <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                          <span>{activity}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="mt-4 space-y-2 text-xs text-slate-300">
+                    <p className="font-semibold text-slate-200">Knowledge checks</p>
+                    <ul className="space-y-1">
+                      {lesson.knowledgeChecks.map((check) => (
+                        <li key={check} className="flex gap-2">
+                          <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-cyan-300" />
+                          <span>{check}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {selectedModule!.knowledgePoints && selectedModule!.knowledgePoints.length > 0 && (
+          <section id="knowledge-points" className="space-y-4">
+            <h2 className="text-2xl font-semibold">Knowledge points</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              {selectedModule!.knowledgePoints?.map((point) => (
+                <div key={point.title} className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 text-sm text-slate-200">
+                  <h3 className="text-lg font-semibold text-cyan-100">{point.title}</h3>
+                  <p className="mt-3 text-sm text-slate-300">{point.summary}</p>
+                  <ul className="mt-4 space-y-1 text-xs text-cyan-200">
+                    {point.references.map((reference) => (
+                      <li key={reference.url}>
+                        <Link
+                          href={reference.url}
+                          target={reference.url.startsWith('http') ? '_blank' : undefined}
+                          className="hover:underline"
+                        >
+                          {reference.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section className="space-y-4">
           <h2 className="text-2xl font-semibold">Micro paths featuring this module</h2>
