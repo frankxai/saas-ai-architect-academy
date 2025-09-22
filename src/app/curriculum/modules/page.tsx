@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { moduleCatalog, learningTracks, ModuleDefinition } from "@/data/curriculum";
@@ -40,6 +40,14 @@ function parseFreshness(value: string) {
 }
 
 export default function ModulesPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center">Loading modules...</div>}>
+      <ModulesPageContent />
+    </Suspense>
+  );
+}
+
+function ModulesPageContent() {
   const sampleModuleCode = moduleCatalog[0]?.code.toLowerCase() ?? "";
 
   const searchParams = useSearchParams();
