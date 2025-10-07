@@ -2,58 +2,71 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-const STORAGE_KEY = "ai-architect-progress";
+import { useLearnerProgressAdapter } from "./data/data-environment";
+import type { LearnerFocusArea, LearnerProgressSnapshot } from "./data/types";
 
-export type LearnerFocusArea = "agents" | "prototyping" | "operations" | "governance" | "story";
+export type { LearnerFocusArea } from "./data/types";
 
-export type LearnerProgressState = {
-  focusArea: LearnerFocusArea;
-  checkpoints: Record<string, boolean>;
-  lastUpdated: string;
-};
+export type LearnerProgressState = LearnerProgressSnapshot;
 
-const defaultState: LearnerProgressState = {
+const defaultState: LearnerProgressSnapshot = {
   focusArea: "agents",
   checkpoints: {},
   lastUpdated: new Date().toISOString(),
 };
 
-function readState(): LearnerProgressState {
-  if (typeof window === "undefined") return defaultState;
-  try {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (!stored) return defaultState;
-    const parsed = JSON.parse(stored) as LearnerProgressState;
-    return {
-      focusArea: parsed.focusArea ?? defaultState.focusArea,
-      checkpoints: parsed.checkpoints ?? {},
-      lastUpdated: parsed.lastUpdated ?? defaultState.lastUpdated,
-    };
-  } catch (error) {
-    console.warn("Unable to parse learner progress state", error);
-    return defaultState;
-  }
-}
-
-function writeState(next: LearnerProgressState) {
-  if (typeof window === "undefined") return;
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-}
-
 export function useLearnerProgress() {
-  const [state, setState] = useState<LearnerProgressState>(() => readState());
+  const adapter = useLearnerProgressAdapter();
+  const [state, setState] = useState<LearnerProgressSnapshot>(defaultState);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    setState(readState());
-  }, []);
+    let active = true;
 
-  const updateState = useCallback((updater: (prev: LearnerProgressState) => LearnerProgressState) => {
-    setState((prev) => {
-      const next = updater(prev);
-      writeState(next);
-      return next;
+    adapter
+      .load()
+      .then((snapshot) => {
+        if (!active) return;
+        setState(snapshot);
+      })
+      .catch((error) => {
+        console.warn("Failed to load learner progress", error);
+      })
+      .finally(() => {
+        if (active) {
+          setIsHydrated(true);
+        }
+      });
+
+    const unsubscribe = adapter.subscribe?.((snapshot) => {
+      setState(snapshot);
     });
-  }, []);
+
+    return () => {
+      active = false;
+      unsubscribe?.();
+    };
+  }, [adapter]);
+
+  const persist = useCallback(
+    (snapshot: LearnerProgressSnapshot) => {
+      void adapter.save(snapshot).catch((error) => {
+        console.error("Failed to persist learner progress", error);
+      });
+    },
+    [adapter],
+  );
+
+  const updateState = useCallback(
+    (updater: (prev: LearnerProgressSnapshot) => LearnerProgressSnapshot) => {
+      setState((prev) => {
+        const next = updater(prev);
+        persist(next);
+        return next;
+      });
+    },
+    [persist],
+  );
 
   const toggleCheckpoint = useCallback(
     (id: string) => {
@@ -92,9 +105,12 @@ export function useLearnerProgress() {
     setFocusArea,
     toggleCheckpoint,
     completionRatio,
+    isHydrated,
   };
 }
 
 export function formatCompletion(ratio: number) {
-  return Math.round(ratio * 100).toString().concat("%");
+  return Math.round(ratio * 100)
+    .toString()
+    .concat("%");
 }
