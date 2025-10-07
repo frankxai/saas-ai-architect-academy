@@ -360,7 +360,7 @@ export default function WorkspacePage() {
           </div>
           <div className="mt-8 flex flex-wrap gap-3 text-xs">
             <Link
-              href="mailto:frank@aiarchitect.academy?subject=Workspace%20MVP%20Support"
+              href="/#waitlist"
               className="rounded-full bg-white px-4 py-2 font-semibold uppercase tracking-[0.3em] text-slate-900 transition hover:bg-slate-200"
             >
               Join the build circle

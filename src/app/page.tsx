@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { ProgressIndicator } from "@/components/ui/progress-indicator";
 import { SectionHeader, SectionShell } from "@/components/ui/section";
+import { WaitlistSection } from "@/components/waitlist/waitlist-form";
 
 const navLinks = [
   { label: "Vision", href: "#vision" },
@@ -13,6 +14,7 @@ const navLinks = [
   { label: "Personas", href: "#personas" },
   { label: "Services", href: "#services" },
   { label: "Resources", href: "#resources" },
+  { label: "Waitlist", href: "/#waitlist" },
 ];
 
 const heroHighlights = [
@@ -300,7 +302,7 @@ const serviceOffers = [
       "Executive-ready narrative plus board briefing artefacts",
     ],
     ctaLabel: "Book the sprint",
-    href: "mailto:frank@aiarchitect.academy?subject=Executive%20Governance%20Sprint",
+    href: "/#waitlist",
   },
   {
     title: "Enterprise Transformation Lab",
@@ -313,7 +315,7 @@ const serviceOffers = [
       "OKR and ROI instrumentation plus handover playbook",
     ],
     ctaLabel: "Schedule lab consult",
-    href: "mailto:frank@aiarchitect.academy?subject=Enterprise%20Transformation%20Lab",
+    href: "/#waitlist",
   },
   {
     title: "Creator Influence Accelerator",
@@ -326,7 +328,7 @@ const serviceOffers = [
       "Analytics dashboard with sponsorship and conversion insights",
     ],
     ctaLabel: "Request media kit",
-    href: "mailto:frank@aiarchitect.academy?subject=Creator%20Influence%20Accelerator",
+    href: "/#waitlist",
   },
   {
     title: "Inner Circle Advisory",
@@ -339,7 +341,7 @@ const serviceOffers = [
       "Early invites to launches, masterminds, and community rituals",
     ],
     ctaLabel: "Join the advisory",
-    href: "mailto:frank@aiarchitect.academy?subject=Inner%20Circle%20Advisory",
+    href: "/#waitlist",
   },
 ];
 
@@ -406,19 +408,19 @@ const resourceVault = [
         name: "Executive Governance Sprint",
         summary: "Four-week engagement aligning policy, evaluation, and launch rhythms.",
         format: "Advisory sprint",
-        href: "mailto:frank@aiarchitect.academy?subject=Executive%20Governance%20Sprint",
+        href: "/#waitlist",
       },
       {
         name: "Enterprise Transformation Lab",
         summary: "Embedded partnership shipping governed architectures and enablement.",
         format: "Advisory lab",
-        href: "mailto:frank@aiarchitect.academy?subject=Enterprise%20Transformation%20Lab",
+        href: "/#waitlist",
       },
       {
         name: "Creator Influence Accelerator",
         summary: "Systems, analytics, and assistant prompts for multi-channel influence.",
         format: "Creator accelerator",
-        href: "mailto:frank@aiarchitect.academy?subject=Creator%20Influence%20Accelerator",
+        href: "/#waitlist",
       },
     ],
   },
@@ -501,7 +503,7 @@ function HeroSection() {
               Browse modules & labs
             </Link>
             <Link
-              href="mailto:frank@aiarchitect.academy"
+              href="/#waitlist"
               className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
             >
               Talk to the team
@@ -689,10 +691,10 @@ function AssistantSection() {
             </li>
           </ul>
           <p className="mt-4 text-xs text-slate-300">
-            Want to help wire the Supabase experience? Reach out and we will provision a build preview with the current MVP.
+            Want to help wire the Supabase experience? Drop your details and we will invite you to the integration preview.
           </p>
           <Link
-            href="mailto:frank@aiarchitect.academy?subject=Supabase%20Workspace%20Collab"
+            href="/#waitlist"
             className="mt-4 inline-flex w-max rounded-full bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-900 transition hover:bg-slate-200"
           >
             Support the MVP build
@@ -863,7 +865,7 @@ function ClosingCta() {
             Explore module atlas
           </Link>
           <Link
-            href="mailto:frank@aiarchitect.academy"
+            href="/#waitlist"
             className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
           >
             Become a launch partner
@@ -884,8 +886,9 @@ function Footer() {
             <span className="text-[11px] uppercase tracking-[0.35em] text-cyan-200">AI Architect Academy</span>
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link href="mailto:frank@aiarchitect.academy" className="hover:text-cyan-200">
-              frank@aiarchitect.academy
+            <span className="hover:text-cyan-200">frank@aiarchitect.academy</span>
+            <Link href="/#waitlist" className="hover:text-cyan-200">
+              Join waitlist
             </Link>
             <Link href="https://github.com/frankxai/saas-ai-architect-academy" target="_blank" className="hover:text-cyan-200">
               GitHub
@@ -925,6 +928,7 @@ export default function HomePage() {
         <PersonaSection />
         <ServicesSection />
         <ResourceSection />
+        <WaitlistSection />
         <ClosingCta />
       </main>
       <Footer />

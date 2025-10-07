@@ -141,7 +141,7 @@ export default function ModuleDetail({ params }: { params: { code: string } }) {
               </Link>
             )}
             <Link
-              href="mailto:frank@aiarchitect.academy"
+              href="/#waitlist"
               className="rounded-full border border-white/20 px-4 py-2 text-slate-100 transition hover:border-cyan-300 hover:text-cyan-200"
             >
               Schedule mentor review

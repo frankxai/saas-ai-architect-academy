@@ -127,7 +127,7 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 
 ## Community + Support
 - Discussions/issues: [GitHub repo](https://github.com/frankxai/saas-ai-architect-academy).
-- Partnerships & cohorts: [frank@aiarchitect.academy](mailto:frank@aiarchitect.academy).
+- Partnerships & cohorts: Join the [Academy waitlist](https://saas-ai-architect-academy.vercel.app/#waitlist) or email frank@aiarchitect.academy.
 
 Built in public to accelerate real-world AI value delivery.
 
