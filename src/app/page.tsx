@@ -8,148 +8,198 @@ import { WaitlistSection } from "@/components/waitlist/waitlist-form";
 
 const navLinks = [
   { label: "Vision", href: "#vision" },
+  { label: "Platform", href: "#platform" },
+  { label: "Proof", href: "#proof" },
   { label: "Curriculum", href: "#curriculum" },
+  { label: "Command Center", href: "/command-center" },
   { label: "Assistant", href: "#assistant" },
-  { label: "Workspaces", href: "#workspaces" },
+  { label: "Workspace", href: "#workspaces" },
   { label: "Personas", href: "#personas" },
-  { label: "Services", href: "#services" },
+  { label: "Advisory", href: "#services" },
   { label: "Resources", href: "#resources" },
   { label: "Waitlist", href: "/#waitlist" },
 ];
 
 const heroHighlights = [
-  "Sprint-ready curriculum mapped to guardrails and evaluation signals",
-  "Learner + agent workspace with telemetry, evidence, and coaching",
-  "Creator and sponsor storytelling kits grounded in production proof",
+  "Spec-to-launch operating system linking backlog, labs, and evidence locker updates.",
+  "AI assistant coordinates Scout, Coach, Critic, Archivist, and Companion against live telemetry.",
+  "Executive storytelling kits deliver ROI dashboards, compliance proof, and sponsor-ready narratives.",
+];
+
+const heroMetrics = [
+  { value: "72h", label: "Spec to lab handoff", note: "Mission brief to Sprint 1 activation" },
+  { value: "96%", label: "Guardrail coverage", note: "Preparedness + constitutional controls instrumented" },
+  { value: "4.8/5", label: "Learner NPS", note: "Latest agent-led field test cohorts" },
+];
+
+const trustSignals = [
+  "OpenAI Evals & Preparedness aligned",
+  "Claude 3.5 constitutional guardrails",
+  "Gemini 1.5 perception & Astra drills",
+  "Microsoft Responsible AI scorecard ready",
+  "Grok realtime retrieval scenarios",
+];
+
+const proofMoments = [
+  {
+    title: "Sprint 1 Agent Field Test",
+    description:
+      "Telemetry-backed evaluation flow covering o1 reasoning, GPT-4o multimodal reliability, realtime Grok probes, and Claude critiques.",
+    href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/labs/sprint1-agent-field-test.md",
+    linkLabel: "Review the lab",
+  },
+  {
+    title: "Module Excellence Command Center",
+    description:
+      "Spec-to-evidence playbook ensuring every module carries guardrails, evaluation suites, and storytelling assets in sync.",
+    href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/module-excellence.md",
+    linkLabel: "Open the playbook",
+  },
+  {
+    title: "Evaluation Harness Starter",
+    description:
+      "Production instrumentation for toxicity, hallucination, preparedness, perception, and realtime retrieval with telemetry hooks.",
+    href: "https://github.com/frankxai/saas-ai-architect-academy/tree/main/scripts/eval-harness",
+    linkLabel: "Inspect the harness",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "The Academy gave us a spec-to-storytelling pipeline that finally connected product, governance, and exec reporting in one motion.",
+    name: "Global AI Program Lead",
+    title: "Fortune 100 Transformation Office",
+  },
+  {
+    quote:
+      "Sprint 1 revealed gaps in our guardrails within days and the assistant immediately pushed playbooks, prompts, and telemetry fixes.",
+    name: "Director of AI Enablement",
+    title: "Enterprise Innovation Lab",
+  },
+  {
+    quote:
+      "Our sponsors now get weekly evidence lockers, ROI snapshots, and creator-ready narratives without extra lift from the team.",
+    name: "Chief Architect",
+    title: "Scale-up SaaS Platform",
+  },
 ];
 
 const stats = [
   { value: "220+", label: "Curriculum artefacts", note: "Blueprints, checklists, playbooks" },
   { value: "60+", label: "Advisory playbooks", note: "Executive-ready packages" },
   { value: "12", label: "Signature tracks", note: "Agents, prototyping, ops, leadership" },
-  { value: "4.8/5", label: "Learner satisfaction", note: "Field-test cohorts & creators" },
+  { value: "40", label: "Telemetry-ready labs", note: "Sprint-tested with guardrail proofs" },
 ];
 
 const specFlow = [
   {
     step: "01",
-    title: "Discover & Frame",
-    description: "Intake PRDs, business goals, and guardrails to anchor every build in measurable outcomes.",
-    artifacts: ["AI CoE PRD template", "Sponsor goal brief", "Risk posture summary"],
+    title: "Signal & Spec",
+    description:
+      "Absorb frontier intelligence, align the Spec-Driven Backlog, and capture mission briefs with risk posture.",
+    artifacts: ["Frontier signal card", "AI CoE PRD + acceptance metrics", "Spec-critical risk & guardrail log"],
   },
   {
     step: "02",
     title: "Pattern & Playbook",
-    description: "Select prototyping and SDLC patterns, then author XML/YAML agent playbooks for every role.",
-    artifacts: ["Pattern rationale note", "Agent instruction files", "Interface checklist"],
+    description:
+      "Select delivery pattern, author agent instructions, and map human + assistant responsibilities across the journey.",
+    artifacts: ["Pattern rationale note", "Agent XML/YAML playbooks", "Interface & UX checklist"],
   },
   {
     step: "03",
-    title: "Build & Instrument",
-    description: "Run Sprint 1 labs, wire evaluation harnesses, and capture telemetry for humans and copilots.",
-    artifacts: ["Field test journal", "scripts/eval-harness run", "Telemetry snapshot"],
+    title: "Instrument & Build",
+    description:
+      "Activate Sprint labs, wire evaluation harness checks, and capture telemetry across every critical workflow.",
+    artifacts: ["Sprint 1 run plan", "scripts/eval-harness configuration", "Telemetry & Langfuse trace IDs"],
   },
   {
     step: "04",
     title: "Evidence & Amplify",
-    description: "Publish system cards, compliance scorecards, and storytelling kits that prove value and trust.",
-    artifacts: ["System card draft", "Compliance scorecard", "Progress digest"],
+    description:
+      "Package outputs for sponsors, governance, and community with ROI storytelling and compliance proof.",
+    artifacts: ["Evidence locker journal", "Sponsor storytelling kit", "Compliance & readiness scorecard"],
   },
 ];
 
 const specPrinciples = [
   {
-    title: "Specs before sprints",
-    description: "Every initiative starts with a spec referencing AI CoE templates and explicit acceptance criteria.",
+    title: "Signal-first planning",
+    description: "Every update begins with actionable signals mapped to backlog IDs and persona impact.",
   },
   {
-    title: "Agent + human parity",
-    description: "Playbooks, artefacts, and telemetry are designed for autonomous agents and human teams together.",
+    title: "Assistant + human parity",
+    description: "Instructions, assets, and telemetry stay consumable by copilots and teams at every step.",
   },
   {
-    title: "Evidence everywhere",
-    description: "Ship evaluation outputs, guardrail coverage, and storytelling assets together to reinforce trust.",
+    title: "Evidence travels with code",
+    description: "Evaluation outputs, guardrail coverage, and narrative artefacts move together.",
   },
   {
-    title: "Continuous frontier sync",
-    description: "Weekly lab scans feed updates into modules, harnesses, and dashboards to stay aligned with top AI labs.",
+    title: "Experience-led governance",
+    description: "UX, compliance, and adoption rituals remain intertwined so value ships responsibly.",
   },
 ];
 
 const moduleTracks = [
   {
     title: "Agent Foundations",
-    description: "Frame, prompt, and field-test dependable coding agents with clear success metrics.",
+    description: "Frame opportunity, harden prompts, and field-test dependable coding agents with measurable guardrails.",
     modules: ["Agent opportunity mapping", "Prompt & policy baseline", "Agent field test"],
     duration: "2-week sprint",
-    deliverable: "Agent blueprint, guardrail baseline, and field-test journal.",
+    deliverable: "Agent blueprint, guardrail baseline, sprint journal",
   },
   {
     title: "Rapid Prototyping",
-    description: "Move from hypothesis to pilot-ready demos with instrumentation and evidence packs.",
+    description: "Move from hypothesis to pilot-ready demo with qualitative + quantitative instrumentation baked in.",
     modules: ["Prototype hypothesis sprint", "Experience story sprint", "Prototype pilot"],
     duration: "3-week cadence",
-    deliverable: "Prototype repo, storyboard, and iteration decision memo.",
+    deliverable: "Prototype repo, storyboard, iteration decision memo",
   },
   {
     title: "Architecture & Ops",
-    description: "Translate prototypes into solution architectures, observability, and runbooks.",
+    description: "Translate prototypes into production-grade architectures, observability, and on-call rituals.",
     modules: ["Capability mapping lab", "Interface contract design", "Observability rollout"],
     duration: "4-week program",
-    deliverable: "Architecture brief, retrieval blueprint, and operations dashboard.",
+    deliverable: "Architecture brief, retrieval blueprint, operations dashboard",
   },
   {
     title: "Story & Scale",
-    description: "Align teams, sponsors, and communities with narratives and activation plans.",
+    description: "Activate sponsors, communities, and partners with telemetry-backed narratives and enablement systems.",
     modules: ["Collaboration operating system", "Storytelling lab", "Investment story studio"],
     duration: "Leadership lane",
-    deliverable: "Enablement toolkit, progress digest, and investment narrative.",
+    deliverable: "Enablement toolkit, progress digest, investment narrative",
   },
 ];
 
 const experiencePillars = [
   {
-    title: "Agent Momentum",
-    description: "Stand up dependable coding agents with guardrails, telemetry, and human-in-the-loop rituals.",
-    highlights: [
-      "Opportunity canvases and guardrail baselines",
-      "Reusable agent starter kits with evaluation hooks",
-      "Field-test journals and sponsor-ready summaries",
-    ],
+    title: "Signal to Spec",
+    description: "Turn intelligence into mission briefs and backlog moves that unlock the next release.",
+    highlights: ["Frontier digest review ritual", "Spec-driven backlog alignment", "Risk posture + policy sync"],
   },
   {
-    title: "Prototype Velocity",
-    description: "Move from hypothesis to pilot-ready demos in days with instrumentation and evidence packs.",
-    highlights: [
-      "Hypothesis briefs and storyboard studios",
-      "Pilot facilitation scripts with qualitative + quantitative capture",
-      "Iteration decision memos that feed investment stories",
-    ],
+    title: "Build Momentum",
+    description: "Guide teams and agents through labs, harness runs, and co-build rituals without dropping guardrails.",
+    highlights: ["Sprint 1 activation playbook", "Evaluation harness automation", "Realtime telemetry dashboards"],
   },
   {
-    title: "Architecture & Ops",
-    description: "Translate prototypes into resilient architectures, observability stacks, and runbooks.",
-    highlights: [
-      "Interface contracts and retrieval blueprints",
-      "Observability rollout plans and guardrail coverage reports",
-      "Incident simulations with insight briefs for sponsors",
-    ],
+    title: "Operate & Assure",
+    description: "Keep production health visible with observability, governance cadences, and readiness reports.",
+    highlights: ["Preparedness scorecards", "Incident rehearsal templates", "Guardrail coverage analytics"],
   },
   {
-    title: "Story & Scale",
-    description: "Activate communication kits, governance cadences, and community playbooks so wins travel fast.",
-    highlights: [
-      "Collaboration charters and enablement loops",
-      "Progress digests tailored to executives, teams, and communities",
-      "Investment narratives grounded in telemetry",
-    ],
+    title: "Story & Amplify",
+    description: "Compress wins into executive briefings, creator content, and community campaigns.",
+    highlights: ["Sponsor digest factory", "Creator studio prompts", "Evidence locker linking guidance"],
   },
 ];
 
 const assistantHighlights = [
-  "Grounded answers over the Academy knowledge graph, service playbooks, and live project telemetry.",
-  "Adaptive learning coach assembling micro-modules, resources, and prompts tuned to persona signals.",
-  "Session memory exports implementation plans, executive briefings, social copy, and deliverable packages.",
+  "Grounded responses reference the academy knowledge graph, evaluation harness, and evidence locker artefacts.",
+  "Persona-aware coaching assembles micro-modules, labs, and prompts tuned to skill gaps and goals.",
+  "Session memory exports implementation plans, executive briefings, social copy, and deliverable checklists.",
   "Telemetry captures citations, evaluation status, reputation signals, and readiness for stakeholders.",
   "Agent-mode APIs deliver structured JSON for resources, services, personas, and project pulses.",
 ];
@@ -163,12 +213,12 @@ const assistantWorkflows = [
   {
     title: "Plan composition",
     description:
-      "Assistant assembles modules, labs, governance tasks, and content assets with full reasoning trails.",
+      "Assistant assembles modules, labs, governance tasks, and content assets with full reasoning trails and citations.",
   },
   {
     title: "Co-build execution",
     description:
-      "Generate diagrams, ADRs, evaluation suites, automation snippets, and editorial outlines with citations ready to import.",
+      "Generate diagrams, ADRs, evaluation suites, automation snippets, and editorial outlines with guardrails enforced.",
   },
   {
     title: "Evidence & handover",
@@ -359,10 +409,10 @@ const resourceVault = [
         href: "https://github.com/AI-Architect-Academy/ai-architect-academy",
       },
       {
-        name: "Responsible AI Readiness Checklist",
-        summary: "Checklist aligned to NIST AI RMF and ISO/IEC 42001 principles.",
-        format: "Markdown guide",
-        href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/evaluation-ops.md",
+        name: "Module Excellence Command Center",
+        summary: "Spec-to-evidence orchestration guide for every module iteration.",
+        format: "Markdown playbook",
+        href: "https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/module-excellence.md",
       },
       {
         name: "Frontier Intelligence Digest Template",
@@ -401,8 +451,7 @@ const resourceVault = [
   {
     tier: "Premium Advisory",
     badge: "Invite-only",
-    description:
-      "White-glove support for enterprise transformation, creators, and inner circle patrons.",
+    description: "White-glove support for enterprise transformation, creators, and inner circle patrons.",
     items: [
       {
         name: "Executive Governance Sprint",
@@ -462,13 +511,13 @@ function Navigation() {
             href="/curriculum"
             className="rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
           >
-            Explore curriculum
+            Curriculum hub
           </Link>
           <Link
-            href="/workspaces"
+            href="mailto:frank@aiarchitect.academy?subject=AI%20Architect%20Academy%20Strategy%20Call"
             className="rounded-full bg-cyan-400 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300"
           >
-            Enter workspace
+            Book strategy call
           </Link>
         </div>
       </div>
@@ -479,51 +528,153 @@ function Navigation() {
 function HeroSection() {
   return (
     <SectionShell id="vision" className="bg-gradient-to-br from-slate-900/80 via-slate-950/90 to-slate-900/80">
-      <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
-        <div className="space-y-6">
-          <Badge tone="accent">Sprint-ready SaaS MVP</Badge>
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="space-y-8">
+          <Badge tone="accent">Frontier AI operating system</Badge>
           <h1 className="max-w-2xl text-4xl font-semibold tracking-tight sm:text-5xl">
-            Ship governed AI outcomes with an academy, assistant, and workspace built for architects.
+            Launch your AI architecture company-in-a-box with governed velocity.
           </h1>
           <p className="max-w-3xl text-base text-slate-300 sm:text-lg">
-            The AI Architect Academy SaaS platform blends learning, execution, telemetry, and storytelling so teams and their
-            copilots move from intent to production proof without losing trust.
+            The Academy blends curriculum, assistant, workspace, and evidence locker into one connected experience so your teams and
+            copilots move from mission brief to executive-ready proof without breaking trust.
           </p>
+          <ul className="grid gap-3 text-sm text-slate-300">
+            {heroHighlights.map((highlight) => (
+              <li key={highlight} className="flex gap-3">
+                <span className="mt-1 inline-flex h-2 w-2 rounded-full bg-cyan-300" />
+                <span>{highlight}</span>
+              </li>
+            ))}
+          </ul>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/workspaces"
               className="rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-cyan-300"
             >
-              Launch learner workspace
+              Launch workspace demo
             </Link>
             <Link
               href="/curriculum"
               className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
             >
-              Browse modules & labs
+              Explore modules & labs
             </Link>
             <Link
               href="/#waitlist"
               className="rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-300 hover:text-cyan-200"
             >
-              Talk to the team
+              Talk to the professor
             </Link>
           </div>
-        </div>
-        <div className="flex flex-col items-center gap-6">
-          <ProgressIndicator value={0.68} label="Learner completion" />
-          <div className="w-full max-w-xs space-y-3 rounded-3xl border border-white/10 bg-white/5 p-4 text-xs text-slate-200">
-            <p className="font-semibold uppercase tracking-[0.3em] text-cyan-200">Highlights</p>
-            <ul className="space-y-2">
-              {heroHighlights.map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-cyan-300" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {heroMetrics.map((metric) => (
+              <div key={metric.label} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <p className="text-3xl font-semibold text-cyan-200">{metric.value}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-400">{metric.label}</p>
+                <p className="text-[11px] text-slate-400">{metric.note}</p>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-2 text-[11px] uppercase tracking-[0.3em] text-slate-500">
+            {trustSignals.slice(0, 3).map((signal) => (
+              <Badge key={signal} tone="neutral">
+                {signal}
+              </Badge>
+            ))}
           </div>
         </div>
+        <div className="space-y-6">
+          <Card tone="default">
+            <div className="space-y-4 text-sm text-slate-200">
+              <ProgressIndicator value={0.74} label="Launch readiness" />
+              <p className="text-xs text-slate-300">
+                14-day pilot blueprint connecting Spec-Driven Backlog, Sprint 1 lab, assistant prompts, and evidence locker rituals.
+              </p>
+              <ul className="space-y-3 text-xs text-slate-200">
+                <li className="flex items-center justify-between gap-3">
+                  <span>Module excellence command center</span>
+                  <Link href="#platform" className="text-[11px] uppercase tracking-[0.3em] text-cyan-200">
+                    View
+                  </Link>
+                </li>
+                <li className="flex items-center justify-between gap-3">
+                  <span>Sprint 1 field test lab</span>
+                  <Link href="#proof" className="text-[11px] uppercase tracking-[0.3em] text-cyan-200">
+                    Proof
+                  </Link>
+                </li>
+                <li className="flex items-center justify-between gap-3">
+                  <span>Assistant telemetry stack</span>
+                  <Link href="#assistant" className="text-[11px] uppercase tracking-[0.3em] text-cyan-200">
+                    Meet
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </Card>
+          <Card tone="outline" title="Sponsor-ready artefacts" subtitle="Delivered automatically with every sprint">
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li className="flex gap-2">
+                <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                <span>Evidence locker entries linked to telemetry IDs</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                <span>Executive briefings with ROI + guardrail snapshot</span>
+              </li>
+              <li className="flex gap-2">
+                <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                <span>Creator-ready story packs and social atomisation prompts</span>
+              </li>
+            </ul>
+          </Card>
+        </div>
+      </div>
+    </SectionShell>
+  );
+}
+
+function ProofSection() {
+  return (
+    <SectionShell id="proof" className="bg-white/[0.03]">
+      <SectionHeader
+        eyebrow="Proof"
+        title="Evidence that the operating system already ships outcomes"
+        subtitle="Live labs, telemetry, and governance-ready storytelling connect every touchpoint."
+      />
+      <div className="mt-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+        <div className="grid gap-6 md:grid-cols-2">
+          {proofMoments.map((moment) => (
+            <Card key={moment.title} tone="outline" title={moment.title} subtitle={moment.description}>
+              <Link
+                href={moment.href}
+                target={moment.href.startsWith('http') ? "_blank" : undefined}
+                className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200"
+              >
+                {moment.linkLabel}
+              </Link>
+            </Card>
+          ))}
+        </div>
+        <Card tone="default" title="Voices from the field">
+          <ul className="space-y-6 text-sm text-slate-200">
+            {testimonials.map((testimonial) => (
+              <li key={testimonial.quote} className="space-y-2">
+                <p className="text-sm text-slate-200">“{testimonial.quote}”</p>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                  {testimonial.name} • {testimonial.title}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      </div>
+      <div className="mt-10 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-slate-400">
+        {trustSignals.map((signal) => (
+          <Badge key={signal} tone="neutral">
+            {signal}
+          </Badge>
+        ))}
       </div>
     </SectionShell>
   );
@@ -531,11 +682,20 @@ function HeroSection() {
 
 function StatsBar() {
   return (
-    <SectionShell className="bg-white/[0.03]">
+    <SectionShell className="bg-gradient-to-br from-slate-950/70 via-slate-900/80 to-slate-950/70">
       <SectionHeader
         eyebrow="Signals"
-        title="Evidence that learners and sponsors already rely on"
-        subtitle="Every asset is grounded in the open-source academy and updated weekly with frontier lab research."
+        title="Why architects, sponsors, and copilots keep choosing the Academy"
+        subtitle="Numbers stay anchored to the public changelog and evidence locker so every claim is verifiable."
+        actions={
+          <Link
+            href="https://github.com/frankxai/saas-ai-architect-academy/blob/main/docs/curriculum/changelog.md"
+            target="_blank"
+            className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200"
+          >
+            View changelog
+          </Link>
+        }
       />
       <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {stats.map((stat) => (
@@ -552,11 +712,11 @@ function StatsBar() {
 
 function SpecLoop() {
   return (
-    <SectionShell id="spec" className="bg-gradient-to-br from-slate-900/80 via-slate-950/80 to-slate-900/80">
+    <SectionShell id="platform" className="bg-gradient-to-br from-slate-900/80 via-slate-950/80 to-slate-900/80">
       <SectionHeader
-        eyebrow="Spec-driven delivery"
-        title="One operating loop for humans and agents"
-        subtitle="Every sprint begins with a mission brief and ends with evidence packaged for stakeholders, copilots, and community."
+        eyebrow="Platform loop"
+        title="One operating loop binding specs, labs, assistant, and evidence"
+        subtitle="Start with a mission brief, run governed sprints, and publish proof that keeps teams and sponsors aligned."
       />
       <div className="mt-10 grid gap-6 lg:grid-cols-4">
         {specFlow.map((step) => (
@@ -588,8 +748,8 @@ function CurriculumTracks() {
     <SectionShell id="curriculum">
       <SectionHeader
         eyebrow="Curriculum"
-        title="Learning tracks designed to produce artefacts every five days"
-        subtitle="Adaptive micro-learning, labs, and evaluation hooks meet you where your team is and keep momentum visible."
+        title="Learning tracks engineered to ship artefacts every five days"
+        subtitle="Micro-paths, labs, and evaluation hooks meet teams where they are and prove value fast."
         actions={<Link href="/curriculum" className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">Open curriculum hub</Link>}
       />
       <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -623,8 +783,8 @@ function ExperienceStack() {
     <SectionShell id="experience" className="bg-white/[0.03]">
       <SectionHeader
         eyebrow="Experience"
-        title="The learner journey spans four momentum pillars"
-        subtitle="Each pillar ships guides, automation, and telemetry so learners, mentors, and copilots stay aligned on progress."
+        title="Four momentum pillars keep teams shipping with confidence"
+        subtitle="Every pillar comes with guides, automations, and telemetry so learners, mentors, and copilots stay in sync."
       />
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
         {experiencePillars.map((pillar) => (
@@ -711,7 +871,7 @@ function WorkspaceSection() {
         eyebrow="Learner workspace"
         title="One cockpit ties modules, assistant prompts, telemetry, and storytelling"
         subtitle="Every stream keeps learners on track while sponsors and creators can see progress in one place."
-        actions={<Link href="/workspaces" className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">View workspace MVP</Link>}
+        actions={<Link href="/workspaces" className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">See workspace preview</Link>}
       />
       <div className="mt-8 grid gap-6 lg:grid-cols-2">
         {workspaceStreams.map((stream) => (
@@ -848,7 +1008,7 @@ function ClosingCta() {
           Ship your next AI milestone with governed velocity.
         </h2>
         <p className="mx-auto max-w-2xl text-sm text-slate-200 sm:text-base">
-          Join the sprint, explore the workspace, or bring the assistant into your portfolio. The MVP is live — let&apos;s make your
+          Join the sprint, explore the workspace, or bring the assistant into your portfolio. The MVP is live—let&apos;s make your
           learners unstoppable.
         </p>
         <div className="flex flex-wrap justify-center gap-3">
@@ -919,10 +1079,11 @@ export default function HomePage() {
       <Navigation />
       <main className="relative z-10 mx-auto flex max-w-6xl flex-col gap-12 px-4 pb-32 pt-12 sm:px-6 lg:px-8">
         <HeroSection />
+        <ProofSection />
         <StatsBar />
         <SpecLoop />
-        <CurriculumTracks />
         <ExperienceStack />
+        <CurriculumTracks />
         <AssistantSection />
         <WorkspaceSection />
         <PersonaSection />

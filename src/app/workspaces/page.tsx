@@ -7,6 +7,8 @@ import { Card } from "@/components/ui/card";
 import { ProgressIndicator } from "@/components/ui/progress-indicator";
 import { SectionHeader, SectionShell } from "@/components/ui/section";
 import { formatCompletion, useLearnerProgress } from "@/lib/learner-progress";
+import { LearningDashboard } from "@/components/learning/LearningDashboard";
+import { learningModules, demoLearnerProfile, demoUserProgress } from "@/data/learning-catalog";
 
 const focusAreas = [
   {
@@ -277,6 +279,21 @@ export default function WorkspacePage() {
                 Modules: {activeArea.modules.join(", ")}
               </div>
             </Card>
+          </div>
+        </SectionShell>
+
+        <SectionShell className="bg-white/[0.03]">
+          <SectionHeader
+            eyebrow="Personalized path"
+            title="Spec-driven learning dashboard"
+            subtitle="Track XP, streaks, and recommended modules aligned to the MVP backlog." />
+          <div className="mt-8">
+            <LearningDashboard
+              userId="demo-architect"
+              initialProgress={demoUserProgress}
+              initialProfile={demoLearnerProfile}
+              availableModules={learningModules}
+            />
           </div>
         </SectionShell>
 

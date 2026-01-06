@@ -1,4 +1,4 @@
-﻿# AI Architect Academy
+# AI Architect Academy
 
 Progressive learning and execution platform for AI Architects, program leaders, and Centers of Excellence. The goal is to deliver a micro-learning operating system backed by the open-source [AI Architect Academy](https://github.com/AI-Architect-Academy/ai-architect-academy) knowledge base and an AI assistant that helps teams ship governed, production-grade AI systems.
 
@@ -130,11 +130,3 @@ Progressive learning and execution platform for AI Architects, program leaders, 
 - Partnerships & cohorts: Join the [Academy waitlist](https://saas-ai-architect-academy.vercel.app/#waitlist) or email frank@aiarchitect.academy.
 
 Built in public to accelerate real-world AI value delivery.
-
-
-
-
-
-
-
-
